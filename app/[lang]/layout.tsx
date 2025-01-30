@@ -29,7 +29,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <main className="mb-footer-height">{children}</main>
-        <div className="fixed inset-x-0 bottom-0 h-20">
+        <div className="fixed inset-x-0 bottom-0 h-footer-height">
           <Footer />
         </div>
       </body>

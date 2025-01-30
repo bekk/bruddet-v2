@@ -18,6 +18,7 @@ export default async function Page({
         {Array.from({ length: 100 }).map((_, i) => (
           <p key={i}>Menysiden</p>
         ))}
+        <p>{lang}</p>
       </div>
 
 

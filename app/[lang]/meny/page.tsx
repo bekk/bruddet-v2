@@ -4,5 +4,5 @@ export default async function Page({
   params: Promise<{ lang: string }>;
 }) {
   const lang = (await params).lang;
-  return <h1>{lang} Programsiden</h1>;
+  return <h1>{lang} Menysiden</h1>;
 }

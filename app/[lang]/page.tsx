@@ -4,23 +4,19 @@ import { FRONTPAGE_QUERY } from "@/sanity/lib/queries/frontPage";
 import { FRONTPAGE_QUERYResult } from "@/sanity/types/types";
 import { SanityImageSource } from "@sanity/image-url/lib/types/types";
 
-export default async function Page({
-  params,
-}: {
-  params: Promise<{ lang: string }>;
-}) {
+export default async function Page({ params }: { params: Promise<{ lang: string }> }) {
   const lang = (await params).lang;
-  const frontPage: FRONTPAGE_QUERYResult = await client.fetch(
-    FRONTPAGE_QUERY(lang)
-  );
+  const frontPage: FRONTPAGE_QUERYResult = await client.fetch(FRONTPAGE_QUERY(lang));
+  const minHeight = "calc(100vh-theme('spacing.footer-height'))";
 
   return (
     <div
-      className="flex items-center justify-center h-full w-full bg-center bg-cover bg-no-repeat"
-      style={{
-        backgroundImage: `url(${urlFor(frontPage?.image?.asset?._ref as SanityImageSource).url()})`,
+      className={`flex justify-center items-center min-h-[${minHeight}] bg-cover bg-center`}
+      style={{ 
+        backgroundImage: `url(${urlFor(frontPage?.image?.asset?._ref as SanityImageSource).url()})` 
       }}
-      aria-label={frontPage?.image?.alt || ""}
+
+      aria-label={frontPage?.image?.alt || ''}
     >
       <h1 className="text-white text-4xl">{frontPage?.title}</h1>
     </div>

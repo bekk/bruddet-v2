@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+const defaultTheme = require('tailwindcss/defaultTheme');
 
 export default {
     darkMode: ["class"],
@@ -56,6 +57,9 @@ export default {
   			md: 'calc(var(--radius) - 2px)',
   			sm: 'calc(var(--radius) - 4px)'
   		},
+		spacing: {
+			'footer-height': defaultTheme.spacing[20],
+		},
 		animation: {
 			marquee: 'marquee 25s linear infinite',
 			marquee2: 'marquee2 25s linear infinite',

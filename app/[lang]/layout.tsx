@@ -28,8 +28,8 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <div className="grid grid-cols-1 grid-rows-[auto_80px] min-h-screen">
-          <main className="row-start-1 row-end-1">{children}</main>
+        <main className="mb-footer-height">{children}</main>
+        <div className="fixed inset-x-0 bottom-0 h-20">
           <Footer />
         </div>
       </body>

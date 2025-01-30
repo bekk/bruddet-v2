@@ -6,7 +6,7 @@ export default function Footer() {
   const [isHovering, setIsHovering] = useState(false);
 
   return (
-    <footer className="sticky bottom-0 left-0 right-0 row-start-2 row-end-2 bg-gray-800 text-white flex justify-between">
+    <footer className="h-full bg-gray-800 text-white flex justify-between">
       <Link
         href="/meny"
         className="w-[50%] md:w-[15%] flex justify-center items-center"

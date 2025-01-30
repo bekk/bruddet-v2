@@ -1,8 +1,7 @@
-
 export default function Footer() {
-    return (
-        <footer className="bg-gray-800 text-white h-16">
-            <p>Footer</p>
-        </footer>
-    );
+  return (
+    <footer className="row-start-2 row-end-2 bg-gray-800 text-white">
+      <p>Footer</p>
+    </footer>
+  );
 }

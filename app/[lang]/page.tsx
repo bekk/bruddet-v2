@@ -16,7 +16,7 @@ export default async function Page({
 
   return (
     <div
-      className="flex items-center justify-center h-full w-full bg-center"
+      className="flex items-center justify-center h-full w-full bg-center bg-cover bg-no-repeat"
       style={{
         backgroundImage: `url(${urlFor(frontPage?.image?.asset?._ref as SanityImageSource).url()})`,
       }}

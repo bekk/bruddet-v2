@@ -12,6 +12,7 @@ export default {
 		extend: {
 			colors: {
 				background: 'hsl(var(--background))',
+				"background-event": 'hsl(var(--background-event))',
 				foreground: 'hsl(var(--foreground))',
 				card: {
 					DEFAULT: 'hsl(var(--card))',
@@ -58,7 +59,7 @@ export default {
 				sm: 'calc(var(--radius) - 4px)'
 			},
 			spacing: {
-				'footer-height': defaultTheme.spacing[20],
+				'footer-height': defaultTheme.spacing[16],
 			},
 			minHeight: {
 				'front-page-height': 'calc(100vh - theme(\'spacing.footer-height\'))',

@@ -9,8 +9,9 @@ body {
 @layer base {
 
   :root {
-    --background: 0 100% 100%;
-    --foreground: 0 5% 10%;
+    --background: 42, 100%, 95%;
+    --background-event: 6, 100%, 94%;
+    --foreground: 202, 41%, 16%;
     --card: 0 50% 100%;
     --card-foreground: 0 5% 15%;
     --popover: 0 100% 100%;
@@ -28,17 +29,13 @@ body {
     --border: 0 30% 82%;
     --input: 0 30% 50%;
     --ring: 0 87.1% 51.2%;
-    --radius: 0rem;
+    --radius: 0;
   }
 }
 
 @layer base {
   * {
     @apply border-border;
-  }
-
-  body {
-    @apply bg-background text-foreground;
   }
 
   h1,

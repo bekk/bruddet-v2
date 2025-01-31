@@ -6,17 +6,14 @@ export default function Footer() {
   const [isHovering, setIsHovering] = useState(false);
 
   return (
-    <footer className="h-full bg-gray-800 text-white flex justify-between">
-      <Link
-        href="/meny"
-        className="w-[50%] md:w-[15%] flex justify-center items-center"
-      >
+    <footer className="h-full flex justify-between border-t border-foreground">
+      <FooterLink href="/meny">
         Meny
-      </Link>
+      </FooterLink>
 
       <Link
         href="/"
-        className="hidden md:w-[70%] md:flex justify-center items-center relative overflow-x-hidden w-full h-full"
+        className="hidden md:w-[70%] md:flex justify-center items-center relative overflow-x-hidden w-full h-full border-x border-foreground"
         onMouseOver={() => setIsHovering(true)}
         onMouseLeave={() => setIsHovering(false)}
         onFocus={() => setIsHovering(true)}
@@ -25,15 +22,21 @@ export default function Footer() {
         {isHovering ? <span>Meld deg på!</span> : <ScrollingCTA />}
       </Link>
 
-      <Link
-        href="/program"
-        className="w-[50%] md:w-[15%] flex justify-center items-center"
-      >
+      <FooterLink href="/program">
         Program
-      </Link>
+      </FooterLink>
     </footer>
   );
 }
+
+function FooterLink({ href, children }: { href: string; children: React.ReactNode }) {
+  return (
+    <Link href={href} className="w-[50%] md:w-[15%] flex justify-center items-center">
+      {children}
+    </Link>
+  );
+}
+
 
 function ScrollingCTA() {
   return (

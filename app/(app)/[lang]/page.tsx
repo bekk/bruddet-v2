@@ -19,7 +19,7 @@ export default async function Page({ params }: { params: Promise<{ lang: string 
 
       aria-label={frontPage?.customImage?.alt || ''}
     >
-      <h1 className="text-white text-4xl">{frontPage?.title}</h1>
+      <h1 className="text-[clamp(2rem,5vw,4rem)]">{frontPage?.title}</h1>
     </div>
   );
 }

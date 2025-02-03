@@ -44,12 +44,31 @@ body {
     @apply border-border;
   }
 
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
+  h1 {
+    /* width: 80%;
+    white-space: nowrap; */
+    text-align: center;
+    font-family: Impact, sans-serif;
+    /* @apply text-[20vw]; */
+  }
+  h2 {
+    @apply text-3xl;
+    font-family: Impact, sans-serif;
+  }
+  h3 {
+    @apply text-2xl;
+    font-family: Impact, sans-serif;
+  }
+  h4 {
+    @apply text-xl;
+    font-family: Impact, sans-serif;
+  }
+  h5 {
+    @apply text-lg;
+    font-family: Impact, sans-serif;
+  }
   h6 {
+    @apply text-base;
     font-family: Impact, sans-serif;
   }
 

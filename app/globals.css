@@ -9,13 +9,13 @@ body {
 @layer base {
 
   :root {
-    --color-flote-kos: 6 100% 94%;
+    --color-flotekos: 6 100% 94%;
     --color-beige: 42 100% 95%;
     --color-mose-groonn: 202 41% 16%;
     --color-ild-rod: 0 87% 51%;
 
     --background: var(--color-beige);
-    --background-event: var(--color-flote-kos);
+    --background-event: var(--color-flotekos);
     --foreground: var(--color-mose-groonn);
     --card: 0 50% 100%;
     --card-foreground: 0 5% 15%;

@@ -1,4 +1,5 @@
 import { defineField, defineType } from "sanity";
+import { customImage } from "../customImage";
 
 export const frontPage = defineType({
     name: "frontPage",
@@ -20,27 +21,7 @@ export const frontPage = defineType({
           rule.required().min(1).error("Tittel er påkrevd"),
         ],
       }),
-      defineField({
-        name: "image",
-        title: "Bilde",
-        type: "image",
-        group: "content",
-        fields: [
-          defineField({
-            name: "alt",
-            title: "Alternativ tekst",
-            type: "string",
-            validation: (rule) => [
-              rule.required().error("Alternativ tekst er påkrevd"),
-            ],
-          }),
-          defineField({
-            title: "Bildekreditering",
-            name: "credit",
-            type: "string",
-          }),
-        ],
-      }),
+      customImage,
       defineField({
         name: "language",
         type: "string",

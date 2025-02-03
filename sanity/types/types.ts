@@ -74,6 +74,20 @@ export type Slug = {
   source?: string;
 };
 
+export type CustomImage = {
+  _type: "customImage";
+  asset?: {
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+  };
+  hotspot?: SanityImageHotspot;
+  crop?: SanityImageCrop;
+  alt?: string;
+  credit?: string;
+};
+
 export type FrontPage = {
   _id: string;
   _type: "frontPage";
@@ -81,7 +95,7 @@ export type FrontPage = {
   _updatedAt: string;
   _rev: string;
   title?: string;
-  image?: {
+  customImage?: {
     asset?: {
       _ref: string;
       _type: "reference";
@@ -154,11 +168,11 @@ export type SanityImageMetadata = {
   isOpaque?: boolean;
 };
 
-export type AllSanitySchemaTypes = SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityFileAsset | Geopoint | Slug | FrontPage | SanityImageCrop | SanityImageHotspot | SanityImageAsset | SanityAssetSourceData | SanityImageMetadata;
+export type AllSanitySchemaTypes = SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityFileAsset | Geopoint | Slug | CustomImage | FrontPage | SanityImageCrop | SanityImageHotspot | SanityImageAsset | SanityAssetSourceData | SanityImageMetadata;
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ./sanity/lib/queries/frontPage.ts
 // Variable: FRONTPAGE_QUERY
-// Query: *[_type == "frontPage"][0]
+// Query: *[_type == "frontPage" && language == $lang][0]
 export type FRONTPAGE_QUERYResult = {
   _id: string;
   _type: "frontPage";
@@ -166,7 +180,7 @@ export type FRONTPAGE_QUERYResult = {
   _updatedAt: string;
   _rev: string;
   title?: string;
-  image?: {
+  customImage?: {
     asset?: {
       _ref: string;
       _type: "reference";
@@ -186,6 +200,6 @@ export type FRONTPAGE_QUERYResult = {
 import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
-    "*[_type == \"frontPage\"][0]": FRONTPAGE_QUERYResult;
+    "*[_type == \"frontPage\" && language == $lang][0]": FRONTPAGE_QUERYResult;
   }
 }

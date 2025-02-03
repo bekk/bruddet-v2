@@ -1,6 +1,6 @@
 import { defineQuery } from "next-sanity";
 
-export const FRONTPAGE_QUERY = (lang: string) => 
+export const FRONTPAGE_QUERY = 
     defineQuery(
-        `*[_type == "frontPage" && language == ${lang}][0]`
+        `*[_type == "frontPage" && language == $lang][0]`
     )

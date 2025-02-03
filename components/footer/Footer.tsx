@@ -31,7 +31,7 @@ export default function Footer() {
 
 function FooterLink({ href, children }: { href: string; children: React.ReactNode }) {
   return (
-    <Link href={href} className="w-[50%] md:w-[15%] flex justify-center items-center">
+    <Link href={href} className="w-[50%] md:w-[15%] flex justify-center items-center font-bold">
       {children}
     </Link>
   );

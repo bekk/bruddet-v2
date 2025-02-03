@@ -6,7 +6,7 @@ import { SanityImageSource } from "@sanity/image-url/lib/types/types";
 
 export default async function Page({ params }: { params: Promise<{ lang: string }> }) {
   const lang = (await params).lang;
-  const frontPage: FRONTPAGE_QUERYResult = await client.fetch(FRONTPAGE_QUERY(lang));
+  const frontPage: FRONTPAGE_QUERYResult = await client.fetch(FRONTPAGE_QUERY, { lang });
   const minHeight = "calc(100vh-theme('spacing.12'))";
 
   return (
@@ -14,10 +14,10 @@ export default async function Page({ params }: { params: Promise<{ lang: string 
       className={`flex justify-center items-center min-h-front-page-height bg-cover bg-center`}
       style={{ 
         minHeight: minHeight,
-        backgroundImage: `url(${urlFor(frontPage?.image?.asset?._ref as SanityImageSource).url()})` 
+        backgroundImage: `url(${urlFor(frontPage?.customImage?.asset?._ref as SanityImageSource).url()})` 
       }}
 
-      aria-label={frontPage?.image?.alt || ''}
+      aria-label={frontPage?.customImage?.alt || ''}
     >
       <h1 className="text-white text-4xl">{frontPage?.title}</h1>
     </div>

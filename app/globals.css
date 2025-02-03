@@ -9,14 +9,20 @@ body {
 @layer base {
 
   :root {
-    --background: 42, 100%, 95%;
-    --background-event: 6, 100%, 94%;
-    --foreground: 202, 41%, 16%;
+    --color-flote-kos: 6 100% 94%;
+    --color-beige: 42 100% 95%;
+    --color-mose-groonn: 202 41% 16%;
+    --color-ild-rod: 0 87% 51%;
+
+
+    --background: var(--color-beige);
+    --background-event: var(--color-flote-kos);
+    --foreground: var(--color-mose-groonn);
     --card: 0 50% 100%;
     --card-foreground: 0 5% 15%;
     --popover: 0 100% 100%;
     --popover-foreground: 0 100% 10%;
-    --primary: 0 87.1% 51.2%;
+    --primary: var(--color-ild-rod);
     --primary-foreground: 0 0% 100%;
     --secondary: 0 30% 90%;
     --secondary-foreground: 0 0% 0%;

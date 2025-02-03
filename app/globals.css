@@ -41,17 +41,17 @@ body {
 
 
     /* IKKE I BRUK PER NÅ */
-    --border: 0 30% 82%;
-    --input: 0 30% 50%;
-    --ring: 0 87.1% 51.2%;
+    --border: #DFC3C3;
+    --input: #A65959;
+    --ring: #EF1616;
     --card: var(--color-flotekos);
     --card-foreground: var(--color-mosemork);
     --popover: var(--color-flotekos);
     --popover-foreground: var(--color-mosemork);
-    --accent: -38 30% 90%;
-    --accent-foreground: 0 5% 15%;
-    --destructive: 0 100% 50%;
-    --destructive-foreground: 0 5% 100%;
+    --accent: #EDDEE8;
+    --accent-foreground: #282424;
+    --destructive: 	#FF0000;
+    --destructive-foreground: #FFFFFF;
   }
 }
 

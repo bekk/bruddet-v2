@@ -11,7 +11,7 @@ export default {
 	theme: {
 		extend: {
 			colors: {
-				flotekos: 'hsl(var(--color-flotekos))',
+				flotekos: 'var(--color-flotekos)',
 				background: 'hsl(var(--background))',
 				"background-event": 'hsl(var(--background-event))',
 				foreground: 'hsl(var(--foreground))',

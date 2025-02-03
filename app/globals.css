@@ -9,32 +9,49 @@ body {
 @layer base {
 
   :root {
-    --color-flotekos: 6 100% 94%;
-    --color-beige: 42 100% 95%;
-    --color-mose-groonn: 202 41% 16%;
-    --color-ild-rod: 0 87% 51%;
+    --color-pyro: #ef1716;
+    --color-sintild: #c81919;
+    --color-magma: #eb5c5c;
+    --color-skarlagenflukt: #ffe4e1;
+    --color-blodblush: #ffb6ad;
+    --color-skjellett: #ffedeb;
+    --color-sort: #1f1f1f;
+    --color-illesort: #091115;
+    --color-mosemork: #182d39;
+    --color-flotekos: #fff8e8;
+    --color-neongress: #d4ff26;
+    --color-nattpatrulje: #2a4f65;
+    --color-skyggejeger: #12222b;
+    --color-kraftgronn: #c4f500;
+    --color-syrelys: #deff5c;
+    --color-stovete-ponker: #efece6;
+    --color-hvit: #ffffff;
+    --color-havfjas: #58A1B6;
 
-    --background: var(--color-beige);
-    --background-event: var(--color-flotekos);
+    --background: var(--color-flotekos);
+    --background-event: var(--color-skarlagenflukt);
     --foreground: var(--color-mose-groonn);
-    --card: 0 50% 100%;
-    --card-foreground: 0 5% 15%;
-    --popover: 0 100% 100%;
-    --popover-foreground: 0 100% 10%;
-    --primary: var(--color-ild-rod);
-    --primary-foreground: 0 0% 100%;
-    --secondary: 0 30% 90%;
-    --secondary-foreground: 0 0% 0%;
-    --muted: -38 30% 95%;
-    --muted-foreground: 0 5% 40%;
+    --primary: var(--color-pyro);
+    --primary-foreground: var(--color-flotekos);
+    --secondary: var(--color-mosemork);
+    --secondary-foreground: var(--color-flotekos);
+    --muted: var(--color-skarlagenflukt);
+    --muted-foreground: var(--color-mosemork);
+    --radius: 0;
+
+
+    /* IKKE I BRUK PER NÅ */
+    --border: 0 30% 82%;
+    --input: 0 30% 50%;
+    --ring: 0 87.1% 51.2%;
+    --card: var(--color-flotekos);
+    --card-foreground: var(--color-mosemork);
+    --popover: var(--color-flotekos);
+    --popover-foreground: var(--color-mosemork);
     --accent: -38 30% 90%;
     --accent-foreground: 0 5% 15%;
     --destructive: 0 100% 50%;
     --destructive-foreground: 0 5% 100%;
-    --border: 0 30% 82%;
-    --input: 0 30% 50%;
-    --ring: 0 87.1% 51.2%;
-    --radius: 0;
   }
 }
 
@@ -52,22 +69,27 @@ body {
     text-align: center;
     white-space: normal;
   }
+
   h2 {
     @apply text-3xl;
     font-family: Impact, sans-serif;
   }
+
   h3 {
     @apply text-2xl;
     font-family: Impact, sans-serif;
   }
+
   h4 {
     @apply text-xl;
     font-family: Impact, sans-serif;
   }
+
   h5 {
     @apply text-lg;
     font-family: Impact, sans-serif;
   }
+
   h6 {
     @apply text-base;
     font-family: Impact, sans-serif;

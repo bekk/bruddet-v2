@@ -11,6 +11,9 @@ export const documentInternationalizationConfig =
       "event",
       "genre",
       "frontPage",
+      "article",
+      "menuPage",
+      "programPage",
     ],
     metadataFields: [
       defineField({

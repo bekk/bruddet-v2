@@ -2,7 +2,6 @@
 
 import { CalendarIcon } from "@sanity/icons";
 import { defineField, defineType } from "sanity";
-import { customImage } from "../customImage";
 import { isUniqueOtherThanLanguage } from "@/sanity/documentInternationalizationConfig";
 
 type ParentType = {
@@ -10,7 +9,7 @@ type ParentType = {
   [key: string]: unknown;
 };
 
-export const eventPage = defineType({
+export const event = defineType({
   name: "event",
   title: "Forestilling",
   type: "document",
@@ -86,7 +85,13 @@ export const eventPage = defineType({
         disableNew: false,
       },
     }),
-    customImage,
+    defineField({
+      name: "image",
+      title: "Bilde",
+      type: "reference",
+      group: "visual",
+      to: [{ type: "customImage" }],
+    }),
     defineField({
       name: "ingress",
       title: "Ingress",

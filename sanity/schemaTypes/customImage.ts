@@ -1,8 +1,13 @@
 import { defineField, defineType } from "sanity";
 
-export const customImage =
+export const customImage = defineType({
+    type: "document",
+    name: "customImage",
+    title: "Bilde",
+
+    fields: [
     defineField({
-        name: "customImage",
+        name: "image",
         title: "Bilde",
         type: "image",
         validation: (rule) => [
@@ -24,3 +29,5 @@ export const customImage =
             }),
         ]
     })
+    ],
+});

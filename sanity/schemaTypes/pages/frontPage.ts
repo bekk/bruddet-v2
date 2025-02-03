@@ -1,5 +1,4 @@
 import { defineField, defineType } from "sanity";
-import { customImage } from "../customImage";
 
 export const frontPage = defineType({
     name: "frontPage",
@@ -21,7 +20,12 @@ export const frontPage = defineType({
           rule.required().min(1).error("Tittel er påkrevd"),
         ],
       }),
-      customImage,
+      defineField({
+        name: "image",
+        title: "Bilde",
+        type: "reference",
+        to: [{ type: "customImage" }],
+      }),
       defineField({
         name: "language",
         type: "string",

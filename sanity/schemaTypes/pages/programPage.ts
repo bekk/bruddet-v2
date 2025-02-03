@@ -1,0 +1,75 @@
+import { defineType, defineField } from "sanity";
+
+export const programPage = defineType({
+  name: "programPage",
+  title: "Programside",
+  type: "document",
+  fields: [
+    defineField({
+      name: "title",
+      title: "Tittel",
+      type: "string",
+      validation: (rule) => [
+        rule.max(100).warning("Anbefaler kortere tittel."),
+        rule.required().min(1).error("Tittel er påkrevd"),
+      ],
+    }),
+    defineField({
+      name: "language",
+      type: "string",
+      readOnly: true,
+      hidden: true,
+    }),
+    defineField({
+      name: "metaTitle",
+      title: "SEO tittel",
+      type: "metaTitle",
+      initialValue: "Meny",
+      validation: (rule) => [rule.required().error("Må ha SEO tittel")],
+    }),
+    defineField({
+      name: "metaDescription",
+      title: "SEO beskrivelse",
+      type: "metaDescription",
+      initialValue: "Oversikt over menysider",
+      validation: (rule) => [rule.required().error("Må ha SEO beskrivelse")],
+    }),
+    defineField({
+      name: "links",
+      title: "Forestillinger",
+      description: "Velg forestillinger som skal vises på programsiden",
+      type: "array",
+      of: [
+        {
+          type: "reference",
+          to: [{ type: "event" }],
+          options: {
+            filter: ({ document }) => {
+              return {
+                filter: "language == $lang",
+                params: { lang: document.language },
+              };
+            },
+          },
+        },
+      ],
+      options: {
+        documentInternationalization: {
+          exclude: true,
+        },
+      },
+    }),
+    defineField({
+      name: "image",
+      title: "Bilde",
+      type: "reference",
+      to: [{ type: "customImage" }],
+    }),
+    defineField({
+      name: "socialMediaText",
+      title: "Sosiale medier",
+      description: "Legg til tekst på sosiale medier blokk",
+      type: "string",
+    }),
+  ],
+});

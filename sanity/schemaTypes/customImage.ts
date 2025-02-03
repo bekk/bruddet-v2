@@ -1,7 +1,5 @@
 import { defineField, defineType } from "sanity";
 
-
-
 export const customImage =
     defineField({
         name: "customImage",

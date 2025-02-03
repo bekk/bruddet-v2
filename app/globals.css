@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body {
-  font-family: Arial, Helvetica, sans-serif, Impact;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 @layer base {
@@ -13,7 +13,6 @@ body {
     --color-beige: 42 100% 95%;
     --color-mose-groonn: 202 41% 16%;
     --color-ild-rod: 0 87% 51%;
-
 
     --background: var(--color-beige);
     --background-event: var(--color-flote-kos);
@@ -45,11 +44,13 @@ body {
   }
 
   h1 {
-    /* width: 80%;
-    white-space: nowrap; */
+    font-size: 14vw;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    line-height: 1;
+    width: 80vw;
+    word-wrap: break-word;
     text-align: center;
-    font-family: Impact, sans-serif;
-    /* @apply text-[20vw]; */
+    white-space: normal;
   }
   h2 {
     @apply text-3xl;

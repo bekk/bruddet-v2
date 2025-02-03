@@ -24,7 +24,7 @@ export default async function Page({
       }}
       aria-label={frontPage?.customImage?.alt || ""}
     >
-      <h1 className="text-flotekos">{frontPage?.title}</h1>
+      <h1 className="text-primary-foreground">{frontPage?.title}</h1>
     </div>
   );
 }

@@ -33,6 +33,7 @@ export function middleware(request: NextRequest) {
     // Redirect if there is no locale
     // const locale = getLocale(request)
     const locale = defaultLocale
+    console.log("MR LOCALKE", locale)
     request.nextUrl.pathname = `/${locale}${pathname}`
     // e.g. incoming request is /products
     // The new URL is now /en-US/products

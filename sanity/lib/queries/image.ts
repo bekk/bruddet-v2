@@ -1,11 +1,10 @@
 import { defineQuery } from "next-sanity";
 
-export const imageProjection = defineQuery(
+export const imageProjection = 
     `
     image->{
-        "alt": image.alt["$lang"], // Use $lang as a parameter
+        "alt": image.alt[$lang],
         "credit": image.credit,
         "imageUrl": image.asset->url
     }
-    `
-);
+    `;

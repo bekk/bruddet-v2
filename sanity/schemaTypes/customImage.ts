@@ -1,4 +1,26 @@
 import { defineField, defineType } from "sanity";
+import { languages } from "../documentInternationalizationConfig";
+
+export const localizedString = defineType({
+    name: 'localizedString',
+    title: 'Localized String',
+    type: 'object',
+    fieldsets: [
+      {
+        title: 'Translations',
+        name: 'translations',
+        options: {collapsible: true, collapsed: false},
+      },
+    ],
+    fields: languages.map((lang) =>
+      defineField({
+        name: lang.id,
+        title: lang.title,
+        type: 'string',
+        fieldset: lang.isDefault ? undefined : 'translations',
+      })
+    ),
+  })
 
 export const customImage = defineType({
     type: "document",
@@ -15,12 +37,9 @@ export const customImage = defineType({
         ],
         fields: [
             defineField({
-                name: "alt",
                 title: "Alternativ tekst",
-                type: "string",
-                validation: (rule) => [
-                    rule.required().error("Alternativ tekst er påkrevd"),
-                ],
+                name: "alt",
+                type: "localizedString",
             }),
             defineField({
                 title: "Bildekreditering",

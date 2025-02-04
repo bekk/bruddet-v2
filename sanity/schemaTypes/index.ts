@@ -17,7 +17,7 @@ import { person } from './person'
 import { article } from './pages/article'
 import { menuPage } from './pages/menuPage'
 import { programPage } from './pages/programPage'
-import { customImage } from './customImage'
+import { customImage, localizedString } from './customImage'
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -40,5 +40,6 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     expandableContent,
     person,
     customImage,
+    localizedString,
   ],
 }

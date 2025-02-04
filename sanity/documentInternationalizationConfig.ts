@@ -1,12 +1,14 @@
 import { documentInternationalization } from "@sanity/document-internationalization";
 import { defineField, SlugValidationContext } from "sanity";
 
+export const languages = [
+  { id: "nb", title: "🇳🇴 Norwegian (Bokmål)", isDefault: true },
+  { id: "en", title: "🇬🇧 English" },
+];
+
 export const documentInternationalizationConfig =
   documentInternationalization({
-    supportedLanguages: [
-      { id: "nb", title: "🇳🇴 Norwegian (Bokmål)" },
-      { id: "en", title: "🇬🇧 English" },
-    ],
+    supportedLanguages: languages,
     schemaTypes: [
       "event",
       "genre",

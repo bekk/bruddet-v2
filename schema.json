@@ -459,6 +459,13 @@
           {
             "type": "object",
             "attributes": {
+              "title": {
+                "type": "objectAttribute",
+                "value": {
+                  "type": "string"
+                },
+                "optional": true
+              },
               "image": {
                 "type": "objectAttribute",
                 "value": {
@@ -1320,6 +1327,13 @@
           {
             "type": "object",
             "attributes": {
+              "title": {
+                "type": "objectAttribute",
+                "value": {
+                  "type": "string"
+                },
+                "optional": true
+              },
               "image": {
                 "type": "objectAttribute",
                 "value": {
@@ -3556,6 +3570,13 @@
         "value": {
           "type": "string"
         }
+      },
+      "title": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        },
+        "optional": true
       },
       "image": {
         "type": "objectAttribute",

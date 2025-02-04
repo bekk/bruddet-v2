@@ -1,10 +1,11 @@
-// import { groq } from "next-sanity";
+import { defineQuery } from "next-sanity";
 
-// export const imageProjection = (lang: string) => groq`
-//   image->{
-//     _id,
-//     alt[${lang}],
-//     credit,
-//     "imageUrl": image.asset->url
-//   }
-// `;
+export const imageProjection = defineQuery(
+    `
+    image->{
+        "alt": image.alt["$lang"], // Use $lang as a parameter
+        "credit": image.credit,
+        "imageUrl": image.asset->url
+    }
+    `
+);

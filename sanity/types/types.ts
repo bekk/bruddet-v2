@@ -79,6 +79,7 @@ export type ExpandableContent = Array<{
   _type: "block";
   _key: string;
 } | {
+  title?: string;
   image?: {
     asset?: {
       _ref: string;
@@ -216,6 +217,7 @@ export type Content = Array<{
   _type: "block";
   _key: string;
 } | {
+  title?: string;
   image?: {
     asset?: {
       _ref: string;
@@ -579,6 +581,7 @@ export type CustomImage = {
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
+  title?: string;
   image?: {
     asset?: {
       _ref: string;
@@ -680,3 +683,34 @@ export type InternationalizedArrayReference = Array<{
 
 export type AllSanitySchemaTypes = SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityFileAsset | ExpandableContent | MetaDescription | MetaTitle | RoleGroup | Video | Review | QuoteBomb | GoogleMaps | Geopoint | Faq | ExpandableBlock | Content | MuxVideo | MuxVideoAsset | MuxAssetData | MuxStaticRenditions | MuxStaticRenditionFile | MuxPlaybackId | MuxTrack | TranslationMetadata | InternationalizedArrayReferenceValue | ProgramPage | MenuPage | Article | FrontPage | Event | Person | CustomImage | LocalizedString | SanityImageCrop | SanityImageHotspot | SanityImageAsset | SanityAssetSourceData | SanityImageMetadata | Genre | Slug | InternationalizedArrayReference;
 export declare const internalGroqTypeReferenceTo: unique symbol;
+// Source: ./sanity/lib/queries/frontPage.ts
+// Variable: FRONTPAGE_QUERY
+// Query: *[_type == "frontPage"][0]{      ...,          image->{        "alt": image.alt["$lang"], // Use $lang as a parameter        "credit": image.credit,        "imageUrl": image.asset->url    }        }
+export type FRONTPAGE_QUERYResult = {
+  _id: string;
+  _type: "frontPage";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  image: {
+    alt: null;
+    credit: string | null;
+    imageUrl: string | null;
+  } | null;
+  language?: string;
+} | null;
+
+// Source: ./sanity/lib/queries/image.ts
+// Variable: imageProjection
+// Query: image->{        "alt": image.alt["$lang"], // Use $lang as a parameter        "credit": image.credit,        "imageUrl": image.asset->url    }
+export type ImageProjectionResult = never;
+
+// Query TypeMap
+import "@sanity/client";
+declare module "@sanity/client" {
+  interface SanityQueries {
+    "\n    *[_type == \"frontPage\"][0]{\n      ...,\n      \n    image->{\n        \"alt\": image.alt[\"$lang\"], // Use $lang as a parameter\n        \"credit\": image.credit,\n        \"imageUrl\": image.asset->url\n    }\n    \n    }\n  ": FRONTPAGE_QUERYResult;
+    "\n    image->{\n        \"alt\": image.alt[\"$lang\"], // Use $lang as a parameter\n        \"credit\": image.credit,\n        \"imageUrl\": image.asset->url\n    }\n    ": ImageProjectionResult;
+  }
+}

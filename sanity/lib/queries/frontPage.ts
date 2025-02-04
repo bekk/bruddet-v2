@@ -1,15 +1,11 @@
 import { defineQuery } from "next-sanity";
+import { imageProjection } from "./image";
 
 export const FRONTPAGE_QUERY = defineQuery(
     `
-    *[_type == "frontPage" && language == '$lang'][0]{
+    *[_type == "frontPage"][0]{
       ...,
-      image->{
-        _id,
-        alt['$lang'],
-        credit,
-        "imageUrl": image.asset->url
-        }
+      ${imageProjection}
     }
   `
 );

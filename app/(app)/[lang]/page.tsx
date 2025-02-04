@@ -13,6 +13,7 @@ export default async function Page({
   const frontPage: FRONTPAGE_QUERYResult = await client.fetch(FRONTPAGE_QUERY, {
     lang,
   });
+  console.log("frontPage", frontPage);
   const minHeight = "calc(100vh-theme('spacing.12'))";
 
   return (
@@ -20,9 +21,9 @@ export default async function Page({
       className={`flex justify-center items-center min-h-front-page-height bg-cover bg-center`}
       style={{
         minHeight: minHeight,
-        backgroundImage: `url(${urlFor(frontPage?.customImage?.asset?._ref as SanityImageSource).url()})`,
+        backgroundImage: `url(${urlFor(frontPage?.image?.imageUrl as SanityImageSource).url()})`,
       }}
-      aria-label={frontPage?.customImage?.alt || ""}
+      aria-label={frontPage?.image?.alt || ""}
     >
       <h1 className="text-primary-foreground">{frontPage?.title}</h1>
     </div>

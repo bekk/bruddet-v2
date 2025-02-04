@@ -30,7 +30,7 @@ export const frontPage = defineType({
         name: "language",
         type: "string",
         readOnly: true,
-        hidden: true,
+        hidden: false,
       }),
     ],
   });

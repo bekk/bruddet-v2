@@ -73,13 +73,6 @@ const NOT_LANGUAGE_SPECIFIC = [
   },
 ]
 
-console.log('Not language specific', NOT_LANGUAGE_SPECIFIC)
-console.log('Not language specific type of', typeof NOT_LANGUAGE_SPECIFIC)
-
-console.log("Type of multi", typeof MULTI)
-console.log("multi element", MULTI[0])
-console.log("not language specific element", NOT_LANGUAGE_SPECIFIC[0])
-
 const LANGUAGES = [
   { id: `nb`, title: `🇳🇴 Norwegian (Bokmål)` },
   { id: `en`, title: `🇬🇧 English` },

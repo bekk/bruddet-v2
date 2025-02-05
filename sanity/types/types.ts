@@ -744,11 +744,7 @@ export type FRONTPAGE_QUERYResult = {
   _rev: string;
   title?: string;
   image: {
-    alt: Array<{
-      _type: "localizedString";
-      nb?: string;
-      en?: string;
-    }> | null;
+    alt: string | null;
     credit: string | null;
     imageUrl: string | null;
   } | null;

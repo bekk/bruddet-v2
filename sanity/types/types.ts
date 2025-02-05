@@ -694,21 +694,23 @@ export type FRONTPAGE_QUERYResult = {
   _rev: string;
   title?: string;
   image: {
-    alt: Array<{
-      _type: "localizedString";
-      nb?: string;
-      en?: string;
-    }> | null;
+    alt: string | null;
     credit: string | null;
     imageUrl: string | null;
   } | null;
   language?: string;
 } | null;
 
+// Source: ./sanity/lib/queries/image.ts
+// Variable: imageProjection
+// Query: image->{        "alt": image.alt[$lang],        "credit": image.credit,        "imageUrl": image.asset->url    }
+export type ImageProjectionResult = never;
+
 // Query TypeMap
 import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
     "\n    *[_type == \"frontPage\"][0]{\n      ...,\n      \n    image->{\n        \"alt\": image.alt[$lang],\n        \"credit\": image.credit,\n        \"imageUrl\": image.asset->url\n    }\n    \n    }\n  ": FRONTPAGE_QUERYResult;
+    "\n    image->{\n        \"alt\": image.alt[$lang],\n        \"credit\": image.credit,\n        \"imageUrl\": image.asset->url\n    }\n    ": ImageProjectionResult;
   }
 }

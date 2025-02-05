@@ -13,7 +13,8 @@ export default async function Page({
   const frontPage: FRONTPAGE_QUERYResult = await client.fetch(FRONTPAGE_QUERY, {
     lang,
   });
-  console.log('image alt', frontPage?.image?.alt)
+  console.log("ALT", frontPage?.image?.alt);
+  console.log("type of alt", typeof frontPage?.image?.alt);
 
   const minHeight = "calc(100vh-theme('spacing.12'))";
 

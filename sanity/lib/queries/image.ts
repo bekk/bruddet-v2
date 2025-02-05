@@ -1,6 +1,4 @@
-import { defineQuery } from "next-sanity";
-
-export const imageProjection = 
+export const imageProjection =
     `
     image->{
         "alt": image.alt[$lang],

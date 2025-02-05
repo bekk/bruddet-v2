@@ -30,7 +30,7 @@ body {
 
     --background: var(--color-flotekos);
     --background-event: var(--color-skarlagenflukt);
-    --foreground: var(--color-mose-groonn);
+    --foreground: var(--color-mosemork);
     --primary: var(--color-pyro);
     --primary-foreground: var(--color-flotekos);
     --secondary: var(--color-mosemork);
@@ -41,7 +41,7 @@ body {
 
 
     /* IKKE I BRUK PER NÅ */
-    --border: #DFC3C3;
+    --border: var(--color-mosemork);
     --input: #A65959;
     --ring: #EF1616;
     --card: var(--color-flotekos);
@@ -93,5 +93,9 @@ body {
   h6 {
     @apply text-base;
     font-family: Impact, sans-serif;
+  }
+
+  html {
+    scroll-behavior: smooth;
   }
 }

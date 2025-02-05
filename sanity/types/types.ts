@@ -683,6 +683,56 @@ export type InternationalizedArrayReference = Array<{
 
 export type AllSanitySchemaTypes = SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityFileAsset | ExpandableContent | MetaDescription | MetaTitle | RoleGroup | Video | Review | QuoteBomb | GoogleMaps | Geopoint | Faq | ExpandableBlock | Content | MuxVideo | MuxVideoAsset | MuxAssetData | MuxStaticRenditions | MuxStaticRenditionFile | MuxPlaybackId | MuxTrack | TranslationMetadata | InternationalizedArrayReferenceValue | ProgramPage | MenuPage | Article | FrontPage | Event | Person | CustomImage | LocalizedString | SanityImageCrop | SanityImageHotspot | SanityImageAsset | SanityAssetSourceData | SanityImageMetadata | Genre | Slug | InternationalizedArrayReference;
 export declare const internalGroqTypeReferenceTo: unique symbol;
+// Source: ./sanity/lib/queries/event.ts
+// Variable: EVENT_QUERY
+// Query: *[_type == "event" && slug.current == $slug && language == $lang][0]{      ...,      genre->,          image->{        "alt": image.alt[$lang],        "credit": image.credit,        "imageUrl": image.asset->url    }        }
+export type EVENT_QUERYResult = {
+  _id: string;
+  _type: "event";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  title?: string;
+  slug?: Slug;
+  language?: string;
+  genre: {
+    _id: string;
+    _type: "genre";
+    _createdAt: string;
+    _updatedAt: string;
+    _rev: string;
+    title?: string;
+    description?: string;
+    language?: string;
+  } | null;
+  image: {
+    alt: string | null;
+    credit: string | null;
+    imageUrl: string | null;
+  } | null;
+  ingress?: string;
+  ticketInformation?: string;
+  saleStartOption?: "saleStarted" | "saleStartKnown" | "saleStartUnknown";
+  saleStartDateTime?: string;
+  dates?: Array<{
+    date?: string;
+    ticketUrl?: string;
+    busTicketUrl?: string;
+    eventTicketStatus?: 1 | 2 | 3;
+    busTicketStatus?: 1 | 2 | 3;
+    _key: string;
+  }>;
+  duration?: string;
+  labels?: Array<string>;
+  text?: Content;
+  galleryDisplayType?: 1 | 2;
+  roleGroups?: Array<{
+    _key: string;
+  } & RoleGroup>;
+  metaTitle?: MetaTitle;
+  metaDescription?: MetaDescription;
+} | null;
+
 // Source: ./sanity/lib/queries/frontPage.ts
 // Variable: FRONTPAGE_QUERY
 // Query: *[_type == "frontPage"][0]{      ...,          image->{        "alt": image.alt[$lang],        "credit": image.credit,        "imageUrl": image.asset->url    }        }
@@ -694,23 +744,22 @@ export type FRONTPAGE_QUERYResult = {
   _rev: string;
   title?: string;
   image: {
-    alt: string | null;
+    alt: Array<{
+      _type: "localizedString";
+      nb?: string;
+      en?: string;
+    }> | null;
     credit: string | null;
     imageUrl: string | null;
   } | null;
   language?: string;
 } | null;
 
-// Source: ./sanity/lib/queries/image.ts
-// Variable: imageProjection
-// Query: image->{        "alt": image.alt[$lang],        "credit": image.credit,        "imageUrl": image.asset->url    }
-export type ImageProjectionResult = never;
-
 // Query TypeMap
 import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
+    "\n    *[_type == \"event\" && slug.current == $slug && language == $lang][0]{\n      ...,\n      genre->,\n      \n    image->{\n        \"alt\": image.alt[$lang],\n        \"credit\": image.credit,\n        \"imageUrl\": image.asset->url\n    }\n    \n    }\n  ": EVENT_QUERYResult;
     "\n    *[_type == \"frontPage\"][0]{\n      ...,\n      \n    image->{\n        \"alt\": image.alt[$lang],\n        \"credit\": image.credit,\n        \"imageUrl\": image.asset->url\n    }\n    \n    }\n  ": FRONTPAGE_QUERYResult;
-    "\n    image->{\n        \"alt\": image.alt[$lang],\n        \"credit\": image.credit,\n        \"imageUrl\": image.asset->url\n    }\n    ": ImageProjectionResult;
   }
 }

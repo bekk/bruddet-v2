@@ -4,7 +4,6 @@ import { SocialMedia } from "../SocialMedia";
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { useIsEnglish } from "@/hooks/useIsEnglish";
 type TextType = {
   _key: string;
   subtitle: string;
@@ -13,11 +12,12 @@ type TextType = {
 
 type ProgramPageProps = {
   data: PROGRAMPAGE_QUERYResult;
+  lang: string;
 };
 
-export const ProgramPage = ({ data }: ProgramPageProps) => {
+export const ProgramPage = ({ data, lang }: ProgramPageProps) => {
   const [imageUrl, setImageUrl] = useState<string>("");
-  const isEnglish = useIsEnglish();
+  const isEnglish = lang === "en";
 
   return (
     <div className="flex flex-col lg:flex-row h-full w-full">

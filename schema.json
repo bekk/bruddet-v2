@@ -2519,14 +2519,14 @@
           "type": "string"
         }
       },
-      "title": {
+      "language": {
         "type": "objectAttribute",
         "value": {
           "type": "string"
         },
         "optional": true
       },
-      "language": {
+      "title": {
         "type": "objectAttribute",
         "value": {
           "type": "string"
@@ -2668,6 +2668,13 @@
         }
       },
       "language": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "string"
+        },
+        "optional": true
+      },
+      "title": {
         "type": "objectAttribute",
         "value": {
           "type": "string"

@@ -1,4 +1,4 @@
-import Ibsen from "../images/Ibsen";
+import Ibsen from "./images/Ibsen";
 
 type Props = {
   socialMediaText?: string | null | undefined;

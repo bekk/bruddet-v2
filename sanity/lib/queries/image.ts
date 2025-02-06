@@ -1,5 +1,11 @@
 import { defineQuery } from "next-sanity";
 
+export type ImageType = {
+    alt: string | null;
+    credit: string | null;
+    imageUrl: string | null;
+  } | null;
+
 export const imageProjectionAsReference =
     defineQuery(
         `

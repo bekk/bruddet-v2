@@ -6,6 +6,12 @@ export const programPage = defineType({
   type: "document",
   fields: [
     defineField({
+      name: "language",
+      type: "string",
+      readOnly: true,
+      hidden: true,
+    }),
+    defineField({
       name: "title",
       title: "Tittel",
       type: "string",
@@ -13,12 +19,6 @@ export const programPage = defineType({
         rule.max(100).warning("Anbefaler kortere tittel."),
         rule.required().min(1).error("Tittel er påkrevd"),
       ],
-    }),
-    defineField({
-      name: "language",
-      type: "string",
-      readOnly: true,
-      hidden: true,
     }),
     defineField({
       name: "metaTitle",

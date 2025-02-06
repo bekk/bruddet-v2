@@ -409,8 +409,8 @@ export type ProgramPage = {
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
-  title?: string;
   language?: string;
+  title?: string;
   metaTitle?: MetaTitle;
   metaDescription?: MetaDescription;
   links?: Array<{
@@ -436,6 +436,7 @@ export type MenuPage = {
   _updatedAt: string;
   _rev: string;
   language?: string;
+  title?: string;
   metaTitle?: MetaTitle;
   metaDescription?: MetaDescription;
   links?: Array<{
@@ -706,7 +707,11 @@ export type EVENT_QUERYResult = {
     language?: string;
   } | null;
   image: {
-    alt: string | null;
+    alt: Array<{
+      _type: "localizedString";
+      nb?: string;
+      en?: string;
+    }> | null;
     credit: string | null;
     imageUrl: string | null;
   } | null;
@@ -744,7 +749,11 @@ export type EVENT_QUERYResult = {
   } | {
     title?: string;
     image: {
-      alt: string | null;
+      alt: Array<{
+        _type: "localizedString";
+        nb?: string;
+        en?: string;
+      }> | null;
       credit: string | null;
       imageUrl: string | null;
     } | null;
@@ -811,7 +820,11 @@ export type FRONTPAGE_QUERYResult = {
   _rev: string;
   title?: string;
   image: {
-    alt: string | null;
+    alt: Array<{
+      _type: "localizedString";
+      nb?: string;
+      en?: string;
+    }> | null;
     credit: string | null;
     imageUrl: string | null;
   } | null;
@@ -828,16 +841,21 @@ export type ImageProjectionResult = never;
 
 // Source: ./sanity/lib/queries/menuPage.ts
 // Variable: MENUPAGE_QUERY
-// Query: *[_type == "menuPage"][0] {    metaTitle,     metaDescription,     links[]->{title,                image {                "alt": alt[$lang],                "credit": credit,                "imageUrl": asset->url            }        ,    slug,    _type,    text[style=="h2"]{    defined(_key) => {_key},    "subtitle": children[0].text,    "slug": ^.slug.current    }[defined(subtitle)],    },    socialMediaText,    bottomLink {      text,      link->{      _type,      slug      },    }}
+// Query: *[_type == "menuPage" && language == $lang][0] {    metaTitle,     metaDescription,    title,    links[]->{      title,                  image->{                "alt": image.alt[$lang],                "credit": image.credit,                "imageUrl": image.asset->url            }        ,      slug,      _type,      text[style=="h2"] {        defined(_key) => {_key},        "subtitle": children[0].text,        "slug": ^.slug.current      }[defined(subtitle)],    },    socialMediaText,    bottomLink {      text,      link->{      _type,      slug      },    }  }
 export type MENUPAGE_QUERYResult = {
   metaTitle: MetaTitle | null;
   metaDescription: MetaDescription | null;
+  title: string | null;
   links: Array<{
     title: string | null;
     image: {
-      alt: null;
-      credit: null;
-      imageUrl: null;
+      alt: Array<{
+        _type: "localizedString";
+        nb?: string;
+        en?: string;
+      }> | null;
+      credit: string | null;
+      imageUrl: string | null;
     } | null;
     slug: Slug | null;
     _type: "article";
@@ -860,6 +878,37 @@ export type MENUPAGE_QUERYResult = {
   } | null;
 } | null;
 
+// Source: ./sanity/lib/queries/programPage.ts
+// Variable: PROGRAMPAGE_QUERY
+// Query: *[_type=="programPage" && language == $lang][0] {    metaTitle,    metaDescription,    title,    socialMediaText,    links[]->{        title,        slug,                    image->{                "alt": image.alt[$lang],                "credit": image.credit,                "imageUrl": image.asset->url            }        ,        dates    } }
+export type PROGRAMPAGE_QUERYResult = {
+  metaTitle: MetaTitle | null;
+  metaDescription: MetaDescription | null;
+  title: string | null;
+  socialMediaText: string | null;
+  links: Array<{
+    title: string | null;
+    slug: Slug | null;
+    image: {
+      alt: Array<{
+        _type: "localizedString";
+        nb?: string;
+        en?: string;
+      }> | null;
+      credit: string | null;
+      imageUrl: string | null;
+    } | null;
+    dates: Array<{
+      date?: string;
+      ticketUrl?: string;
+      busTicketUrl?: string;
+      eventTicketStatus?: 1 | 2 | 3;
+      busTicketStatus?: 1 | 2 | 3;
+      _key: string;
+    }> | null;
+  }> | null;
+} | null;
+
 // Query TypeMap
 import "@sanity/client";
 declare module "@sanity/client" {
@@ -868,6 +917,7 @@ declare module "@sanity/client" {
     "\n    *[_type == \"frontPage\"][0]{\n      ...,\n      \n            image->{\n                \"alt\": image.alt[$lang],\n                \"credit\": image.credit,\n                \"imageUrl\": image.asset->url\n            }\n        \n    }\n  ": FRONTPAGE_QUERYResult;
     "\n            image->{\n                \"alt\": image.alt[$lang],\n                \"credit\": image.credit,\n                \"imageUrl\": image.asset->url\n            }\n        ": ImageProjectionAsReferenceResult;
     "\n            image {\n                \"alt\": alt[$lang],\n                \"credit\": credit,\n                \"imageUrl\": asset->url\n            }\n        ": ImageProjectionResult;
-    "*[_type == \"menuPage\"][0] {\n    metaTitle, \n    metaDescription, \n    links[]->{title,\n    \n            image {\n                \"alt\": alt[$lang],\n                \"credit\": credit,\n                \"imageUrl\": asset->url\n            }\n        ,\n    slug,\n    _type,\n    text[style==\"h2\"]{\n    defined(_key) => {_key},\n    \"subtitle\": children[0].text,\n    \"slug\": ^.slug.current\n    }[defined(subtitle)],\n    },\n    socialMediaText,\n    bottomLink {\n      text,\n      link->{\n      _type,\n      slug\n      },\n    }}": MENUPAGE_QUERYResult;
+    "*[_type == \"menuPage\" && language == $lang][0] {\n    metaTitle, \n    metaDescription,\n    title,\n    links[]->{\n      title,\n      \n            image->{\n                \"alt\": image.alt[$lang],\n                \"credit\": image.credit,\n                \"imageUrl\": image.asset->url\n            }\n        ,\n      slug,\n      _type,\n      text[style==\"h2\"] {\n        defined(_key) => {_key},\n        \"subtitle\": children[0].text,\n        \"slug\": ^.slug.current\n      }[defined(subtitle)],\n    },\n    socialMediaText,\n    bottomLink {\n      text,\n      link->{\n      _type,\n      slug\n      },\n    }\n  }": MENUPAGE_QUERYResult;
+    "*[_type==\"programPage\" && language == $lang][0] {\n    metaTitle,\n    metaDescription,\n    title,\n    socialMediaText,\n    links[]->{\n        title,\n        slug,\n        \n            image->{\n                \"alt\": image.alt[$lang],\n                \"credit\": image.credit,\n                \"imageUrl\": image.asset->url\n            }\n        ,\n        dates\n    }\n }": PROGRAMPAGE_QUERYResult;
   }
 }

@@ -1,29 +1,23 @@
 "use client";
-import { MENUPAGE_QUERYResult } from "@/sanity/types/types";
+import { PROGRAMPAGE_QUERYResult } from "@/sanity/types/types";
 import { SocialMedia } from "../SocialMedia";
 import { useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
-import { ImageType } from "@/sanity/lib/queries/image";
-import { DynamicImage } from "../DynamicImage";
-
-const RedirectType = (type: string) => {
-  if (type == "article") {
-    return "/artikler";
-  } else if (type == "event") {
-    return "/event";
-  } else {
-    return "";
-  }
+import { useIsEnglish } from "@/hooks/useIsEnglish";
+type TextType = {
+  _key: string;
+  subtitle: string;
+  slug: string;
 };
 
-type MenuPageProps = {
-  data: MENUPAGE_QUERYResult;
-  lang: string;
+type ProgramPageProps = {
+  data: PROGRAMPAGE_QUERYResult;
 };
 
-export const MenuPage = ({ data, lang }: MenuPageProps) => {
-  const [image, setImage] = useState<ImageType>(null);
-  const isEnglish = lang === "en";
+export const ProgramPage = ({ data }: ProgramPageProps) => {
+  const [imageUrl, setImageUrl] = useState<string>("");
+  const isEnglish = useIsEnglish();
 
   return (
     <div className="flex flex-col lg:flex-row h-full w-full">
@@ -36,7 +30,7 @@ export const MenuPage = ({ data, lang }: MenuPageProps) => {
         {data?.links?.map((link, index) => (
           <div
             onMouseEnter={() => {
-              setImage(link.image);
+              setImageUrl(link.image?.imageUrl || "");
             }}
             className="mb-14"
             key={index}
@@ -56,10 +50,10 @@ export const MenuPage = ({ data, lang }: MenuPageProps) => {
             {link.text?.map((text, index) => (
               <Link
                 key={index}
-                href={`${/artikler/}${text.slug}#${text.subtitle}`}
+                href={`${/artikler/}${(text as TextType).slug}#${(text as TextType).subtitle}`}
                 className="block text-center p-3 hover:underline text-xl lg:text-xl"
               >
-                {text.subtitle}
+                {(text as TextType).subtitle}
               </Link>
             ))}
           </div>
@@ -67,7 +61,15 @@ export const MenuPage = ({ data, lang }: MenuPageProps) => {
       </div>
 
       <div className="hidden lg:block w-[25%]">
-        {image && <DynamicImage image={image} />}
+        {imageUrl && (
+          <Image
+            src={imageUrl}
+            alt="Program images"
+            width={1000}
+            height={1000}
+            className="object-cover p-8"
+          />
+        )}
       </div>
     </div>
   );

@@ -707,11 +707,7 @@ export type EVENT_QUERYResult = {
     language?: string;
   } | null;
   image: {
-    alt: Array<{
-      _type: "localizedString";
-      nb?: string;
-      en?: string;
-    }> | null;
+    alt: string | null;
     credit: string | null;
     imageUrl: string | null;
   } | null;
@@ -749,11 +745,7 @@ export type EVENT_QUERYResult = {
   } | {
     title?: string;
     image: {
-      alt: Array<{
-        _type: "localizedString";
-        nb?: string;
-        en?: string;
-      }> | null;
+      alt: string | null;
       credit: string | null;
       imageUrl: string | null;
     } | null;
@@ -820,11 +812,7 @@ export type FRONTPAGE_QUERYResult = {
   _rev: string;
   title?: string;
   image: {
-    alt: Array<{
-      _type: "localizedString";
-      nb?: string;
-      en?: string;
-    }> | null;
+    alt: string | null;
     credit: string | null;
     imageUrl: string | null;
   } | null;
@@ -849,11 +837,7 @@ export type MENUPAGE_QUERYResult = {
   links: Array<{
     title: string | null;
     image: {
-      alt: Array<{
-        _type: "localizedString";
-        nb?: string;
-        en?: string;
-      }> | null;
+      alt: string | null;
       credit: string | null;
       imageUrl: string | null;
     } | null;
@@ -890,11 +874,7 @@ export type PROGRAMPAGE_QUERYResult = {
     title: string | null;
     slug: Slug | null;
     image: {
-      alt: Array<{
-        _type: "localizedString";
-        nb?: string;
-        en?: string;
-      }> | null;
+      alt: string | null;
       credit: string | null;
       imageUrl: string | null;
     } | null;

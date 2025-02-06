@@ -54,11 +54,11 @@ export const ProgramPage = ({ data, lang }: ProgramPageProps) => {
                   />
                 )}
               </div>
-              <h2 className="text-2xl lg:text-4xl mt-4 mb-2">
+              <h2 className="text-2xl lg:text-4xl mt-4 lg:mt-0">
                 {link.title?.toLocaleUpperCase()}
               </h2>
               {link.dates && link.dates.length > 0 && (
-                <span>
+                <span className="inline-block mt-2">
                   Sett inn dato her{" "}
                   {/*<DatesLabel dates={link.dates} showBorder={false} />*/}
                 </span>

@@ -38,26 +38,29 @@ export const MenuPage = ({ data, lang }: MenuPageProps) => {
             onMouseEnter={() => {
               setImage(link.image);
             }}
-            className="mb-14"
+            className="mb-14 w-full flex flex-col gap-5"
             key={index}
           >
-            <Link
-              key={index}
-              href={
-                isEnglish
-                  ? "/en" + `${RedirectType(link._type)}/${link.slug?.current}`
-                  : `${RedirectType(link._type)}/${link.slug?.current}`
-              }
-              aria-label="" //@todo: add translation.
-              className="block text-center p-3 hover:underline text-2xl lg:text-4xl"
-            >
-              {link.title?.toLocaleUpperCase() || ""}
-            </Link>
+            <h2>
+              <Link
+                key={index}
+                href={
+                  isEnglish
+                    ? "/en" +
+                      `${RedirectType(link._type)}/${link.slug?.current}`
+                    : `${RedirectType(link._type)}/${link.slug?.current}`
+                }
+                aria-label="" //@todo: add translation.
+                className="block text-center hover:underline text-2xl lg:text-4xl"
+              >
+                {link.title?.toLocaleUpperCase() || ""}
+              </Link>
+            </h2>
             {link.text?.map((text, index) => (
               <Link
                 key={index}
                 href={`${/artikler/}${text.slug}#${text.subtitle}`}
-                className="block text-center p-3 hover:underline text-xl lg:text-xl"
+                className="block text-center  hover:underline text-xl lg:text-xl"
               >
                 {text.subtitle}
               </Link>

@@ -685,7 +685,7 @@ export type AllSanitySchemaTypes = SanityImagePaletteSwatch | SanityImagePalette
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ./sanity/lib/queries/event.ts
 // Variable: EVENT_QUERY
-// Query: *[_type == "event" && slug.current == $slug && language == $lang][0]{      ...,      genre->,          image->{        "alt": image.alt[$lang],        "credit": image.credit,        "imageUrl": image.asset->url    }        }
+// Query: *[_type == "event" && slug.current == $slug && language == $lang][0]{      ...,      genre->,                  image->{                "alt": image.alt[$lang],                "credit": image.credit,                "imageUrl": image.asset->url            }        ,      text[]{        ...,        _type == "customImage" => {                      image {                "alt": alt[$lang],                "credit": credit,                "imageUrl": asset->url            }        ,        },      },    }
 export type EVENT_QUERYResult = {
   _id: string;
   _type: "event";
@@ -706,7 +706,11 @@ export type EVENT_QUERYResult = {
     language?: string;
   } | null;
   image: {
-    alt: string | null;
+    alt: Array<{
+      _type: "localizedString";
+      nb?: string;
+      en?: string;
+    }> | null;
     credit: string | null;
     imageUrl: string | null;
   } | null;
@@ -724,7 +728,78 @@ export type EVENT_QUERYResult = {
   }>;
   duration?: string;
   labels?: Array<string>;
-  text?: Content;
+  text: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
+    listItem?: "bullet" | "number";
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  } | {
+    title?: string;
+    image: {
+      alt: Array<{
+        _type: "localizedString";
+        nb?: string;
+        en?: string;
+      }> | null;
+      credit: string | null;
+      imageUrl: string | null;
+    } | null;
+    _type: "customImage";
+    _key: string;
+  } | {
+    title?: string;
+    content?: ExpandableContent;
+    _type: "expandableBlock";
+    _key: string;
+  } | {
+    title?: string;
+    expandableBlocks?: Array<{
+      title?: string;
+      content?: ExpandableContent;
+      _type: "expandableBlock";
+      _key: string;
+    }>;
+    _type: "faq";
+    _key: string;
+  } | {
+    address?: Geopoint;
+    _type: "googleMaps";
+    _key: string;
+  } | {
+    quote?: string;
+    creditsSource?: string;
+    creditsMedia?: string;
+    placement?: 0 | 1;
+    _type: "quoteBomb";
+    _key: string;
+  } | {
+    type?: "dice" | "standard" | "stars";
+    score?: number;
+    content?: string;
+    source?: string;
+    company?: string;
+    link?: string;
+    date?: string;
+    _type: "review";
+    _key: string;
+  } | {
+    title?: string;
+    muxVideo?: MuxVideo;
+    _type: "video";
+    _key: string;
+  }> | null;
   galleryDisplayType?: 1 | 2;
   roleGroups?: Array<{
     _key: string;
@@ -735,7 +810,7 @@ export type EVENT_QUERYResult = {
 
 // Source: ./sanity/lib/queries/frontPage.ts
 // Variable: FRONTPAGE_QUERY
-// Query: *[_type == "frontPage"][0]{      ...,          image->{        "alt": image.alt[$lang],        "credit": image.credit,        "imageUrl": image.asset->url    }        }
+// Query: *[_type == "frontPage"][0]{      ...,                  image->{                "alt": image.alt[$lang],                "credit": image.credit,                "imageUrl": image.asset->url            }            }
 export type FRONTPAGE_QUERYResult = {
   _id: string;
   _type: "frontPage";
@@ -744,29 +819,37 @@ export type FRONTPAGE_QUERYResult = {
   _rev: string;
   title?: string;
   image: {
-    alt: string | null;
+    alt: Array<{
+      _type: "localizedString";
+      nb?: string;
+      en?: string;
+    }> | null;
     credit: string | null;
     imageUrl: string | null;
   } | null;
   language?: string;
 } | null;
 
+// Source: ./sanity/lib/queries/image.ts
+// Variable: imageProjectionAsReference
+// Query: image->{                "alt": image.alt[$lang],                "credit": image.credit,                "imageUrl": image.asset->url            }
+export type ImageProjectionAsReferenceResult = never;
+// Variable: imageProjection
+// Query: image {                "alt": alt[$lang],                "credit": credit,                "imageUrl": asset->url            }
+export type ImageProjectionResult = never;
+
 // Source: ./sanity/lib/queries/menuPage.ts
 // Variable: MENUPAGE_QUERY
-// Query: *[_type == "menuPage"][0] {    metaTitle,     metaDescription,     links[]->{title,        image->{        "alt": image.alt[$lang],        "credit": image.credit,        "imageUrl": image.asset->url    }    ,    slug,    _type,    text[style=="h2"]{    defined(_key) => {_key},    "subtitle": children[0].text,    "slug": ^.slug.current    }[defined(subtitle)],    },    socialMediaText,    bottomLink {      text,      link->{      _type,      slug      },    }}
+// Query: *[_type == "menuPage"][0] {    metaTitle,     metaDescription,     links[]->{title,                image {                "alt": alt[$lang],                "credit": credit,                "imageUrl": asset->url            }        ,    slug,    _type,    text[style=="h2"]{    defined(_key) => {_key},    "subtitle": children[0].text,    "slug": ^.slug.current    }[defined(subtitle)],    },    socialMediaText,    bottomLink {      text,      link->{      _type,      slug      },    }}
 export type MENUPAGE_QUERYResult = {
   metaTitle: MetaTitle | null;
   metaDescription: MetaDescription | null;
   links: Array<{
     title: string | null;
     image: {
-      alt: Array<{
-        _type: "localizedString";
-        nb?: string;
-        en?: string;
-      }> | null;
-      credit: string | null;
-      imageUrl: string | null;
+      alt: null;
+      credit: null;
+      imageUrl: null;
     } | null;
     slug: Slug | null;
     _type: "article";
@@ -793,8 +876,10 @@ export type MENUPAGE_QUERYResult = {
 import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
-    "\n    *[_type == \"event\" && slug.current == $slug && language == $lang][0]{\n      ...,\n      genre->,\n      \n    image->{\n        \"alt\": image.alt[$lang],\n        \"credit\": image.credit,\n        \"imageUrl\": image.asset->url\n    }\n    \n    }\n  ": EVENT_QUERYResult;
-    "\n    *[_type == \"frontPage\"][0]{\n      ...,\n      \n    image->{\n        \"alt\": image.alt[$lang],\n        \"credit\": image.credit,\n        \"imageUrl\": image.asset->url\n    }\n    \n    }\n  ": FRONTPAGE_QUERYResult;
-    "*[_type == \"menuPage\"][0] {\n    metaTitle, \n    metaDescription, \n    links[]->{title,\n    \n    image->{\n        \"alt\": image.alt[$lang],\n        \"credit\": image.credit,\n        \"imageUrl\": image.asset->url\n    }\n    ,\n    slug,\n    _type,\n    text[style==\"h2\"]{\n    defined(_key) => {_key},\n    \"subtitle\": children[0].text,\n    \"slug\": ^.slug.current\n    }[defined(subtitle)],\n    },\n    socialMediaText,\n    bottomLink {\n      text,\n      link->{\n      _type,\n      slug\n      },\n    }}": MENUPAGE_QUERYResult;
+    "\n    *[_type == \"event\" && slug.current == $slug && language == $lang][0]{\n      ...,\n      genre->,\n      \n            image->{\n                \"alt\": image.alt[$lang],\n                \"credit\": image.credit,\n                \"imageUrl\": image.asset->url\n            }\n        ,\n      text[]{\n        ...,\n        _type == \"customImage\" => {\n          \n            image {\n                \"alt\": alt[$lang],\n                \"credit\": credit,\n                \"imageUrl\": asset->url\n            }\n        ,\n        },\n      },\n\n    }\n  ": EVENT_QUERYResult;
+    "\n    *[_type == \"frontPage\"][0]{\n      ...,\n      \n            image->{\n                \"alt\": image.alt[$lang],\n                \"credit\": image.credit,\n                \"imageUrl\": image.asset->url\n            }\n        \n    }\n  ": FRONTPAGE_QUERYResult;
+    "\n            image->{\n                \"alt\": image.alt[$lang],\n                \"credit\": image.credit,\n                \"imageUrl\": image.asset->url\n            }\n        ": ImageProjectionAsReferenceResult;
+    "\n            image {\n                \"alt\": alt[$lang],\n                \"credit\": credit,\n                \"imageUrl\": asset->url\n            }\n        ": ImageProjectionResult;
+    "*[_type == \"menuPage\"][0] {\n    metaTitle, \n    metaDescription, \n    links[]->{title,\n    \n            image {\n                \"alt\": alt[$lang],\n                \"credit\": credit,\n                \"imageUrl\": asset->url\n            }\n        ,\n    slug,\n    _type,\n    text[style==\"h2\"]{\n    defined(_key) => {_key},\n    \"subtitle\": children[0].text,\n    \"slug\": ^.slug.current\n    }[defined(subtitle)],\n    },\n    socialMediaText,\n    bottomLink {\n      text,\n      link->{\n      _type,\n      slug\n      },\n    }}": MENUPAGE_QUERYResult;
   }
 }

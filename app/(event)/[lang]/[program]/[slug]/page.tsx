@@ -1,10 +1,12 @@
 import ImageEventPage from "@/components/event/ImageEventPage";
+import { portableTextComponents } from "@/components/portable-text/components";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { client } from "@/sanity/lib/client";
 import { urlFor } from "@/sanity/lib/image";
 import { EVENT_QUERY } from "@/sanity/lib/queries/event";
 import { EVENT_QUERYResult } from "@/sanity/types/types";
+import { PortableText } from "next-sanity";
 import Link from "next/link";
 
 export default async function Page({ params }: { params: Promise<{ lang: string, slug: string }> }) {
@@ -67,6 +69,9 @@ export default async function Page({ params }: { params: Promise<{ lang: string,
                         <p>Hello</p>
                     </div>
                 </div>
+                {text?.map((block, i) => (
+                    <PortableText key={i} components={portableTextComponents} value={block} />
+                ))}
                 {/* <div className="flex flex-col mx-6 md:mx-8 lg:mx-24">
                     <EventTextContent data={text} />
                 </div> */}

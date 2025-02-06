@@ -10,7 +10,7 @@ export default async function Page({
   params: Promise<{ lang: string }>;
 }) {
   const lang = (await params).lang;
-  const frontPage: FRONTPAGE_QUERYResult = await client.fetch(FRONTPAGE_QUERY, {
+  const data: FRONTPAGE_QUERYResult = await client.fetch(FRONTPAGE_QUERY, {
     lang,
   });
 
@@ -18,14 +18,14 @@ export default async function Page({
 
   return (
     <div
-      className={`flex justify-center items-center min-h-front-page-height bg-cover bg-center`}
+      className="flex justify-center items-center min-h-front-page-height bg-cover bg-center"
       style={{
         minHeight: minHeight,
-        backgroundImage: `url(${urlFor(frontPage?.image?.imageUrl as SanityImageSource).url()})`,
+        backgroundImage: `url(${urlFor(data?.image?.imageUrl as SanityImageSource).url()})`,
       }}
-      aria-label={frontPage?.image?.alt || ""}
+      aria-label={data?.image?.alt || ""}
     >
-      <h1 className="text-primary-foreground">{frontPage?.title}</h1>
+      <h1 className="text-primary-foreground">{data?.title}</h1>
     </div>
   );
 }

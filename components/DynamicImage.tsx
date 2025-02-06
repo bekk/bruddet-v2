@@ -8,9 +8,9 @@ export const DynamicImage = ({ image }: { image: ImageType }) => {
     <Image
       src={image.imageUrl || ""}
       alt={image.alt || ""}
-      width={700}
-      height={700}
-      className="object-cover p-8"
+      width={350}
+      height={350}
+      className="object-cover fixed top-0 right-0 p-14 min-w-[25%] h-auto"
     />
   );
 };

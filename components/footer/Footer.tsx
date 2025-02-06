@@ -1,4 +1,5 @@
 "use client";
+import { isEnglish } from "@/lib/utils";
 import Link from "next/link";
 import React, { useState } from "react";
 
@@ -7,36 +8,46 @@ export default function Footer() {
 
   return (
     <footer className="h-full flex justify-between border-t border-foreground">
-      <FooterLink href="/meny">
-        Meny
-      </FooterLink>
+      <FooterLink href={isEnglish() ? "/en/meny" : "/meny"}>Meny</FooterLink>
 
       <Link
         href="/"
-        className="hidden md:w-[70%] md:flex justify-center items-center relative overflow-x-hidden w-full h-full border-x border-foreground"
+        className="hidden md:w-[70%] md:flex justify-center items-center relative overflow-x-hidden w-full h-full border-x border-foreground hover:bg-primary hover:text-primary-foreground hover:underline"
         onMouseOver={() => setIsHovering(true)}
         onMouseLeave={() => setIsHovering(false)}
         onFocus={() => setIsHovering(true)}
         onBlur={() => setIsHovering(false)}
       >
-        {isHovering ? <span>Meld deg på!</span> : <ScrollingCTA />}
+        {isHovering ? (
+          <span className="font-bold ">Meld deg på!</span>
+        ) : (
+          <ScrollingCTA />
+        )}
       </Link>
 
-      <FooterLink href="/program">
+      <FooterLink href={isEnglish() ? "/en/program" : "/program"}>
         Program
       </FooterLink>
     </footer>
   );
 }
 
-function FooterLink({ href, children }: { href: string; children: React.ReactNode }) {
+function FooterLink({
+  href,
+  children,
+}: {
+  href: string;
+  children: React.ReactNode;
+}) {
   return (
-    <Link href={href} className="w-[50%] md:w-[15%] flex justify-center items-center font-bold">
+    <Link
+      href={href}
+      className="w-[50%] md:w-[15%] flex justify-center items-center font-bold hover:bg-primary hover:text-primary-foreground hover:underline"
+    >
       {children}
     </Link>
   );
 }
-
 
 function ScrollingCTA() {
   return (

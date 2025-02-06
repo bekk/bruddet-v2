@@ -751,11 +751,50 @@ export type FRONTPAGE_QUERYResult = {
   language?: string;
 } | null;
 
+// Source: ./sanity/lib/queries/menuPage.ts
+// Variable: MENUPAGE_QUERY
+// Query: *[_type == "menuPage"][0] {    metaTitle,     metaDescription,     links[]->{title,        image->{        "alt": image.alt[$lang],        "credit": image.credit,        "imageUrl": image.asset->url    }    ,    slug,    _type,    text[style=="h2"]{    defined(_key) => {_key},    "subtitle": children[0].text,    "slug": ^.slug.current    }[defined(subtitle)],    },    socialMediaText,    bottomLink {      text,      link->{      _type,      slug      },    }}
+export type MENUPAGE_QUERYResult = {
+  metaTitle: MetaTitle | null;
+  metaDescription: MetaDescription | null;
+  links: Array<{
+    title: string | null;
+    image: {
+      alt: Array<{
+        _type: "localizedString";
+        nb?: string;
+        en?: string;
+      }> | null;
+      credit: string | null;
+      imageUrl: string | null;
+    } | null;
+    slug: Slug | null;
+    _type: "article";
+    text: Array<{
+      _key: string;
+      subtitle: string | null;
+      slug: string | null;
+    }> | null;
+  }> | null;
+  socialMediaText: string | null;
+  bottomLink: {
+    text: string | null;
+    link: {
+      _type: "article";
+      slug: Slug | null;
+    } | {
+      _type: "event";
+      slug: Slug | null;
+    } | null;
+  } | null;
+} | null;
+
 // Query TypeMap
 import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
     "\n    *[_type == \"event\" && slug.current == $slug && language == $lang][0]{\n      ...,\n      genre->,\n      \n    image->{\n        \"alt\": image.alt[$lang],\n        \"credit\": image.credit,\n        \"imageUrl\": image.asset->url\n    }\n    \n    }\n  ": EVENT_QUERYResult;
     "\n    *[_type == \"frontPage\"][0]{\n      ...,\n      \n    image->{\n        \"alt\": image.alt[$lang],\n        \"credit\": image.credit,\n        \"imageUrl\": image.asset->url\n    }\n    \n    }\n  ": FRONTPAGE_QUERYResult;
+    "*[_type == \"menuPage\"][0] {\n    metaTitle, \n    metaDescription, \n    links[]->{title,\n    \n    image->{\n        \"alt\": image.alt[$lang],\n        \"credit\": image.credit,\n        \"imageUrl\": image.asset->url\n    }\n    ,\n    slug,\n    _type,\n    text[style==\"h2\"]{\n    defined(_key) => {_key},\n    \"subtitle\": children[0].text,\n    \"slug\": ^.slug.current\n    }[defined(subtitle)],\n    },\n    socialMediaText,\n    bottomLink {\n      text,\n      link->{\n      _type,\n      slug\n      },\n    }}": MENUPAGE_QUERYResult;
   }
 }

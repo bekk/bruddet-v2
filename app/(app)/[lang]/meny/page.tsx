@@ -1,4 +1,7 @@
-import SocialMedia from "@/components/social-media-block/SocialMedia";
+import { MenuPage } from "@/components/menu/MenuPage";
+import { client } from "@/sanity/lib/client";
+import { MENUPAGE_QUERY } from "@/sanity/lib/queries/menuPage";
+import { MENUPAGE_QUERYResult } from "@/sanity/types/types";
 
 export default async function Page({
   params,
@@ -6,26 +9,11 @@ export default async function Page({
   params: Promise<{ lang: string }>;
 }) {
   const lang = (await params).lang;
-  return (
-    <div className="flex flex-col md:flex-row h-full w-full">
-      {/* Hidden on mobile */}
-      <div className="order-last md:order-none flex items-end w-[20%]">
-        <SocialMedia />
-      </div>
+  const data: MENUPAGE_QUERYResult = await client.fetch(MENUPAGE_QUERY, {
+    lang,
+  });
 
-      {/* Grows and pins content at bottom on mobile */}
-      <div className="flex grow flex-col items-center">
-        {Array.from({ length: 100 }).map((_, i) => (
-          <p key={i}>Menysiden</p>
-        ))}
-        <p>{lang}</p>
-      </div>
+  if (data) return <MenuPage data={data} />;
 
-
-      {/* Hidden on mobile */}
-      <div className="hidden md:block w-[20%]">
-
-      </div>
-    </div>
-  );
+  return null;
 }

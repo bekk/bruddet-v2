@@ -2,7 +2,7 @@ import { defineField, defineType } from "sanity";
 
 export const menuPage = defineType({
   name: "menuPage",
-  title: "Informasjonsside",
+  title: "Menyside",
   type: "document",
   fields: [
     defineField({
@@ -37,6 +37,9 @@ export const menuPage = defineType({
           to: [{ type: "article" }],
           options: {
             filter: ({ document }) => {
+              if (!document?.language) {
+                return {};
+              }
               return {
                 filter: "language == $lang",
                 params: { lang: document.language },

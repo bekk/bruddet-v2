@@ -2,7 +2,7 @@ import { documentInternationalization } from "@sanity/document-internationalizat
 import { defineField, SlugValidationContext } from "sanity";
 
 export const languages = [
-  { id: "nb", title: "🇳🇴 Norwegian (Bokmål)", isDefault: true },
+  { id: "nb", title: "🇳🇴 Norsk", isDefault: true },
   { id: "en", title: "🇬🇧 English" },
 ];
 

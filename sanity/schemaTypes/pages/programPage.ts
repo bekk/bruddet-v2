@@ -45,6 +45,9 @@ export const programPage = defineType({
           to: [{ type: "event" }],
           options: {
             filter: ({ document }) => {
+              if (!document?.language) {
+                return {};
+              }
               return {
                 filter: "language == $lang",
                 params: { lang: document.language },

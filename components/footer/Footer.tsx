@@ -1,14 +1,15 @@
 "use client";
-import { isEnglish } from "@/lib/utils";
+import { useIsEnglish } from "@/hooks/useIsEnglish";
 import Link from "next/link";
 import React, { useState } from "react";
 
 export default function Footer() {
   const [isHovering, setIsHovering] = useState(false);
+  const isEnglish = useIsEnglish();
 
   return (
     <footer className="h-full flex justify-between border-t border-foreground">
-      <FooterLink href={isEnglish() ? "/en/meny" : "/meny"}>Meny</FooterLink>
+      <FooterLink href={isEnglish ? "/en/meny" : "/meny"}>Meny</FooterLink>
 
       <Link
         href="/"
@@ -25,7 +26,7 @@ export default function Footer() {
         )}
       </Link>
 
-      <FooterLink href={isEnglish() ? "/en/program" : "/program"}>
+      <FooterLink href={isEnglish ? "/en/program" : "/program"}>
         Program
       </FooterLink>
     </footer>

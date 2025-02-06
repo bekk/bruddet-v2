@@ -4,8 +4,7 @@ import { SocialMedia } from "../social-media/SocialMedia";
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { isEnglish } from "@/lib/utils";
-
+import { useIsEnglish } from "@/hooks/useIsEnglish";
 type TextType = {
   _key: string;
   subtitle: string;
@@ -28,14 +27,15 @@ type MenuPageProps = {
 
 export const MenuPage = ({ data }: MenuPageProps) => {
   const [imageUrl, setImageUrl] = useState<string>("");
+  const isEnglish = useIsEnglish();
 
   return (
-    <div className="flex flex-col md:flex-row h-full w-full">
-      <div className="order-last md:order-none flex items-end w-[20%]">
+    <div className="flex flex-col lg:flex-row h-full w-full">
+      <div className="order-last lg:order-none flex items-end justify-center lg:justify-normal lg:w-[25%]">
         <SocialMedia socialMediaText={data?.socialMediaText} />
       </div>
 
-      <div className="flex grow flex-col items-center">
+      <div className="flex grow flex-col items-center mt-16 px-4">
         {data?.links?.map((link, index) => (
           <div
             onMouseEnter={() => {
@@ -47,38 +47,36 @@ export const MenuPage = ({ data }: MenuPageProps) => {
             <Link
               key={index}
               href={
-                isEnglish()
+                isEnglish
                   ? "/en" + `${RedirectType(link._type)}/${link.slug?.current}`
                   : `${RedirectType(link._type)}/${link.slug?.current}`
               }
-              aria-label=""
+              aria-label="" //@todo: add translation.
+              className="block text-center p-3 hover:underline text-2xl lg:text-4xl"
             >
-              <p className="hover:underline text-2xl lg:text-4xl">
-                {link.title?.toLocaleUpperCase() || ""}
-              </p>
+              {link.title?.toLocaleUpperCase() || ""}
             </Link>
             {link.text?.map((text, index) => (
               <Link
                 key={index}
                 href={`${/artikler/}${(text as TextType).slug}#${(text as TextType).subtitle}`}
+                className="block text-center p-3 hover:underline text-xl lg:text-xl"
               >
-                <p className="p-3 hover:underline text-xl lg:text-xl">
-                  {(text as TextType).subtitle}
-                </p>
+                {(text as TextType).subtitle}
               </Link>
             ))}
           </div>
         ))}
       </div>
 
-      <div className="hidden md:block w-[20%]">
+      <div className="hidden lg:block w-[25%]">
         {imageUrl && (
           <Image
             src={imageUrl}
             alt="Menu image"
-            width={500}
-            height={500}
-            className="object-cover"
+            width={1000}
+            height={1000}
+            className="object-cover p-8"
           />
         )}
       </div>

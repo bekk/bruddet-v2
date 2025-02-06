@@ -5,7 +5,7 @@ type Props = {
 };
 
 export const SocialMedia = ({ socialMediaText }: Props) => (
-  <div className="flex flex-col gap-4 p-6 text-base lg:fixed lg:bottom-16">
+  <div className="flex flex-col gap-4 p-12 text-base lg:fixed lg:bottom-16 sm:w-[60%] lg:w-[25%]">
     <Ibsen />
     <p>{socialMediaText}</p>
     <div className="flex gap-4">

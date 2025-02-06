@@ -2,13 +2,10 @@
 import { PROGRAMPAGE_QUERYResult } from "@/sanity/types/types";
 import { SocialMedia } from "../SocialMedia";
 import { useState } from "react";
-import Image from "next/image";
 import Link from "next/link";
-type TextType = {
-  _key: string;
-  subtitle: string;
-  slug: string;
-};
+import Image from "next/image";
+import { ImageType } from "@/sanity/lib/queries/image";
+import { DynamicImage } from "../DynamicImage";
 
 type ProgramPageProps = {
   data: PROGRAMPAGE_QUERYResult;
@@ -16,60 +13,62 @@ type ProgramPageProps = {
 };
 
 export const ProgramPage = ({ data, lang }: ProgramPageProps) => {
-  const [imageUrl, setImageUrl] = useState<string>("");
+  const [image, setImage] = useState<ImageType>(null);
   const isEnglish = lang === "en";
 
   return (
-    <div className="flex flex-col lg:flex-row h-full w-full">
-      <h1 className="text-5xl font-bold mb-12 sr-only">{data?.title}</h1>
-      <div className="order-last lg:order-none flex items-end justify-center lg:justify-normal lg:w-[25%]">
+    <div className="flex flex-row h-full w-full">
+      <h1 className="sr-only">{data?.title}</h1>
+      <div className="hidden lg:flex items-end justify-center lg:justify-normal lg:w-[25%]">
         <SocialMedia socialMediaText={data?.socialMediaText} />
       </div>
 
-      <div className="flex grow flex-col items-center mt-16 px-4">
+      <div className="flex grow flex-col items-center mt-12 lg:mt-20 px-6 sm:px-44 lg:px-4">
         {data?.links?.map((link, index) => (
           <div
             onMouseEnter={() => {
-              setImageUrl(link.image?.imageUrl || "");
+              setImage(link.image);
             }}
-            className="mb-14"
+            className="mb-14 w-full flex flex-col gap-2"
             key={index}
           >
             <Link
               key={index}
               href={
                 isEnglish
-                  ? "/en" + `${RedirectType(link._type)}/${link.slug?.current}`
-                  : `${RedirectType(link._type)}/${link.slug?.current}`
+                  ? `/en/event/${link.slug?.current}`
+                  : `/event/${link.slug?.current}`
               }
               aria-label="" //@todo: add translation.
-              className="block text-center p-3 hover:underline text-2xl lg:text-4xl"
+              className="block text-center hover:underline"
             >
-              {link.title?.toLocaleUpperCase() || ""}
+              <div className="lg:hidden flex justify-center aspect-square w-full">
+                {link.image && (
+                  <Image
+                    key={index}
+                    src={link.image?.imageUrl || ""}
+                    alt={link.image?.alt || ""}
+                    width={350}
+                    height={350}
+                    className="inline-block object-cover w-full h-full"
+                  />
+                )}
+              </div>
+              <h2 className="text-2xl lg:text-4xl mt-4 mb-2">
+                {link.title?.toLocaleUpperCase()}
+              </h2>
+              {link.dates && link.dates.length > 0 && (
+                <span>
+                  Sett inn dato her{" "}
+                  {/*<DatesLabel dates={link.dates} showBorder={false} />*/}
+                </span>
+              )}
             </Link>
-            {link.text?.map((text, index) => (
-              <Link
-                key={index}
-                href={`${/artikler/}${(text as TextType).slug}#${(text as TextType).subtitle}`}
-                className="block text-center p-3 hover:underline text-xl lg:text-xl"
-              >
-                {(text as TextType).subtitle}
-              </Link>
-            ))}
           </div>
         ))}
       </div>
-
       <div className="hidden lg:block w-[25%]">
-        {imageUrl && (
-          <Image
-            src={imageUrl}
-            alt="Program images"
-            width={1000}
-            height={1000}
-            className="object-cover p-8"
-          />
-        )}
+        {image && <DynamicImage image={image} />}
       </div>
     </div>
   );

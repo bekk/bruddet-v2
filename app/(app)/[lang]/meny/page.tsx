@@ -13,7 +13,6 @@ export default async function Page({
     lang,
   });
 
-  console.log(data);
   if (data) return <MenuPage data={data} lang={lang} />;
 
   return null;

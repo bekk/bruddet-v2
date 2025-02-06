@@ -10,7 +10,7 @@ export const DynamicImage = ({ image }: { image: ImageType }) => {
       alt={image.alt || ""}
       width={350}
       height={350}
-      className="object-cover fixed top-0 right-0 p-14 min-w-[25%] h-auto"
+      className="object-cover fixed pr-14 pt-14 min-w-[25%] h-auto"
     />
   );
 };

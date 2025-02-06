@@ -13,7 +13,8 @@ export default async function Page({
     lang,
   });
 
-  if (data) return <ProgramPage data={data} />;
+  console.log(data);
+  if (data) return <ProgramPage data={data} lang={lang} />;
 
   return null;
 }

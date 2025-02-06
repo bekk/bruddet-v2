@@ -420,12 +420,6 @@ export type ProgramPage = {
     _key: string;
     [internalGroqTypeReferenceTo]?: "event";
   }>;
-  image?: {
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    [internalGroqTypeReferenceTo]?: "customImage";
-  };
   socialMediaText?: string;
 };
 

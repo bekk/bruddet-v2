@@ -8,8 +8,6 @@ export const programPage = defineType({
     defineField({
       name: "language",
       type: "string",
-      readOnly: true,
-      hidden: true,
     }),
     defineField({
       name: "title",
@@ -61,12 +59,6 @@ export const programPage = defineType({
           exclude: true,
         },
       },
-    }),
-    defineField({
-      name: "image",
-      title: "Bilde",
-      type: "reference",
-      to: [{ type: "customImage" }],
     }),
     defineField({
       name: "socialMediaText",

@@ -8,7 +8,12 @@ interface CustomImageProps {
   };
 }
 
-export default function CustomImageComponent({ image }: CustomImageProps) {
+export default function CustomImageComponent({
+  value,
+}: {
+  value: CustomImageProps;
+}) {
+  const { image } = value;
   if (!image || !image.imageUrl) {
     return null;
   }

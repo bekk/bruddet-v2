@@ -15,7 +15,7 @@ export default function FaqComponent({ value }: FaqProps) {
       {value.expandableBlocks.map((block, index) => {
         return (
           <PortableText
-            key={index}
+            key={block._key}
             value={block}
             components={portableTextComponents}
           />

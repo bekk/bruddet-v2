@@ -7,8 +7,7 @@ interface VideoProps {
   title: string;
 }
 
-export default function VideoComponent({ props }: { props: VideoProps }) {
-  console.log(props);
+export default function VideoComponent({ value }: { value: VideoProps }) {
   return (
     <div>
       <p>VideoComponent</p>

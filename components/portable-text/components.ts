@@ -1,4 +1,3 @@
-import { faq } from "@/sanity/schemaTypes/portable-text/faq";
 import CustomImageComponent from "./CustomImageComponent";
 import VideoComponent from "./VideoComponent";
 import QuoteBombComponent from "./QuoteBombComponent";

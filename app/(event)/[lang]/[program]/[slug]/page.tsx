@@ -2,7 +2,6 @@ import ImageEventPage from "@/components/event/ImageEventPage";
 import { portableTextComponents } from "@/components/portable-text/components";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { client } from "@/sanity/lib/client";
 import { urlFor } from "@/sanity/lib/image";
 import { sanityFetch } from "@/sanity/lib/live";
 import { EVENT_QUERY } from "@/sanity/lib/queries/event";

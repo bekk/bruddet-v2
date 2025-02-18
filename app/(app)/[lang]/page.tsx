@@ -1,5 +1,6 @@
 import { client } from "@/sanity/lib/client";
 import { urlFor } from "@/sanity/lib/image";
+import { sanityFetch } from "@/sanity/lib/live";
 import { FRONTPAGE_QUERY } from "@/sanity/lib/queries/frontPage";
 import { FRONTPAGE_QUERYResult } from "@/sanity/types/types";
 import { SanityImageSource } from "@sanity/image-url/lib/types/types";
@@ -10,8 +11,9 @@ export default async function Page({
   params: Promise<{ lang: string }>;
 }) {
   const lang = (await params).lang;
-  const data: FRONTPAGE_QUERYResult = await client.fetch(FRONTPAGE_QUERY, {
-    lang,
+  const { data }: { data: FRONTPAGE_QUERYResult } = await sanityFetch({
+    query: FRONTPAGE_QUERY,
+    params: { lang },
   });
 
   const minHeight = "calc(100vh-theme('spacing.12'))";

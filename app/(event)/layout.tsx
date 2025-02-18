@@ -6,6 +6,7 @@ import { SanityLive } from "@/sanity/lib/live";
 import { draftMode } from "next/headers";
 import { DisableDraftMode } from "@/components/DisableDraftMode";
 import { VisualEditing } from "next-sanity";
+import SanityVisualEditing from "@/components/SanityVisualEditing";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -34,13 +35,7 @@ export default async function RootLayout({
       >
         <main className="mb-footer-height">
           {children}
-          <SanityLive />
-          {(await draftMode()).isEnabled && (
-            <>
-              <DisableDraftMode />
-              <VisualEditing />
-            </>
-          )}
+          <SanityVisualEditing />
         </main>
         <div className="fixed inset-x-0 bottom-0 h-footer-height bg-background-event">
           <Footer />

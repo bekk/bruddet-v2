@@ -5,6 +5,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { ImageType } from "@/sanity/lib/queries/image";
 import { DynamicImage } from "../DynamicImage";
+import { createTexts, useTranslation } from "@/utils/i18n";
 
 const RedirectType = (type: string) => {
   if (type == "article") {
@@ -22,6 +23,7 @@ type MenuPageProps = {
 };
 
 export const MenuPage = ({ data, lang }: MenuPageProps) => {
+  const { t } = useTranslation();
   const [image, setImage] = useState<ImageType>(null);
   const isEnglish = lang === "en";
 
@@ -52,7 +54,7 @@ export const MenuPage = ({ data, lang }: MenuPageProps) => {
                         `${RedirectType(link._type)}/${link.slug?.current}`
                       : `${RedirectType(link._type)}/${link.slug?.current}`
                   }
-                  aria-label="" //@todo: add translation.
+                  aria-label={t(texts.menuText)}
                   className="block text-center hover:underline text-2xl lg:text-4xl"
                 >
                   {link.title?.toLocaleUpperCase() || ""}
@@ -64,7 +66,7 @@ export const MenuPage = ({ data, lang }: MenuPageProps) => {
                     <li key={index}>
                       <Link
                         href={`${/artikler/}${text.slug}#${text.subtitle}`}
-                        className="block text-center  hover:underline text-xl lg:text-xl"
+                        className="block text-center hover:underline text-xl lg:text-xl"
                       >
                         {text.subtitle}
                       </Link>
@@ -83,3 +85,10 @@ export const MenuPage = ({ data, lang }: MenuPageProps) => {
     </div>
   );
 };
+
+const texts = createTexts({
+  menuText: {
+    nb: "Gå til menyside",
+    en: "Go to menu page",
+  },
+});

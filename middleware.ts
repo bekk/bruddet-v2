@@ -1,41 +1,32 @@
 import { NextRequest, NextResponse } from "next/server";
 
-import { match } from '@formatjs/intl-localematcher'
-import Negotiator from 'negotiator'
-
-let locales = ['nb', 'en']
-let defaultLocale = 'nb'
-
-
-function getLocale(request: NextRequest): string | null {
-    const negotiatorHeaders: Record<string, string> = {}
-    request.headers.forEach((value, key) => {
-        negotiatorHeaders[key] = value
-    })
-    const negotiator = new Negotiator({ headers: negotiatorHeaders })
-    const acceptLanguage = negotiator.language(locales)
-    return acceptLanguage ?? null
-}
+const locales = ['nb', 'en']
+const defaultLocale = 'nb'
 
 export function middleware(request: NextRequest) {
-    const { pathname } = request.nextUrl
+    const { pathname } = request.nextUrl;
+
+    // 1️⃣ Locale Handling Middleware
     const pathnameHasLocale = locales.some(
         (locale) => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`
-    )
+    );
 
-    if (pathnameHasLocale) return
+    if (!pathnameHasLocale) {
+        if (pathname.startsWith('/studio') || pathname.startsWith('/_next')) {
+            return NextResponse.next();
+        }
 
-    // if the path starts with studio, we don't want to redirect
-    if (
-        pathname.startsWith('/studio') || 
-        pathname.startsWith('/_next')) return
+        const locale = defaultLocale;
+        request.nextUrl.pathname = `/${locale}${pathname}`;
+        return NextResponse.redirect(request.nextUrl);
+    }
 
-    // Redirect if there is no locale
-    // const locale = getLocale(request)
-    const locale = defaultLocale
-    console.log("MR LOCALKE", locale)
-    request.nextUrl.pathname = `/${locale}${pathname}`
-    // e.g. incoming request is /products
-    // The new URL is now /en-US/products
-    return NextResponse.redirect(request.nextUrl)
+    // 2️⃣ Header Manipulation Middleware
+    const headers = new Headers(request.headers);
+    headers.set("x-url", request.nextUrl.pathname);
+    return NextResponse.next({ headers });
 }
+
+export const config = {
+    matcher: ["/((?!api|_next/static|_next/image|favicon.ico).*)"],
+};

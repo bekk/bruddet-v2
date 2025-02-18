@@ -14,7 +14,6 @@ type ProgramPageProps = {
 
 export const ProgramPage = ({ data, lang }: ProgramPageProps) => {
   const [image, setImage] = useState<ImageType>(null);
-  const isEnglish = lang === "en";
 
   return (
     <div className="flex flex-row h-full w-full">
@@ -34,11 +33,7 @@ export const ProgramPage = ({ data, lang }: ProgramPageProps) => {
           >
             <Link
               key={index}
-              href={
-                isEnglish
-                  ? `/en/event/${link.slug?.current}`
-                  : `/event/${link.slug?.current}`
-              }
+              href={`/${lang}/program/${link.slug?.current}`}
               aria-label="" //@todo: add translation.
               className="block text-center hover:underline"
             >

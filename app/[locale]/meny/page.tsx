@@ -13,7 +13,7 @@ export default async function Page({
     lang,
   });
 
-  if (data) return <MenuPage data={data} lang={lang} />;
+  if (data) return <MenuPage data={data} />;
 
   return null;
 }

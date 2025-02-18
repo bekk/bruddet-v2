@@ -3,6 +3,12 @@ import { twMerge } from "tailwind-merge";
 
 export const cn = (...inputs: ClassValue[]) => twMerge(clsx(inputs));
 
-export const isEnglish = (locale?: string): boolean => {
-  return locale === "en";
+export const RedirectType = (type: string) => {
+  if (type == "article") {
+    return "artikler";
+  } else if (type == "event") {
+    return "event";
+  } else {
+    return "";
+  }
 };

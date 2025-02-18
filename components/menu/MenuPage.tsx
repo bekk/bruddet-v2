@@ -5,25 +5,16 @@ import { useState } from "react";
 import Link from "next/link";
 import { ImageType } from "@/sanity/lib/queries/image";
 import { DynamicImage } from "../DynamicImage";
-
-const RedirectType = (type: string) => {
-  if (type == "article") {
-    return "/artikler";
-  } else if (type == "event") {
-    return "/event";
-  } else {
-    return "";
-  }
-};
+import { useLocale } from "next-intl";
+import { RedirectType } from "@/lib/utils";
 
 type MenuPageProps = {
   data: MENUPAGE_QUERYResult;
-  lang: string;
 };
 
-export const MenuPage = ({ data, lang }: MenuPageProps) => {
+export const MenuPage = ({ data }: MenuPageProps) => {
   const [image, setImage] = useState<ImageType>(null);
-  const isEnglish = lang === "en";
+  const locale = useLocale();
 
   return (
     <div className="flex flex-col lg:flex-row h-full w-full">
@@ -46,12 +37,7 @@ export const MenuPage = ({ data, lang }: MenuPageProps) => {
             >
               <h2>
                 <Link
-                  href={
-                    isEnglish
-                      ? "/en" +
-                        `${RedirectType(link._type)}/${link.slug?.current}`
-                      : `${RedirectType(link._type)}/${link.slug?.current}`
-                  }
+                  href={`/${locale}/${RedirectType(link._type)}/${link.slug?.current}`}
                   aria-label="" //@todo: add translation.
                   className="block text-center hover:underline text-2xl lg:text-4xl"
                 >
@@ -63,7 +49,7 @@ export const MenuPage = ({ data, lang }: MenuPageProps) => {
                   {link.text?.map((text, index) => (
                     <li key={index}>
                       <Link
-                        href={`${/artikler/}${text.slug}#${text.subtitle}`}
+                        href={`/${locale}/artikler/${text.slug}#${text.subtitle}`}
                         className="block text-center  hover:underline text-xl lg:text-xl"
                       >
                         {text.subtitle}

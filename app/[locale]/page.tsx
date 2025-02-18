@@ -4,7 +4,7 @@ import { FRONTPAGE_QUERY } from "@/sanity/lib/queries/frontPage";
 import { FRONTPAGE_QUERYResult } from "@/sanity/types/types";
 import { SanityImageSource } from "@sanity/image-url/lib/types/types";
 
-export default async function LocalePage({
+export default async function Page({
   params,
 }: {
   params: Promise<{ locale: string }>;

@@ -1,15 +1,18 @@
 "use client";
-import { useIsEnglish } from "../../hooks/useIsEnglish";
+import { useIsEnglish } from "@/hooks/useLocale";
+import { useLocale } from "next-intl";
 import Link from "next/link";
 import React, { useState } from "react";
 
 export default function Footer() {
   const [isHovering, setIsHovering] = useState(false);
   const isEnglish = useIsEnglish();
+  console.log(isEnglish);
+  const locale = useLocale();
 
   return (
     <footer className="h-full flex justify-between border-t border-foreground">
-      <FooterLink href={isEnglish ? "/en/meny" : "/meny"}>
+      <FooterLink href={`/${locale}/meny`}>
         {isEnglish ? "Menu" : "Meny"}
       </FooterLink>
 

@@ -6,9 +6,9 @@ import { MENUPAGE_QUERYResult } from "@/sanity/types/types";
 export default async function Page({
   params,
 }: {
-  params: Promise<{ lang: string }>;
+  params: Promise<{ locale: string }>;
 }) {
-  const lang = (await params).lang;
+  const lang = (await params).locale;
   const data: MENUPAGE_QUERYResult = await client.fetch(MENUPAGE_QUERY, {
     lang,
   });

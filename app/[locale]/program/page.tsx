@@ -6,14 +6,13 @@ import { PROGRAMPAGE_QUERYResult } from "@/sanity/types/types";
 export default async function Page({
   params,
 }: {
-  params: Promise<{ lang: string }>;
+  params: Promise<{ locale: string }>;
 }) {
-  const lang = (await params).lang;
+  const lang = (await params).locale;
   const data: PROGRAMPAGE_QUERYResult = await client.fetch(PROGRAMPAGE_QUERY, {
     lang,
   });
 
-  console.log(data);
   if (data) return <ProgramPage data={data} lang={lang} />;
 
   return null;

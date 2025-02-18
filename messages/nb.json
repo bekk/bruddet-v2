@@ -1,0 +1,9 @@
+{
+    "Home": {
+        "Hero": {
+            "Title": "Next.js oversettelses demo",
+            "Subtitle": "Denne demoen bruker Next.js og next-intl-pakken til å lage et flerspråklig nettsted. Vi utforsker senere også hvordan det fungerer med Hygraph.",
+            "CallToAction": "Les om oss"
+        }
+    }
+}

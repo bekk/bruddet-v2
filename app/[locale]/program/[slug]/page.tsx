@@ -12,9 +12,9 @@ import Link from "next/link";
 export default async function Page({
   params,
 }: {
-  params: Promise<{ lang: string; slug: string }>;
+  params: Promise<{ locale: string; slug: string }>;
 }) {
-  const lang = (await params).lang ?? process.env.NEXT_PUBLIC_DEFAULT_LANG;
+  const lang = (await params).locale ?? process.env.NEXT_PUBLIC_DEFAULT_LANG;
   const slug = (await params).slug;
 
   const { data: event }: { data: EVENT_QUERYResult } = await sanityFetch({
@@ -64,7 +64,7 @@ export default async function Page({
           </div>
         </div>
         {text?.map((block, i) => (
-          <div className="flex flex-col mx-6 md:mx-8 lg:mx-24">
+          <div key={i} className="flex flex-col mx-6 md:mx-8 lg:mx-24">
             <PortableText
               key={i}
               components={portableTextComponents}

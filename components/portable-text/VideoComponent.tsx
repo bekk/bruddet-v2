@@ -1,10 +1,13 @@
-export default function VideoComponent({
-  value,
-}: {
-  muxVideo: { asset: { playbackId: string } };
+interface VideoProps {
+  muxVideo: {
+    asset: {
+      playbackId: string;
+    };
+  };
   title: string;
-}) {
-  console.log(value);
+}
+
+export default function VideoComponent({ value }: { value: VideoProps }) {
   return (
     <div>
       <p>VideoComponent</p>

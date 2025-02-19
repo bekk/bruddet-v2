@@ -6,7 +6,10 @@ import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
-import SanityVisualEditing from "@/components/SanityVisualEditing";
+import { SanityLive } from "@/sanity/lib/live";
+import { draftMode } from "next/headers";
+import { VisualEditing } from "next-sanity";
+import { DisableDraftMode } from "@/components/DisableDraftMode";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -44,16 +47,19 @@ export default async function Layout({
   return (
     <html lang={locale}>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background text-foreground`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <NextIntlClientProvider messages={messages}>
-          <main className="mb-footer-height">
+          <main>
             {children}
-            <SanityVisualEditing />
+            <SanityLive />
+            {(await draftMode()).isEnabled && (
+              <>
+                <DisableDraftMode />
+                <VisualEditing />
+              </>
+            )}
           </main>
-          <div className="fixed inset-x-0 bottom-0 h-footer-height bg-background">
-            <Footer />
-          </div>
         </NextIntlClientProvider>
       </body>
     </html>

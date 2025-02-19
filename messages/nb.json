@@ -1,6 +1,9 @@
 {
     "Footer": {
-        "menu": "Meny på norsk",
-        "program": "Program"
+        "menu": "Meny",
+        "menu-a11y": "Gå til menyside",
+        "program": "Program",
+        "program-a11y": "Gå til programside"
+
     }
 }

@@ -1,6 +1,9 @@
 {
     "Footer": {
-        "menu": "Menu in english",
-        "program": "Program"
+        "menu": "Menu",
+        "menu-a11y": "Go to menu page",
+        "program": "Program",
+        "program-a11y": "Go to program page"
+
     }
 }

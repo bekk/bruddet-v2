@@ -11,7 +11,9 @@ export default function Footer() {
 
   return (
     <footer className="h-full flex justify-between border-t border-foreground">
-      <FooterLink href={`/${locale}/meny`}>{t("menu")}</FooterLink>
+      <FooterLink href={`/${locale}/meny`} ariaLabel={t("menu-a11y")}>
+        {t("menu")}
+      </FooterLink>
 
       <Link
         href="/"
@@ -28,7 +30,9 @@ export default function Footer() {
         )}
       </Link>
 
-      <FooterLink href={`/${locale}/program`}>{t("program")}</FooterLink>
+      <FooterLink href={`/${locale}/program`} ariaLabel={t("program-a11y")}>
+        {t("program")}
+      </FooterLink>
     </footer>
   );
 }
@@ -36,14 +40,17 @@ export default function Footer() {
 function FooterLink({
   href,
   children,
+  ariaLabel,
 }: {
   href: string;
   children: React.ReactNode;
+  ariaLabel: string;
 }) {
   return (
     <Link
       href={href}
       className="w-[50%] md:w-[15%] flex justify-center items-center font-bold hover:bg-primary hover:text-primary-foreground hover:underline"
+      aria-label={ariaLabel}
     >
       {children}
     </Link>

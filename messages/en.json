@@ -1,9 +1,14 @@
 {
-    "Footer": {
+    "footer": {
         "menu": "Menu",
         "menu-a11y": "Go to menu page",
         "program": "Program",
         "program-a11y": "Go to program page"
-
+    },
+    "menu-page": {
+        "link-a11y": "Go to"
+    },
+    "program-page": {
+        "link-a11y": "Go to"
     }
 }

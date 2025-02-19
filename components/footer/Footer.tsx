@@ -7,7 +7,7 @@ import { useTranslations } from "next-intl";
 export default function Footer() {
   const [isHovering, setIsHovering] = useState(false);
   const locale = useLocale();
-  const t = useTranslations("Footer");
+  const t = useTranslations("footer");
 
   return (
     <footer className="h-full flex justify-between border-t border-foreground">

@@ -5,7 +5,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { ImageType } from "@/sanity/lib/queries/image";
 import { DynamicImage } from "../DynamicImage";
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { RedirectType } from "@/lib/utils";
 
 type MenuPageProps = {
@@ -15,6 +15,7 @@ type MenuPageProps = {
 export const MenuPage = ({ data }: MenuPageProps) => {
   const [image, setImage] = useState<ImageType>(null);
   const locale = useLocale();
+  const t = useTranslations("program-page");
 
   return (
     <div className="flex flex-col lg:flex-row h-full w-full">
@@ -38,7 +39,7 @@ export const MenuPage = ({ data }: MenuPageProps) => {
               <h2>
                 <Link
                   href={`/${locale}/${RedirectType(link._type)}/${link.slug?.current}`}
-                  aria-label="" //@todo: add translation.
+                  aria-label={`${t("link-a11y")} ${link.title}`}
                   className="block text-center hover:underline text-2xl lg:text-4xl"
                 >
                   {link.title?.toLocaleUpperCase() || ""}
@@ -51,6 +52,7 @@ export const MenuPage = ({ data }: MenuPageProps) => {
                       <Link
                         href={`/${locale}/artikler/${text.slug}#${text.subtitle}`}
                         className="block text-center  hover:underline text-xl lg:text-xl"
+                        aria-label={`${t("link-a11y")} ${text.subtitle}`}
                       >
                         {text.subtitle}
                       </Link>

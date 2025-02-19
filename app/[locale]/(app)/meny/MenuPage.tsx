@@ -1,10 +1,10 @@
 "use client";
 import { MENUPAGE_QUERYResult } from "@/sanity/types/types";
-import { SocialMedia } from "../SocialMedia";
+import { SocialMedia } from "@/components/SocialMedia";
 import { useState } from "react";
 import Link from "next/link";
 import { ImageType } from "@/sanity/lib/queries/image";
-import { DynamicImage } from "../DynamicImage";
+import { DynamicImage } from "@/components/DynamicImage";
 import { useLocale, useTranslations } from "next-intl";
 import { RedirectType } from "@/lib/utils";
 
@@ -16,6 +16,8 @@ export const MenuPage = ({ data }: MenuPageProps) => {
   const [image, setImage] = useState<ImageType>(null);
   const locale = useLocale();
   const t = useTranslations("menu");
+
+  if (!data) return;
 
   return (
     <div className="flex flex-col lg:flex-row h-full w-full">

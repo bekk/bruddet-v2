@@ -1,4 +1,4 @@
-import { MenuPage } from "@/components/menu/MenuPage";
+import { MenuPage } from "./MenuPage";
 import { client } from "@/sanity/lib/client";
 import { MENUPAGE_QUERY } from "@/sanity/lib/queries/menuPage";
 import { MENUPAGE_QUERYResult } from "@/sanity/types/types";
@@ -13,7 +13,5 @@ export default async function Page({
     lang,
   });
 
-  if (data) return <MenuPage data={data} />;
-
-  return null;
+  return <MenuPage data={data} />;
 }

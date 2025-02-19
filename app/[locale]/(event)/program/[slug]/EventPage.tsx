@@ -1,23 +1,25 @@
-"use client";
 import { EVENT_QUERYResult } from "@/sanity/types/types";
 import Link from "next/link";
-import { useTranslations } from "next-intl";
-import { Button } from "../ui/button";
-import { Badge } from "../ui/badge";
-import ImageEventPage from "./ImageEventPage";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import ImageEventPage from "@/components/event/ImageEventPage";
 import { urlFor } from "@/sanity/lib/image";
 import { PortableText } from "next-sanity";
-import { portableTextComponents } from "../portable-text/components";
+import { portableTextComponents } from "@/components/portable-text/components";
+import { getTranslations } from "next-intl/server";
 
 type EventPageProps = {
   data: EVENT_QUERYResult;
 };
 
-export const EventPage = ({ data }: EventPageProps) => {
-  const t = useTranslations("event");
+export const EventPage = async ({ data }: EventPageProps) => {
+  const t = await getTranslations("event");
 
-  const { image, title, ingress, dates, labels, genre, duration, text } = data; //@todo: add missing types or avoid spreading data
+  if (!data) return;
 
+  const { image, title, ingress, dates, labels, genre, duration, text } = data;
+
+  console.log(data.image);
   return (
     <>
       <div className={`flex-col flex w-full font-serif gap-8`}>

@@ -1,21 +1,23 @@
 "use client";
 import { PROGRAMPAGE_QUERYResult } from "@/sanity/types/types";
-import { SocialMedia } from "../SocialMedia";
+import { SocialMedia } from "@/components/SocialMedia";
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { ImageType } from "@/sanity/lib/queries/image";
-import { DynamicImage } from "../DynamicImage";
-import { useTranslations } from "next-intl";
+import { DynamicImage } from "@/components/DynamicImage";
+import { useLocale, useTranslations } from "next-intl";
 
 type ProgramPageProps = {
   data: PROGRAMPAGE_QUERYResult;
-  lang: string;
 };
 
-export const ProgramPage = ({ data, lang }: ProgramPageProps) => {
+export const ProgramPage = ({ data }: ProgramPageProps) => {
   const [image, setImage] = useState<ImageType>(null);
   const t = useTranslations("program");
+  const locale = useLocale();
+
+  if (!data) return;
 
   return (
     <div className="flex flex-row h-full w-full">
@@ -35,7 +37,7 @@ export const ProgramPage = ({ data, lang }: ProgramPageProps) => {
           >
             <Link
               key={index}
-              href={`/${lang}/program/${link.slug?.current}`}
+              href={`/${locale}/program/${link.slug?.current}`}
               aria-label={`${t("link-a11y")} ${link.title}`}
               className="block text-center hover:underline"
             >

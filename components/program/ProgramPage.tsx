@@ -15,7 +15,7 @@ type ProgramPageProps = {
 
 export const ProgramPage = ({ data, lang }: ProgramPageProps) => {
   const [image, setImage] = useState<ImageType>(null);
-  const t = useTranslations("program-page");
+  const t = useTranslations("program");
 
   return (
     <div className="flex flex-row h-full w-full">

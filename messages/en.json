@@ -5,10 +5,13 @@
         "program": "Program",
         "program-a11y": "Go to program page"
     },
-    "menu-page": {
+    "menu": {
         "link-a11y": "Go to"
     },
-    "program-page": {
+    "program": {
         "link-a11y": "Go to"
+    },
+    "event": {
+        "buy-ticket": "Buy ticket"
     }
 }

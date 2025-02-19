@@ -5,10 +5,13 @@
         "program": "Program",
         "program-a11y": "Gå til programside"
     },
-    "menu-page": {
+    "menu": {
         "link-a11y": "Gå til"
     },
-    "program-page": {
+    "program": {
         "link-a11y": "Gå til"
+    },
+    "event": {
+        "buy-ticket": "Kjøp billett"
     }
 }

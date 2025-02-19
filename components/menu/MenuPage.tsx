@@ -15,7 +15,7 @@ type MenuPageProps = {
 export const MenuPage = ({ data }: MenuPageProps) => {
   const [image, setImage] = useState<ImageType>(null);
   const locale = useLocale();
-  const t = useTranslations("program-page");
+  const t = useTranslations("menu");
 
   return (
     <div className="flex flex-col lg:flex-row h-full w-full">

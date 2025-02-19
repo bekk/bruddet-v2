@@ -12,7 +12,7 @@ export default function FaqComponent({ value }: FaqProps) {
   return (
     <>
       <h3>{value.title}</h3>
-      {value.expandableBlocks.map((block, index) => {
+      {value.expandableBlocks.map((block) => {
         return (
           <PortableText
             key={block._key}

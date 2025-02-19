@@ -16,7 +16,7 @@ type EventPageProps = {
 export const EventPage = ({ data }: EventPageProps) => {
   const t = useTranslations("event");
 
-  const { image, title, ingress, dates, labels, genre, duration, text } = data;
+  const { image, title, ingress, dates, labels, genre, duration, text } = data; //@todo: add missing types or avoid spreading data
 
   return (
     <>

@@ -1,4 +1,4 @@
-import { MenuPage } from "@/components/menu/MenuPage";
+import { MenuPage } from "./MenuPage";
 import { client } from "@/sanity/lib/client";
 import { MENUPAGE_QUERY } from "@/sanity/lib/queries/menuPage";
 import { MENUPAGE_QUERYResult } from "@/sanity/types/types";
@@ -6,14 +6,12 @@ import { MENUPAGE_QUERYResult } from "@/sanity/types/types";
 export default async function Page({
   params,
 }: {
-  params: Promise<{ lang: string }>;
+  params: Promise<{ locale: string }>;
 }) {
-  const lang = (await params).lang;
+  const lang = (await params).locale;
   const data: MENUPAGE_QUERYResult = await client.fetch(MENUPAGE_QUERY, {
     lang,
   });
 
-  if (data) return <MenuPage data={data} lang={lang} />;
-
-  return null;
+  return <MenuPage data={data} />;
 }

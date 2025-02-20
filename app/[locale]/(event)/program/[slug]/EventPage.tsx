@@ -1,33 +1,25 @@
-import ImageEventPage from "@/components/event/ImageEventPage";
-import { portableTextComponents } from "@/components/portable-text/components";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { urlFor } from "@/sanity/lib/image";
-import { sanityFetch } from "@/sanity/lib/live";
-import { EVENT_QUERY } from "@/sanity/lib/queries/event";
 import { EVENT_QUERYResult } from "@/sanity/types/types";
-import { PortableText } from "next-sanity";
 import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import ImageEventPage from "@/components/event/ImageEventPage";
+import { urlFor } from "@/sanity/lib/image";
+import { PortableText } from "next-sanity";
+import { portableTextComponents } from "@/components/portable-text/components";
+import { getTranslations } from "next-intl/server";
 
-export default async function Page({
-  params,
-}: {
-  params: Promise<{ lang: string; slug: string }>;
-}) {
-  const lang = (await params).lang ?? process.env.NEXT_PUBLIC_DEFAULT_LANG;
-  const slug = (await params).slug;
+type EventPageProps = {
+  data: EVENT_QUERYResult;
+};
 
-  const { data: event }: { data: EVENT_QUERYResult } = await sanityFetch({
-    query: EVENT_QUERY,
-    params: { lang, slug },
-  });
+export const EventPage = async ({ data }: EventPageProps) => {
+  const t = await getTranslations("event");
 
-  if (!event) {
-    return null;
-  }
+  if (!data) return;
 
-  const { image, title, ingress, dates, labels, genre, duration, text } = event;
+  const { image, title, ingress, dates, labels, genre, duration, text } = data;
 
+  console.log(data.image);
   return (
     <>
       <div className={`flex-col flex w-full font-serif gap-8`}>
@@ -54,7 +46,7 @@ export default async function Page({
               )}
               <Button>
                 <Link href="#top" scroll={true}>
-                  KJØP BILLETT
+                  {t("buy-ticket")}
                 </Link>
               </Button>
             </div>
@@ -64,7 +56,7 @@ export default async function Page({
           </div>
         </div>
         {text?.map((block, i) => (
-          <div className="flex flex-col mx-6 md:mx-8 lg:mx-24">
+          <div key={i} className="flex flex-col mx-6 md:mx-8 lg:mx-24">
             <PortableText
               key={i}
               components={portableTextComponents}
@@ -76,4 +68,4 @@ export default async function Page({
       {/* <BuyButtonFooter /> */}
     </>
   );
-}
+};

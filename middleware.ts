@@ -1,43 +1,24 @@
 import { NextRequest, NextResponse } from "next/server";
+import createMiddleware from "next-intl/middleware";
+import { routing } from "./i18n/routing";
 
-import { match } from "@formatjs/intl-localematcher";
-import Negotiator from "negotiator";
+// Create next-intl middleware
+const intlMiddleware = createMiddleware(routing);
 
-let locales = ["nb", "en"];
-let defaultLocale = "nb";
+export default function middleware(req: NextRequest) {
+  const { pathname, origin } = req.nextUrl;
 
-function getLocale(request: NextRequest): string | null {
-  const negotiatorHeaders: Record<string, string> = {};
-  request.headers.forEach((value, key) => {
-    negotiatorHeaders[key] = value;
-  });
-  const negotiator = new Negotiator({ headers: negotiatorHeaders });
-  const acceptLanguage = negotiator.language(locales);
-  return acceptLanguage ?? null;
+  // Redirect /nb and /nb/* to root or corresponding path without /nb
+  if (pathname.startsWith("/nb")) {
+    const newPath = pathname.replace(/^\/nb/, "") || "/";
+    return NextResponse.redirect(new URL(newPath, origin));
+  }
+
+  // Use next-intl middleware for other cases
+  return intlMiddleware(req);
 }
 
-export function middleware(request: NextRequest) {
-  const { pathname } = request.nextUrl;
-  const pathnameHasLocale = locales.some(
-    (locale) => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`
-  );
-
-  if (pathnameHasLocale) return;
-
-  // if the path starts with studio, we don't want to redirect
-  if (
-    pathname.startsWith("/studio") ||
-    pathname.startsWith("/_next") ||
-    pathname.startsWith("/api")
-  )
-    return;
-
-  // Redirect if there is no locale
-  // const locale = getLocale(request)
-  const locale = defaultLocale;
-  console.log("MR LOCALKE", locale);
-  request.nextUrl.pathname = `/${locale}${pathname}`;
-  // e.g. incoming request is /products
-  // The new URL is now /en-US/products
-  return NextResponse.redirect(request.nextUrl);
-}
+export const config = {
+  // Match only internationalized pathnames
+  matcher: ["/", "/(nb|en)/:path*", "/((?!api|_next|.*\\..*).*)"],
+};

@@ -1,29 +1,23 @@
 "use client";
 import { MENUPAGE_QUERYResult } from "@/sanity/types/types";
-import { SocialMedia } from "../SocialMedia";
+import { SocialMedia } from "@/components/SocialMedia";
 import { useState } from "react";
 import Link from "next/link";
 import { ImageType } from "@/sanity/lib/queries/image";
-import { DynamicImage } from "../DynamicImage";
-
-const RedirectType = (type: string) => {
-  if (type == "article") {
-    return "/artikler";
-  } else if (type == "event") {
-    return "/event";
-  } else {
-    return "";
-  }
-};
+import { DynamicImage } from "@/components/DynamicImage";
+import { useLocale, useTranslations } from "next-intl";
+import { RedirectType } from "@/lib/utils";
 
 type MenuPageProps = {
   data: MENUPAGE_QUERYResult;
-  lang: string;
 };
 
-export const MenuPage = ({ data, lang }: MenuPageProps) => {
+export const MenuPage = ({ data }: MenuPageProps) => {
   const [image, setImage] = useState<ImageType>(null);
-  const isEnglish = lang === "en";
+  const locale = useLocale();
+  const t = useTranslations("menu");
+
+  if (!data) return;
 
   return (
     <div className="flex flex-col lg:flex-row h-full w-full">
@@ -46,13 +40,8 @@ export const MenuPage = ({ data, lang }: MenuPageProps) => {
             >
               <h2>
                 <Link
-                  href={
-                    isEnglish
-                      ? "/en" +
-                        `${RedirectType(link._type)}/${link.slug?.current}`
-                      : `${RedirectType(link._type)}/${link.slug?.current}`
-                  }
-                  aria-label="" //@todo: add translation.
+                  href={`/${locale}/${RedirectType(link._type)}/${link.slug?.current}`}
+                  aria-label={`${t("link-a11y")} ${link.title}`}
                   className="block text-center hover:underline text-2xl lg:text-4xl"
                 >
                   {link.title?.toLocaleUpperCase() || ""}
@@ -63,8 +52,9 @@ export const MenuPage = ({ data, lang }: MenuPageProps) => {
                   {link.text?.map((text, index) => (
                     <li key={index}>
                       <Link
-                        href={`${/artikler/}${text.slug}#${text.subtitle}`}
+                        href={`/${locale}/artikler/${text.slug}#${text.subtitle}`}
                         className="block text-center  hover:underline text-xl lg:text-xl"
+                        aria-label={`${t("link-a11y")} ${text.subtitle}`}
                       >
                         {text.subtitle}
                       </Link>

@@ -1,20 +1,23 @@
 "use client";
 import { PROGRAMPAGE_QUERYResult } from "@/sanity/types/types";
-import { SocialMedia } from "../SocialMedia";
+import { SocialMedia } from "@/components/SocialMedia";
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { ImageType } from "@/sanity/lib/queries/image";
-import { DynamicImage } from "../DynamicImage";
+import { DynamicImage } from "@/components/DynamicImage";
+import { useLocale, useTranslations } from "next-intl";
 
 type ProgramPageProps = {
   data: PROGRAMPAGE_QUERYResult;
-  lang: string;
 };
 
-export const ProgramPage = ({ data, lang }: ProgramPageProps) => {
+export const ProgramPage = ({ data }: ProgramPageProps) => {
   const [image, setImage] = useState<ImageType>(null);
-  const isEnglish = lang === "en";
+  const t = useTranslations("program");
+  const locale = useLocale();
+
+  if (!data) return;
 
   return (
     <div className="flex flex-row h-full w-full">
@@ -23,9 +26,9 @@ export const ProgramPage = ({ data, lang }: ProgramPageProps) => {
         <SocialMedia socialMediaText={data?.socialMediaText} />
       </div>
 
-      <div className="flex grow flex-col items-center mt-12 lg:mt-20 px-6 sm:px-44 lg:px-4">
+      <ul className="flex grow flex-col items-center mt-12 lg:mt-20 px-6 sm:px-44 lg:px-4">
         {data?.links?.map((link, index) => (
-          <div
+          <li
             onMouseEnter={() => {
               setImage(link.image);
             }}
@@ -34,12 +37,8 @@ export const ProgramPage = ({ data, lang }: ProgramPageProps) => {
           >
             <Link
               key={index}
-              href={
-                isEnglish
-                  ? `/en/event/${link.slug?.current}`
-                  : `/event/${link.slug?.current}`
-              }
-              aria-label="" //@todo: add translation.
+              href={`/${locale}/program/${link.slug?.current}`}
+              aria-label={`${t("link-a11y")} ${link.title}`}
               className="block text-center hover:underline"
             >
               <div className="lg:hidden flex justify-center aspect-square w-full">
@@ -64,9 +63,9 @@ export const ProgramPage = ({ data, lang }: ProgramPageProps) => {
                 </span>
               )}
             </Link>
-          </div>
+          </li>
         ))}
-      </div>
+      </ul>
       <div className="hidden lg:block w-[25%]">
         {image && <DynamicImage image={image} />}
       </div>

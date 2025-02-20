@@ -7,6 +7,7 @@ import { urlFor } from "@/sanity/lib/image";
 import { PortableText } from "next-sanity";
 import { portableTextComponents } from "@/components/portable-text/components";
 import { getTranslations } from "next-intl/server";
+import { RolesBlock } from "@/components/event/RolesBlock";
 
 type EventPageProps = {
   data: EVENT_QUERYResult;
@@ -19,7 +20,6 @@ export const EventPage = async ({ data }: EventPageProps) => {
 
   const { image, title, ingress, dates, labels, genre, duration, text } = data;
 
-  console.log(data.image);
   return (
     <>
       <div className={`flex-col flex w-full font-serif gap-8`}>
@@ -64,8 +64,8 @@ export const EventPage = async ({ data }: EventPageProps) => {
             />
           </div>
         ))}
+        <RolesBlock roleGroups={data.roleGroups} />
       </div>
-      {/* <BuyButtonFooter /> */}
     </>
   );
 };

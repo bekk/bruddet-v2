@@ -13,5 +13,8 @@
     },
     "event": {
         "buy-ticket": "Buy ticket"
+    },
+    "date-label": {
+        "plays": "Performs"
     }
 }

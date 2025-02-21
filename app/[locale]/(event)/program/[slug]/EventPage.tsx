@@ -9,6 +9,7 @@ import { portableTextComponents } from "@/components/portable-text/components";
 import { getTranslations } from "next-intl/server";
 import { RolesBlock } from "@/components/event/RolesBlock";
 import { TicketBlock } from "@/components/event/TicketBlock";
+import { TwoColumnTextComponent } from "@/components/TwoColumnTextComponent";
 
 type EventPageProps = {
     data: EVENT_QUERYResult;
@@ -59,18 +60,7 @@ export const EventPage = async ({ data }: EventPageProps) => {
                         <p>Hello</p>
                     </div>
                 </div>
-                {text?.map((block, i) => (
-                    <div
-                        key={i}
-                        className="flex flex-col mx-6 md:mx-8 lg:mx-24"
-                    >
-                        <PortableText
-                            key={i}
-                            components={portableTextComponents}
-                            value={block}
-                        />
-                    </div>
-                ))}
+                <TwoColumnTextComponent text={text} />
                 <RolesBlock roleGroups={data.roleGroups} />
                 <TicketBlock
                     saleStartDateTime={data.saleStartDateTime}

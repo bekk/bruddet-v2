@@ -32,7 +32,6 @@ export const Ticket = ({
     );
 
     const format = useFormatter();
-    const dateTime = new Date("2020-11-20T10:36:01.516Z");
 
     return (
         <div>

@@ -1,12 +1,12 @@
 "use client";
-import { MENUPAGE_QUERYResult } from "@/sanity/types/types";
-import { SocialMedia } from "@/components/SocialMedia";
-import { useState } from "react";
-import Link from "next/link";
-import { ImageType } from "@/sanity/lib/queries/image";
 import { DynamicImage } from "@/components/DynamicImage";
-import { useLocale, useTranslations } from "next-intl";
+import { SocialMedia } from "@/components/SocialMedia";
 import { RedirectType } from "@/lib/utils";
+import { ImageType } from "@/sanity/lib/queries/image";
+import { MENUPAGE_QUERYResult } from "@/sanity/types/types";
+import { useLocale, useTranslations } from "next-intl";
+import Link from "next/link";
+import { useState } from "react";
 
 type MenuPageProps = {
   data: MENUPAGE_QUERYResult;
@@ -52,7 +52,7 @@ export const MenuPage = ({ data }: MenuPageProps) => {
                   {link.text?.map((text, index) => (
                     <li key={index}>
                       <Link
-                        href={`/${locale}/artikler/${text.slug}#${text.subtitle}`}
+                        href={`/${locale}/meny/${text.slug}#${text.subtitle}`}
                         className="block text-center  hover:underline text-xl lg:text-xl"
                         aria-label={`${t("link-a11y")} ${text.subtitle}`}
                       >

@@ -1,12 +1,12 @@
-import { EVENT_QUERYResult } from "@/sanity/types/types";
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
 import ImageEventPage from "@/components/event/ImageEventPage";
-import { urlFor } from "@/sanity/lib/image";
-import { PortableText } from "next-sanity";
 import { portableTextComponents } from "@/components/portable-text/components";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { urlFor } from "@/sanity/lib/image";
+import { EVENT_QUERYResult } from "@/sanity/types/types";
 import { getTranslations } from "next-intl/server";
+import { PortableText } from "next-sanity";
+import Link from "next/link";
 
 type EventPageProps = {
   data: EVENT_QUERYResult;
@@ -19,7 +19,6 @@ export const EventPage = async ({ data }: EventPageProps) => {
 
   const { image, title, ingress, dates, labels, genre, duration, text } = data;
 
-  console.log(data.image);
   return (
     <>
       <div className={`flex-col flex w-full font-serif gap-8`}>

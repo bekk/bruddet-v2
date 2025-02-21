@@ -678,6 +678,144 @@ export type InternationalizedArrayReference = Array<{
 
 export type AllSanitySchemaTypes = SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityFileAsset | ExpandableContent | MetaDescription | MetaTitle | RoleGroup | Video | Review | QuoteBomb | GoogleMaps | Geopoint | Faq | ExpandableBlock | Content | MuxVideo | MuxVideoAsset | MuxAssetData | MuxStaticRenditions | MuxStaticRenditionFile | MuxPlaybackId | MuxTrack | TranslationMetadata | InternationalizedArrayReferenceValue | ProgramPage | MenuPage | Article | FrontPage | Event | Person | CustomImage | LocalizedString | SanityImageCrop | SanityImageHotspot | SanityImageAsset | SanityAssetSourceData | SanityImageMetadata | Genre | Slug | InternationalizedArrayReference;
 export declare const internalGroqTypeReferenceTo: unique symbol;
+// Source: ./sanity/lib/queries/articlePage.ts
+// Variable: ARTICLEPAGE_QUERY
+// Query: *[_type=="article" && slug.current==$id && language==$lang][0]{        title,         slug,         ingress,        metaTitle,         metaDescription,         galleryDisplayType,        image,         text[]{...,           _type=="video" => {            title, muxVideo{asset->{playbackId}            }          }      },        "tagTexts": text[style == "h2"]      {"subtitle": children[0].text, _key},        roleGroups[]{          _type,          name,           persons[]{          _type,          occupation,           description,          person->{            name,                        image->{                "alt": image.alt[$lang],                "credit": image.credit,                "imageUrl": image.asset->url            }        ,             text}          }        },         video{          title,           muxVideo{            asset->{              playbackId}            }        },        'event': event->{slug},        "_translations": *[_type == "translation.metadata" && references(^._id)].translations[].value->{          slug,          language,        }    }
+export type ARTICLEPAGE_QUERYResult = {
+  title: string | null;
+  slug: Slug | null;
+  ingress: string | null;
+  metaTitle: MetaTitle | null;
+  metaDescription: MetaDescription | null;
+  galleryDisplayType: 1 | 2 | null;
+  image: {
+    _ref: string;
+    _type: "reference";
+    _weak?: boolean;
+    [internalGroqTypeReferenceTo]?: "customImage";
+  } | null;
+  text: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
+    listItem?: "bullet" | "number";
+    markDefs?: Array<{
+      href?: string;
+      _type: "link";
+      _key: string;
+    }>;
+    level?: number;
+    _type: "block";
+    _key: string;
+  } | {
+    title?: string;
+    image?: {
+      asset?: {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+      };
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      alt?: LocalizedString;
+      credit?: string;
+      _type: "image";
+    };
+    _type: "customImage";
+    _key: string;
+  } | {
+    title?: string;
+    content?: ExpandableContent;
+    _type: "expandableBlock";
+    _key: string;
+  } | {
+    title?: string;
+    expandableBlocks?: Array<{
+      title?: string;
+      content?: ExpandableContent;
+      _type: "expandableBlock";
+      _key: string;
+    }>;
+    _type: "faq";
+    _key: string;
+  } | {
+    address?: Geopoint;
+    _type: "googleMaps";
+    _key: string;
+  } | {
+    quote?: string;
+    creditsSource?: string;
+    creditsMedia?: string;
+    placement?: 0 | 1;
+    _type: "quoteBomb";
+    _key: string;
+  } | {
+    type?: "dice" | "standard" | "stars";
+    score?: number;
+    content?: string;
+    source?: string;
+    company?: string;
+    link?: string;
+    date?: string;
+    _type: "review";
+    _key: string;
+  } | {
+    title: string | null;
+    muxVideo: {
+      asset: null;
+    } | null;
+    _type: "video";
+    _key: string;
+  }> | null;
+  tagTexts: Array<{
+    subtitle: string | null;
+    _key: string;
+  }> | null;
+  roleGroups: Array<{
+    _type: "roleGroup";
+    name: string | null;
+    persons: Array<{
+      _type: null;
+      occupation: string | null;
+      description: string | null;
+      person: {
+        name: string | null;
+        image: {
+          alt: Array<{
+            _type: "localizedString";
+            nb?: string;
+            en?: string;
+          }> | null;
+          credit: string | null;
+          imageUrl: string | null;
+        } | null;
+        text: string | null;
+      } | null;
+    }> | null;
+  }> | null;
+  video: {
+    title: string | null;
+    muxVideo: {
+      asset: null;
+    } | null;
+  } | null;
+  event: {
+    slug: Slug | null;
+  } | null;
+  _translations: Array<{
+    slug: null;
+    language: string | null;
+  } | {
+    slug: Slug | null;
+    language: string | null;
+  } | null>;
+} | null;
+
 // Source: ./sanity/lib/queries/event.ts
 // Variable: EVENT_QUERY
 // Query: *[_type == "event" && slug.current == $slug && language == $lang][0]{      ...,      genre->,                  image->{                "alt": image.alt[$lang],                "credit": image.credit,                "imageUrl": image.asset->url            }        ,      text[]{        ...,        _type == "customImage" => {                      image {                "alt": alt[$lang],                "credit": credit,                "imageUrl": asset->url            }        ,        },      },    }
@@ -701,7 +839,11 @@ export type EVENT_QUERYResult = {
     language?: string;
   } | null;
   image: {
-    alt: string | null;
+    alt: Array<{
+      _type: "localizedString";
+      nb?: string;
+      en?: string;
+    }> | null;
     credit: string | null;
     imageUrl: string | null;
   } | null;
@@ -739,7 +881,11 @@ export type EVENT_QUERYResult = {
   } | {
     title?: string;
     image: {
-      alt: string | null;
+      alt: Array<{
+        _type: "localizedString";
+        nb?: string;
+        en?: string;
+      }> | null;
       credit: string | null;
       imageUrl: string | null;
     } | null;
@@ -806,7 +952,11 @@ export type FRONTPAGE_QUERYResult = {
   _rev: string;
   title?: string;
   image: {
-    alt: string | null;
+    alt: Array<{
+      _type: "localizedString";
+      nb?: string;
+      en?: string;
+    }> | null;
     credit: string | null;
     imageUrl: string | null;
   } | null;
@@ -831,7 +981,11 @@ export type MENUPAGE_QUERYResult = {
   links: Array<{
     title: string | null;
     image: {
-      alt: string | null;
+      alt: Array<{
+        _type: "localizedString";
+        nb?: string;
+        en?: string;
+      }> | null;
       credit: string | null;
       imageUrl: string | null;
     } | null;
@@ -868,7 +1022,11 @@ export type PROGRAMPAGE_QUERYResult = {
     title: string | null;
     slug: Slug | null;
     image: {
-      alt: string | null;
+      alt: Array<{
+        _type: "localizedString";
+        nb?: string;
+        en?: string;
+      }> | null;
       credit: string | null;
       imageUrl: string | null;
     } | null;
@@ -887,6 +1045,7 @@ export type PROGRAMPAGE_QUERYResult = {
 import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
+    "*[_type==\"article\" && slug.current==$id && language==$lang][0]{\n        title, \n        slug, \n        ingress,\n        metaTitle, \n        metaDescription, \n        galleryDisplayType,\n        image, \n        text[]{..., \n          _type==\"video\" => {\n            title, muxVideo{asset->{playbackId}\n            }\n          }\n      },  \n      \"tagTexts\": text[style == \"h2\"]\n      {\"subtitle\": children[0].text, _key},\n        roleGroups[]{\n          _type,\n          name, \n          persons[]{\n          _type,\n          occupation, \n          description,\n          person->{\n            name,\n            \n            image->{\n                \"alt\": image.alt[$lang],\n                \"credit\": image.credit,\n                \"imageUrl\": image.asset->url\n            }\n        , \n            text}\n          }\n        }, \n        video{\n          title, \n          muxVideo{\n            asset->{\n              playbackId}\n            }\n        },\n        'event': event->{slug},\n        \"_translations\": *[_type == \"translation.metadata\" && references(^._id)].translations[].value->{\n          slug,\n          language,\n        }\n    }": ARTICLEPAGE_QUERYResult;
     "\n    *[_type == \"event\" && slug.current == $slug && language == $lang][0]{\n      ...,\n      genre->,\n      \n            image->{\n                \"alt\": image.alt[$lang],\n                \"credit\": image.credit,\n                \"imageUrl\": image.asset->url\n            }\n        ,\n      text[]{\n        ...,\n        _type == \"customImage\" => {\n          \n            image {\n                \"alt\": alt[$lang],\n                \"credit\": credit,\n                \"imageUrl\": asset->url\n            }\n        ,\n        },\n      },\n\n    }\n  ": EVENT_QUERYResult;
     "\n    *[_type == \"frontPage\"][0]{\n      ...,\n      \n            image->{\n                \"alt\": image.alt[$lang],\n                \"credit\": image.credit,\n                \"imageUrl\": image.asset->url\n            }\n        \n    }\n  ": FRONTPAGE_QUERYResult;
     "\n            image->{\n                \"alt\": image.alt[$lang],\n                \"credit\": image.credit,\n                \"imageUrl\": image.asset->url\n            }\n        ": ImageProjectionAsReferenceResult;

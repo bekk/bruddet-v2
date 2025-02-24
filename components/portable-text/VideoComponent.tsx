@@ -1,4 +1,7 @@
+import MuxPlayer from "@mux/mux-player-react";
+
 interface VideoProps {
+  disableCookies: boolean;
   muxVideo: {
     asset: {
       playbackId: string;
@@ -8,9 +11,14 @@ interface VideoProps {
 }
 
 export default function VideoComponent({ value }: { value: VideoProps }) {
+  const { disableCookies, muxVideo, title } = value;
   return (
     <div>
-      <p>VideoComponent</p>
+      <MuxPlayer
+        disableCookies={disableCookies}
+        playbackId={muxVideo.asset.playbackId}
+        title={title}
+      />
     </div>
   );
 }

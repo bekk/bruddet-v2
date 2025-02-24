@@ -12,6 +12,10 @@
         "link-a11y": "Gå til"
     },
     "event": {
+        "buy-ticket": "Kjøp billett"
+    },
+    "date-label": {
+        "plays": "Spilles"
         "buy-ticket": "Kjøp billett",
         "tickets": "Billetter",
         "fewTicketsLeft": "Bare noen få billetter igjen",

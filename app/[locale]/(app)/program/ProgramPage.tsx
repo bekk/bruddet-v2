@@ -7,6 +7,7 @@ import Image from "next/image";
 import { ImageType } from "@/sanity/lib/queries/image";
 import { DynamicImage } from "@/components/DynamicImage";
 import { useLocale, useTranslations } from "next-intl";
+import { DatesLabel } from "@/components/DateLabel";
 
 type ProgramPageProps = {
   data: PROGRAMPAGE_QUERYResult;
@@ -58,8 +59,7 @@ export const ProgramPage = ({ data }: ProgramPageProps) => {
               </h2>
               {link.dates && link.dates.length > 0 && (
                 <span className="inline-block mt-2">
-                  Sett inn dato her{" "}
-                  {/*<DatesLabel dates={link.dates} showBorder={false} />*/}
+                  <DatesLabel dates={link.dates} />
                 </span>
               )}
             </Link>

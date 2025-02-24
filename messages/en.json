@@ -12,6 +12,10 @@
         "link-a11y": "Go to"
     },
     "event": {
+        "buy-ticket": "Buy ticket"
+    },
+    "date-label": {
+        "plays": "Performs"
         "buy-ticket": "Buy ticket",
         "tickets": "Tickets",
         "fewTicketsLeft": "Only a few tickets left",

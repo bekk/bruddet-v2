@@ -61,6 +61,18 @@ export const EventPage = async ({ data }: EventPageProps) => {
                     </div>
                 </div>
                 <TwoColumnTextComponent text={text} />
+                {text?.map((block, i) => (
+                    <div
+                        key={i}
+                        className="flex flex-col mx-6 md:mx-8 lg:mx-24"
+                    >
+                        <PortableText
+                            key={i}
+                            components={portableTextComponents}
+                            value={block}
+                        />
+                    </div>
+                ))}
                 <RolesBlock roleGroups={data.roleGroups} />
                 <TicketBlock
                     saleStartDateTime={data.saleStartDateTime}

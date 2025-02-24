@@ -1,17 +1,20 @@
 {
-    "footer": {
-        "menu": "Meny",
-        "menu-a11y": "Gå til menyside",
-        "program": "Program",
-        "program-a11y": "Gå til programside"
-    },
-    "menu": {
-        "link-a11y": "Gå til"
-    },
-    "program": {
-        "link-a11y": "Gå til"
-    },
-    "event": {
-        "buy-ticket": "Kjøp billett"
-    }
+  "footer": {
+    "menu": "Meny",
+    "menu-a11y": "Gå til menyside",
+    "program": "Program",
+    "program-a11y": "Gå til programside"
+  },
+  "menu": {
+    "link-a11y": "Gå til"
+  },
+  "program": {
+    "link-a11y": "Gå til"
+  },
+  "event": {
+    "buy-ticket": "Kjøp billett"
+  },
+  "article": {
+    "read-more": "Les mer om forestillingen"
+  }
 }

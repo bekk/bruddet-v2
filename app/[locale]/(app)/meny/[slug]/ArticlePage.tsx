@@ -1,48 +1,34 @@
+import { TagButtons } from "@/components/article/TagButtons";
 import { TwoColumnTextComponent } from "@/components/TwoColumnTextComponent";
-import { Button } from "@/components/ui/button";
 import { ARTICLEPAGE_QUERYResult } from "@/sanity/types/types";
+import { getTranslations } from "next-intl/server";
+import Link from "next/link";
 
-type ArticlePageProps = { data: ARTICLEPAGE_QUERYResult };
+type ArticlePageProps = { data: ARTICLEPAGE_QUERYResult; language: string };
 
-const handleScroll = (id: string) => {
-  const target = document.getElementById(id);
-  if (target) {
-    target.scrollIntoView({ behavior: "smooth" });
-  }
-};
-
-export const ArticlePage = ({ data }: ArticlePageProps) => {
+export const ArticlePage = async ({ data, language }: ArticlePageProps) => {
+  const t = await getTranslations("article");
   if (!data) {
     return;
   }
 
-  const { title, ingress, tagTexts, text, video, event } = data;
+  const { title, ingress, text, tagTexts, event } = data;
 
   return (
-    <div className="flex flex-col items-center">
+    <div className="flex flex-col w-full items-center gap-10">
       <h1 className="text-3xl lg:text-6xl text-4xl font-normal text-center mt-40">
         {title}
       </h1>
-      <h2 className="text-xl lg:text-3xl mx-auto my-4 md:my-10 md:text-left lg:text-center max-w-[1000px] font-normal lg:leading-[48px]">
+      <h2 className="text-xl lg:text-3xl md:text-left text-center max-w-[1000px] font-normal lg:leading-[48px]">
         {ingress}
       </h2>
-      <div className="flex flex-wrap gap-4"></div>
-      {tagTexts && tagTexts.length > 1 && (
-        <div className="flex gap-2 flex-wrap">
-          {data.tagTexts?.map((tagText) => (
-            // <button key={tagText._key} className={`px-2 h-10 border-box w-fit`}>
-            //   {tagText.subtitle}
-            // </button>
-            <Button
-              key={tagText._key}
-              //onClick={() => handleScroll(tagText.subtitle ?? "")}
-            >
-              {tagText.subtitle}
-            </Button>
-          ))}
-        </div>
+      <TagButtons tagTexts={tagTexts} />
+      {event && (
+        <Link href={`/${language}/program/${event.slug?.current}`}>
+          {t("read-more")}
+        </Link>
       )}
-      <TwoColumnTextComponent text={text} />
+      <TwoColumnTextComponent text={text} shouldGenerateH2Links={true} />
     </div>
   );
 };

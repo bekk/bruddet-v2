@@ -9,10 +9,12 @@ type TwoColumnTextComponentProps = {
   text:
     | NonNullable<EVENT_QUERYResult>["text"]
     | NonNullable<ARTICLEPAGE_QUERYResult>["text"];
+  shouldGenerateH2Links?: boolean;
 };
 
 export const TwoColumnTextComponent = ({
   text,
+  shouldGenerateH2Links = false,
 }: TwoColumnTextComponentProps) => {
   const leftBlockTypes = ["block", "review", "video", "expandableBlock", "faq"];
   const rightBlockSickyTypes = ["customImage"];
@@ -31,14 +33,14 @@ export const TwoColumnTextComponent = ({
 
   return (
     <>
-      <div className="hidden md:block">
+      <div className="hidden md:block mx-8 lg:mx-24">
         <div className="grid grid-cols-2 gap-10 font-serif text-xl">
           {/*left-column*/}
           <div className="flex justify-start w-full">
             <div className="lg:w-4/5 flex flex-col gap-8">
-              {leftBlocks?.map((block, index) => (
+              {leftBlocks?.map((block, i) => (
                 <PortableText
-                  key={index}
+                  key={i}
                   components={portableTextComponents}
                   value={block}
                 />
@@ -50,19 +52,19 @@ export const TwoColumnTextComponent = ({
             <div
             // className={galleryClassName}
             >
-              {stickyRightBlocks?.map((block, index) => (
+              {stickyRightBlocks?.map((block, i) => (
                 <div
-                  key={index}
+                  key={i}
                   // className={
                   //     galleryDisplayType != 1
                   //         ? "mt-5"
-                  //         : index === 0
+                  //         : i === 0
                   //           ? activeGallerySlideClassName
                   //           : inactiveGallerySlideClassName
                   // }
                 >
                   <PortableText
-                    key={index}
+                    key={i}
                     components={portableTextComponents}
                     value={block}
                   />

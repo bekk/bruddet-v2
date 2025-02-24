@@ -1,17 +1,20 @@
 {
-    "footer": {
-        "menu": "Menu",
-        "menu-a11y": "Go to menu page",
-        "program": "Program",
-        "program-a11y": "Go to program page"
-    },
-    "menu": {
-        "link-a11y": "Go to"
-    },
-    "program": {
-        "link-a11y": "Go to"
-    },
-    "event": {
-        "buy-ticket": "Buy ticket"
-    }
+  "footer": {
+    "menu": "Menu",
+    "menu-a11y": "Go to menu page",
+    "program": "Program",
+    "program-a11y": "Go to program page"
+  },
+  "menu": {
+    "link-a11y": "Go to"
+  },
+  "program": {
+    "link-a11y": "Go to"
+  },
+  "event": {
+    "buy-ticket": "Buy ticket"
+  },
+  "article": {
+    "read-more": "Read more about the event"
+  }
 }

@@ -16,5 +16,5 @@ export default async function Page({
     slug,
   });
 
-  return <ArticlePage data={data} />;
+  return <ArticlePage data={data} language={lang} />;
 }

@@ -756,7 +756,7 @@ export type AllSanitySchemaTypes =
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ./sanity/lib/queries/articlePage.ts
 // Variable: ARTICLEPAGE_QUERY
-// Query: *[_type=="article" && slug.current==$id && language==$lang][0]{        title,         slug,         ingress,        metaTitle,         metaDescription,         galleryDisplayType,        image,         text[]{...,           _type=="video" => {            title, muxVideo{asset->{playbackId}            }          }      },        "tagTexts": text[style == "h2"]      {"subtitle": children[0].text, _key},        roleGroups[]{          _type,          name,           persons[]{          _type,          occupation,           description,          person->{            name,                        image->{                "alt": image.alt[$lang],                "credit": image.credit,                "imageUrl": image.asset->url            }        ,             text}          }        },         video{          title,           muxVideo{            asset->{              playbackId}            }        },        'event': event->{slug},        "_translations": *[_type == "translation.metadata" && references(^._id)].translations[].value->{          slug,          language,        }    }
+// Query: *[_type=="article" && slug.current == $slug && language==$lang][0]{        title,         slug,         ingress,        metaTitle,         metaDescription,         galleryDisplayType,        image,         text[]{...,           _type=="video" => {            title, muxVideo{asset->{playbackId}            }          }      },        "tagTexts": text[style == "h2"]      {"subtitle": children[0].text, _key},        roleGroups[]{          _type,          _key,          name,           persons[]{          _type,          ...,          person->{            name,                        image->{                "alt": image.alt[$lang],                "credit": image.credit,                "imageUrl": image.asset->url            }        ,             text,            }          }        },         video{          title,           muxVideo{            asset->{              playbackId}            }        },        'event': event->{slug},        "_translations": *[_type == "translation.metadata" && references(^._id)].translations[].value->{          slug,          language,        }    }
 export type ARTICLEPAGE_QUERYResult = {
     title: string | null;
     slug: Slug | null;
@@ -863,11 +863,10 @@ export type ARTICLEPAGE_QUERYResult = {
     }> | null;
     roleGroups: Array<{
         _type: "roleGroup";
+        _key: string;
         name: string | null;
         persons: Array<{
             _type: null;
-            occupation: string | null;
-            description: string | null;
             person: {
                 name: string | null;
                 image: {
@@ -881,6 +880,9 @@ export type ARTICLEPAGE_QUERYResult = {
                 } | null;
                 text: string | null;
             } | null;
+            occupation?: string;
+            description?: string;
+            _key: string;
         }> | null;
     }> | null;
     video: {
@@ -972,7 +974,11 @@ export type EVENT_QUERYResult = {
         | {
               title?: string;
               image: {
-                  alt: string | null;
+                  alt: Array<{
+                      _type: "localizedString";
+                      nb?: string;
+                      en?: string;
+                  }> | null;
                   credit: string | null;
                   imageUrl: string | null;
               } | null;
@@ -1042,7 +1048,11 @@ export type EVENT_QUERYResult = {
                 name?: string;
                 language?: string;
                 image: {
-                    alt: string | null;
+                    alt: Array<{
+                        _type: "localizedString";
+                        nb?: string;
+                        en?: string;
+                    }> | null;
                     credit: string | null;
                     imageUrl: string | null;
                 } | null;
@@ -1164,6 +1174,7 @@ export type PROGRAMPAGE_QUERYResult = {
 import "@sanity/client";
 declare module "@sanity/client" {
     interface SanityQueries {
+        '*[_type=="article" && slug.current == $slug && language==$lang][0]{\n        title, \n        slug, \n        ingress,\n        metaTitle, \n        metaDescription, \n        galleryDisplayType,\n        image, \n        text[]{..., \n          _type=="video" => {\n            title, muxVideo{asset->{playbackId}\n            }\n          }\n      },  \n      "tagTexts": text[style == "h2"]\n      {"subtitle": children[0].text, _key},\n        roleGroups[]{\n          _type,\n          _key,\n          name, \n          persons[]{\n          _type,\n          ...,\n          person->{\n            name,\n            \n            image->{\n                "alt": image.alt[$lang],\n                "credit": image.credit,\n                "imageUrl": image.asset->url\n            }\n        , \n            text,\n            }\n          }\n        }, \n        video{\n          title, \n          muxVideo{\n            asset->{\n              playbackId}\n            }\n        },\n        \'event\': event->{slug},\n        "_translations": *[_type == "translation.metadata" && references(^._id)].translations[].value->{\n          slug,\n          language,\n        }\n    }': ARTICLEPAGE_QUERYResult;
         '\n    *[_type == "event" && slug.current == $slug && language == $lang][0]{\n      ...,\n      genre->,\n      \n            image->{\n                "alt": image.alt[$lang],\n                "credit": image.credit,\n                "imageUrl": image.asset->url\n            }\n        ,\n      text[]{\n        ...,\n        _type == "customImage" => {\n          \n            image {\n                "alt": alt[$lang],\n                "credit": credit,\n                "imageUrl": asset->url\n            }\n        ,\n        },\n      },\n      roleGroups[]{\n        ...,\n        persons[]{\n          ...,\n          person->{\n            ...,\n            \n            image->{\n                "alt": image.alt[$lang],\n                "credit": image.credit,\n                "imageUrl": image.asset->url\n            }\n        ,\n          }\n        }\n      }\n    }\n  ': EVENT_QUERYResult;
         '\n    *[_type == "frontPage"][0]{\n      ...,\n      \n            image->{\n                "alt": image.alt[$lang],\n                "credit": image.credit,\n                "imageUrl": image.asset->url\n            }\n        \n    }\n  ': FRONTPAGE_QUERYResult;
         '\n            image->{\n                "alt": image.alt[$lang],\n                "credit": image.credit,\n                "imageUrl": image.asset->url\n            }\n        ': ImageProjectionAsReferenceResult;

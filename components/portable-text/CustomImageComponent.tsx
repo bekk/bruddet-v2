@@ -23,7 +23,7 @@ export default function CustomImageComponent({
     return (
         <div>
             <img
-                className="md:min-w-[450px] md:max-w-[500px]"
+                className="md:min-w-[400px] md:max-w-[450px]"
                 src={url}
                 alt={image.alt || ""}
             />

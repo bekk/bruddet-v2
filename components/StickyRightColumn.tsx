@@ -1,10 +1,15 @@
-import { EVENT_QUERYResult } from "@/sanity/types/types";
+import {
+    ARTICLEPAGE_QUERYResult,
+    EVENT_QUERYResult,
+} from "@/sanity/types/types";
 import { PortableText } from "next-sanity";
 import { portableTextComponents } from "./portable-text/components";
 import { ScrollSpyContent } from "./ScrollSpyContent";
 
 type StickyRightColumnProps = {
-    text: NonNullable<EVENT_QUERYResult>["text"];
+    text:
+        | NonNullable<EVENT_QUERYResult>["text"]
+        | NonNullable<ARTICLEPAGE_QUERYResult>["text"];
 };
 
 export const StickyRightColumn = ({ text }: StickyRightColumnProps) => {

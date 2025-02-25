@@ -19,7 +19,8 @@ export const portableTextComponents = {
     },
 };
 
-export const h2Tag = {
+export const portableTextComponentsWithH2Tag = {
+    ...portableTextComponents,
     block: {
         h2: ({ children }: any) => {
             const headingId = cleanHeaderIds(children[0]);

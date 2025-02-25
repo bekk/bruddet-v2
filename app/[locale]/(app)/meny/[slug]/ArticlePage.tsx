@@ -1,6 +1,8 @@
 import { TagButtons } from "@/components/article/TagButtons";
+import { ColumnItem, Columns } from "@/components/column-layout";
 import { RolesBlock } from "@/components/event/RolesBlock";
-import { TwoColumnTextComponent } from "@/components/TwoColumnTextComponent";
+import { MainBlock } from "@/components/MainBlock";
+import { StickyRightColumn } from "@/components/StickyRightColumn";
 import { ARTICLEPAGE_QUERYResult } from "@/sanity/types/types";
 import { getTranslations } from "next-intl/server";
 import Link from "next/link";
@@ -31,8 +33,16 @@ export const ArticlePage = async ({ data, language }: ArticlePageProps) => {
                     {t("read-more")}
                 </Link>
             )}
-            <TwoColumnTextComponent text={text} shouldGenerateH2Links={true} />
             <RolesBlock roleGroups={roleGroups} />
+            <Columns className="mx-4 gap-4 lg:ml-8 xl:ml-24">
+                <ColumnItem className="lg:w-1/2">
+                    <MainBlock text={text} shouldGenerageH2Links={true} />
+                    <RolesBlock roleGroups={roleGroups} />
+                </ColumnItem>
+                <ColumnItem className="hidden lg:flex lg:w-1/2">
+                    <StickyRightColumn text={text} />
+                </ColumnItem>
+            </Columns>
         </div>
     );
 };

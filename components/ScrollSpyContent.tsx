@@ -1,6 +1,6 @@
 "use client";
-import { ReactNode } from "react";
 import { useScrollSpy } from "@/hooks/useScrollSpy";
+import { ReactNode } from "react";
 
 type ScrollSpyContentProps = {
     parentId: string;
@@ -14,9 +14,6 @@ export const ScrollSpyContent = ({
     className = "",
 }: ScrollSpyContentProps) => {
     const activeIndex = useScrollSpy(parentId, items.length);
-    console.log("items", items);
-    console.log("items length", items.length);
-    console.log("activeIndex", activeIndex);
 
     return (
         <div

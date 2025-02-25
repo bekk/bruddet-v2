@@ -2,7 +2,7 @@ import { defineQuery } from "next-sanity";
 import { imageProjectionAsReference } from "./image";
 
 export const MENUPAGE_QUERY = defineQuery(
-`*[_type == "menuPage" && language == $lang][0] {
+    `*[_type == "menuPage" && language == $lang][0] {
     metaTitle, 
     metaDescription,
     title,
@@ -25,5 +25,5 @@ export const MENUPAGE_QUERY = defineQuery(
       slug
       },
     }
-  }`
-)
+  }`,
+);

@@ -12,77 +12,80 @@ import StarsTwo from "@/assets/review/stars/StarsTwo";
 
 // ...existing code...
 function getRating(rating: number, ratingType: string) {
-  if (ratingType === "star") {
-    switch (rating) {
-      case 1:
-        return <StarsOne />;
-      case 2:
-        return <StarsTwo />;
-      case 3:
-        return <StarsThree />;
-      case 4:
-        return <StarsFour />;
-      case 5:
-        return <StarsFive />;
-      default:
-        return null;
+    if (ratingType === "star") {
+        switch (rating) {
+            case 1:
+                return <StarsOne />;
+            case 2:
+                return <StarsTwo />;
+            case 3:
+                return <StarsThree />;
+            case 4:
+                return <StarsFour />;
+            case 5:
+                return <StarsFive />;
+            default:
+                return null;
+        }
+    } else if (ratingType === "dice") {
+        switch (rating) {
+            case 1:
+                return <DiceOne />;
+            case 2:
+                return <DiceTwo />;
+            case 3:
+                return <DiceThree />;
+            case 4:
+                return <DiceFour />;
+            case 5:
+                return <DiceFive />;
+            case 6:
+                return <DiceSix />;
+            default:
+                return null;
+        }
     }
-  } else if (ratingType === "dice") {
-    switch (rating) {
-      case 1:
-        return <DiceOne />;
-      case 2:
-        return <DiceTwo />;
-      case 3:
-        return <DiceThree />;
-      case 4:
-        return <DiceFour />;
-      case 5:
-        return <DiceFive />;
-      case 6:
-        return <DiceSix />;
-      default:
-        return null;
-    }
-  }
-  return null;
+    return null;
 }
 
 type ReviewComponentProps = {
-  value: {
-    content?: string;
-    source?: string;
-    company?: string;
-    date?: string;
-    link?: string;
-    type?: string;
-    score?: number;
-  };
+    value: {
+        content?: string;
+        source?: string;
+        company?: string;
+        date?: string;
+        link?: string;
+        type?: string;
+        score?: number;
+    };
 };
 
 export default function ReviewComponent({ value }: ReviewComponentProps) {
-  return (
-    <blockquote className="flex flex-col text-center justify-center items-center gap-4">
-      <h3>{value.content}</h3>
-      <p className="not-italic text-basic">
-        {value.source?.toLocaleUpperCase()}
-        {value.link ? (
-          <>
-            {value.source && ","}{" "}
-            <a href={value.link} className="underline cursor-pointer">
-              {value.company}
-            </a>
-          </>
-        ) : (
-          <>
-            {value.source && value.company && ","} {value.company}
-          </>
-        )}
-      </p>
+    return (
+        <blockquote className="flex flex-col text-center justify-center items-center gap-4">
+            <h3>{value.content}</h3>
+            <p className="not-italic text-basic">
+                {value.source?.toLocaleUpperCase()}
+                {value.link ? (
+                    <>
+                        {value.source && ","}{" "}
+                        <a
+                            href={value.link}
+                            className="underline cursor-pointer"
+                        >
+                            {value.company}
+                        </a>
+                    </>
+                ) : (
+                    <>
+                        {value.source && value.company && ","} {value.company}
+                    </>
+                )}
+            </p>
 
-      {value?.score && value?.type && value.type != "standard" ? (
-        <div className="">{getRating(value.score, value.type)}</div>
-      ) : null}
-    </blockquote>
-  );
+            {value?.score && value?.type && value.type != "standard" ? (
+                <div className="">{getRating(value.score, value.type)}</div>
+            ) : null}
+        </blockquote>
+    );
 }

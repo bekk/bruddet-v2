@@ -1,25 +1,25 @@
-import { defineField, defineType } from 'sanity'
-import { DocumentVideoIcon } from '@sanity/icons'
+import { defineField, defineType } from "sanity";
+import { DocumentVideoIcon } from "@sanity/icons";
 
 export const video = defineType({
-    name: 'video',
-    title: 'Video',
-    type: 'document',
-    description: 'Legg til en video',
+    name: "video",
+    title: "Video",
+    type: "document",
+    description: "Legg til en video",
     icon: DocumentVideoIcon,
     fields: [
         defineField({
-            name: 'title',
-            type: 'string',
-            title: 'Tittel',
-            description: 'Tittel på videoen',
+            name: "title",
+            type: "string",
+            title: "Tittel",
+            description: "Tittel på videoen",
         }),
         defineField({
-            name: 'muxVideo',
-            type: 'mux.video',
-            title: 'Mux Video',
-            description: 'Velg en video',
-            validation: (rule) => [rule.required().error('Video er påkrevd')],
+            name: "muxVideo",
+            type: "mux.video",
+            title: "Mux Video",
+            description: "Velg en video",
+            validation: (rule) => [rule.required().error("Video er påkrevd")],
         }),
     ],
-})
+});

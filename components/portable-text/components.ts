@@ -6,13 +6,13 @@ import FaqComponent from "./FaqComponent";
 import ReviewComponent from "./ReviewComponent";
 
 export const portableTextComponents = {
-  types: {
-    customImage: CustomImageComponent,
-    video: VideoComponent,
-    // googleMaps: GoogleMapsComponent,
-    review: ReviewComponent,
-    faq: FaqComponent,
-    expandableBlock: ExpandableBlockComponent,
-    quoteBomb: QuoteBombComponent,
-  },
+    types: {
+        customImage: CustomImageComponent,
+        video: VideoComponent,
+        // googleMaps: GoogleMapsComponent,
+        review: ReviewComponent,
+        faq: FaqComponent,
+        expandableBlock: ExpandableBlockComponent,
+        quoteBomb: QuoteBombComponent,
+    },
 };

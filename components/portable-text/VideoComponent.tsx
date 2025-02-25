@@ -1,16 +1,16 @@
 interface VideoProps {
-  muxVideo: {
-    asset: {
-      playbackId: string;
+    muxVideo: {
+        asset: {
+            playbackId: string;
+        };
     };
-  };
-  title: string;
+    title: string;
 }
 
 export default function VideoComponent({ value }: { value: VideoProps }) {
-  return (
-    <div>
-      <p>VideoComponent</p>
-    </div>
-  );
+    return (
+        <div>
+            <p>VideoComponent</p>
+        </div>
+    );
 }

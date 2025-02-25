@@ -4,8 +4,6 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import ImageEventPage from "@/components/event/ImageEventPage";
 import { urlFor } from "@/sanity/lib/image";
-import { PortableText } from "next-sanity";
-import { portableTextComponents } from "@/components/portable-text/components";
 import { getTranslations } from "next-intl/server";
 import { RolesBlock } from "@/components/event/RolesBlock";
 import { TicketBlock } from "@/components/event/TicketBlock";
@@ -58,7 +56,7 @@ export const EventPage = async ({ data }: EventPageProps) => {
                     </div>
                 </div>
             </div>
-            <Columns className="mx-4 lg:ml-8 xl:ml-24">
+            <Columns className="mx-4 gap-4 lg:ml-8 xl:ml-24">
                 <ColumnItem className="lg:w-1/2">
                     <MainBlock text={text} />
                     <RolesBlock roleGroups={data.roleGroups} />

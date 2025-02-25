@@ -58,8 +58,8 @@ export const EventPage = async ({ data }: EventPageProps) => {
                     </div>
                 </div>
             </div>
-            <Columns className="mx-0 lg:mx-8 xl:mx-24">
-                <ColumnItem className="xl:w-1/2">
+            <Columns className="mx-4 lg:ml-8 xl:ml-24">
+                <ColumnItem className="lg:w-1/2">
                     <MainBlock text={text} />
                     <RolesBlock roleGroups={data.roleGroups} />
                     <TicketBlock
@@ -70,7 +70,7 @@ export const EventPage = async ({ data }: EventPageProps) => {
                         id="ticket-block"
                     />
                 </ColumnItem>
-                <ColumnItem className="hidden xl:flex xl:w-1/2">
+                <ColumnItem className="hidden lg:flex lg:w-1/2">
                     <StickyRightColumn text={text} />
                 </ColumnItem>
             </Columns>

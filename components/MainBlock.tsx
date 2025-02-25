@@ -23,7 +23,7 @@ export const MainBlock = ({ text }: LeftBlockProps) => {
 
     return (
         <>
-            <div className="hidden xl:block">
+            <div className="hidden lg:block">
                 {leftBlocks?.map((block) => (
                     <PortableText
                         key={block._key}
@@ -32,7 +32,7 @@ export const MainBlock = ({ text }: LeftBlockProps) => {
                     />
                 ))}
             </div>
-            <div className="xl:hidden">
+            <div className="lg:hidden">
                 {text?.map((block) => (
                     <PortableText
                         key={block._key}

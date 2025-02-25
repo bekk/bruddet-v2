@@ -11,6 +11,9 @@
   "dependencies": {
     "@formatjs/intl-localematcher": "^0.5.10",
     "@radix-ui/react-accordion": "^1.2.3",
+    "@mux/mux-player": "^2.7.0",
+    "@mux/mux-player-react": "^2.7.0",
+    "@radix-ui/react-dialog": "^1.1.6",
     "@radix-ui/react-slot": "^1.1.1",
     "@sanity/document-internationalization": "^3.3.1",
     "@sanity/icons": "^3.6.0",

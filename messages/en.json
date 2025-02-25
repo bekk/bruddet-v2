@@ -1,23 +1,23 @@
 {
-    "footer": {
-        "menu": "Menu",
-        "menu-a11y": "Go to menu page",
-        "program": "Program",
-        "program-a11y": "Go to program page"
-    },
-    "menu": {
-        "link-a11y": "Go to"
-    },
-    "program": {
-        "link-a11y": "Go to"
-    },
-    "event": {
-        "buy-ticket": "Buy ticket",
-        "tickets": "Tickets",
-        "fewTicketsLeft": "Only a few tickets left",
-        "soldOut": "Sold out",
-        "saleStart": "TICKETS RELEASED",
-        "saleStartUnknown": "Tickets coming soon",
-        "buy-bus-ticket": "Bus ticket"
-    }
+  "footer": {
+    "menu": "Menu",
+    "menu-a11y": "Go to menu page",
+    "program": "Program",
+    "program-a11y": "Go to program page"
+  },
+  "menu": {
+    "link-a11y": "Go to"
+  },
+  "program": {
+    "link-a11y": "Go to"
+  },
+  "event": {
+    "buy-ticket": "Buy ticket",
+    "tickets": "Tickets",
+    "fewTicketsLeft": "Only a few tickets left",
+    "soldOut": "Sold out",
+    "saleStart": "TICKETS RELEASED",
+    "saleStartUnknown": "Tickets coming soon",
+    "buy-bus-ticket": "Bus ticket"
+  }
 }

@@ -13,16 +13,7 @@ export const EVENT_QUERY = defineQuery(
           ${imageProjection},
         },
       },
-      roleGroups[]{
-        ...,
-        persons[]{
-          ...,
-          person->{
-            ...,
-            ${imageProjectionAsReference},
-          }
-        }
-      }
+
     }
   `
 );

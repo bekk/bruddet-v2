@@ -18,7 +18,7 @@ export const ArticlePage = async ({ data, language }: ArticlePageProps) => {
     const { title, ingress, text, tagTexts, event, roleGroups } = data;
 
     return (
-        <div className="flex flex-col w-full items-center gap-10 mx-5">
+        <div className="flex flex-col items-center gap-10 mx-5">
             <div className="flex flex-col gap-10 items-center md:text-left lg:max-w-4xl">
                 <h1 className="text-3xl lg:text-6xl text-4xl font-normal text-center mt-40">
                     {title}

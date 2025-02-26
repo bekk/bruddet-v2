@@ -1,3 +1,4 @@
+import { Newsletter } from "@/components/newsletter/Newsletter";
 import { urlFor } from "@/sanity/lib/image";
 import { sanityFetch } from "@/sanity/lib/live";
 import { FRONTPAGE_QUERY } from "@/sanity/lib/queries/frontPage";
@@ -15,6 +16,7 @@ export default async function Page({
         params: { lang },
     });
 
+<<<<<<< HEAD
     return (
         <div
             className="flex justify-center items-center min-h-front-page-height-mobile md:min-h-front-page-height bg-cover bg-center"
@@ -26,4 +28,36 @@ export default async function Page({
             <h1 className="text-primary-foreground">{data?.title}</h1>
         </div>
     );
+||||||| parent of f5e59ae (Make newslettercomponent)
+  const minHeight = "calc(100vh-theme('spacing.12'))";
+
+  return (
+    <div
+      className="flex justify-center items-center min-h-front-page-height bg-cover bg-center"
+      style={{
+        minHeight: minHeight,
+        backgroundImage: `url(${urlFor(data?.image?.imageUrl as SanityImageSource).url()})`,
+      }}
+      aria-label={data?.image?.alt || ""}
+    >
+      <h1 className="text-primary-foreground">{data?.title}</h1>
+    </div>
+  );
+=======
+  const minHeight = "calc(100vh-theme('spacing.12'))";
+
+  return (
+    <div
+      className="flex justify-center items-center min-h-front-page-height bg-cover bg-center"
+      style={{
+        minHeight: minHeight,
+        backgroundImage: `url(${urlFor(data?.image?.imageUrl as SanityImageSource).url()})`,
+      }}
+      aria-label={data?.image?.alt || ""}
+    >
+      <h1 className="text-primary-foreground">{data?.title}</h1>
+      <Newsletter />
+    </div>
+  );
+>>>>>>> f5e59ae (Make newslettercomponent)
 }

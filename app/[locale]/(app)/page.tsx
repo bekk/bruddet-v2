@@ -1,3 +1,4 @@
+import { Newsletter } from "@/components/newsletter/Newsletter";
 import { urlFor } from "@/sanity/lib/image";
 import { sanityFetch } from "@/sanity/lib/live";
 import { FRONTPAGE_QUERY } from "@/sanity/lib/queries/frontPage";
@@ -27,6 +28,7 @@ export default async function Page({
       aria-label={data?.image?.alt || ""}
     >
       <h1 className="text-primary-foreground">{data?.title}</h1>
+      <Newsletter />
     </div>
   );
 }

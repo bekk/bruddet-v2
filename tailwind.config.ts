@@ -61,9 +61,12 @@ export default {
       },
       spacing: {
         "footer-height": defaultTheme.spacing[16],
+        "footer-height-mobile": defaultTheme.spacing[20],
       },
       minHeight: {
         "front-page-height": "calc(100vh - theme(\'spacing.footer-height\'))",
+        "front-page-height-mobile":
+          "calc(100vh - theme(\'spacing.footer-height-mobile\'))",
       },
       animation: {
         marquee: "marquee 25s linear infinite",

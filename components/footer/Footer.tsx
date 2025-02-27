@@ -4,35 +4,61 @@ import Link from "next/link";
 import React, { useState } from "react";
 import { useTranslations } from "next-intl";
 
-export default function Footer() {
+type FooterProps = {
+  isEventPage?: boolean;
+};
+
+export default function Footer({ isEventPage }: FooterProps) {
   const [isHovering, setIsHovering] = useState(false);
   const locale = useLocale();
   const t = useTranslations("footer");
 
   return (
-    <footer className="h-full flex justify-between border-t border-foreground">
-      <FooterLink href={`/${locale}/meny`} ariaLabel={t("menu-a11y")}>
-        {t("menu")}
-      </FooterLink>
-
-      <Link
-        href="/"
-        className="hidden md:w-[70%] md:flex justify-center items-center relative overflow-x-hidden w-full h-full border-x border-foreground hover:bg-primary hover:text-primary-foreground hover:underline"
-        onMouseOver={() => setIsHovering(true)}
-        onMouseLeave={() => setIsHovering(false)}
-        onFocus={() => setIsHovering(true)}
-        onBlur={() => setIsHovering(false)}
-      >
-        {isHovering ? (
-          <span className="font-bold ">Meld deg på!</span>
+    <footer className="flex flex-col h-full">
+      <div className="w-full bg-background-event md:hidden flex justify-center items-center">
+        {isEventPage ? (
+          <Link href="#top">
+            <span>{t("buy-ticket")}</span>
+          </Link>
         ) : (
-          <ScrollingCTA />
+          <Link href="/">
+            <span>Meld deg på vårt nyhetsbrev!</span>
+          </Link>
         )}
-      </Link>
+      </div>
+      <div className="h-full flex justify-between border-t border-foreground">
+        <FooterLink href={`/${locale}/meny`} ariaLabel={t("menu-a11y")}>
+          {t("menu")}
+        </FooterLink>
 
-      <FooterLink href={`/${locale}/program`} ariaLabel={t("program-a11y")}>
-        {t("program")}
-      </FooterLink>
+        {isEventPage ? (
+          <Link
+            href="#top"
+            className="hidden md:w-[70%] md:flex justify-center items-center border-x border-foreground hover:bg-primary hover:text-primary-foreground hover:underline"
+          >
+            <span className="font-bold uppercase">{t("buy-ticket")}</span>
+          </Link>
+        ) : (
+          <Link
+            href="/"
+            className="hidden md:w-[70%] md:flex justify-center items-center relative overflow-x-hidden w-full h-full border-x border-foreground hover:bg-primary hover:text-primary-foreground hover:underline"
+            onMouseOver={() => setIsHovering(true)}
+            onMouseLeave={() => setIsHovering(false)}
+            onFocus={() => setIsHovering(true)}
+            onBlur={() => setIsHovering(false)}
+          >
+            {isHovering ? (
+              <span className="font-bold ">Meld deg på!</span>
+            ) : (
+              <ScrollingCTA />
+            )}
+          </Link>
+        )}
+
+        <FooterLink href={`/${locale}/program`} ariaLabel={t("program-a11y")}>
+          {t("program")}
+        </FooterLink>
+      </div>
     </footer>
   );
 }

@@ -23,7 +23,7 @@ export default function Footer({ isEventPage }: FooterProps) {
 
                 {isEventPage ? (
                     <Link
-                        href="#top"
+                        href="#ticket-block"
                         className="hidden md:w-[70%] md:flex justify-center items-center border-x border-foreground hover:bg-primary hover:text-primary-foreground hover:underline"
                     >
                         <span className="font-bold uppercase">

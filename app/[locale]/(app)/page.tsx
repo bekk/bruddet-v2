@@ -17,7 +17,7 @@ export default async function Page({
 
     return (
         <div
-            className="flex justify-center items-center min-h-front-page-height bg-cover bg-center"
+            className="flex justify-center items-center min-h-front-page-height-mobile md:min-h-front-page-height bg-cover bg-center"
             style={{
                 backgroundImage: `url(${urlFor(data?.image?.imageUrl as SanityImageSource).url()})`,
             }}

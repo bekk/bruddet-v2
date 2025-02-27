@@ -1,4 +1,5 @@
 import Footer from "@/components/footer/Footer";
+import MobileFooterExtension from "@/components/footer/MobileFooterExtension";
 
 export default async function Layout({
   children,
@@ -6,10 +7,11 @@ export default async function Layout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="bg-background-event text-foreground min-h-screen h-full mb-footer-height">
+    <div className="bg-background-event text-foreground min-h-front-page-height-mobile-event h-full mb-footer-height">
       {children}
+      <MobileFooterExtension isEventPage={true} />
       <div className="fixed inset-x-0 bottom-0 h-footer-height bg-background-event text-foreground">
-        <Footer />
+        <Footer isEventPage={true} />
       </div>
     </div>
   );

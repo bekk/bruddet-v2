@@ -1,0 +1,38 @@
+import { EVENT_QUERYResult } from "@/sanity/types/types";
+import { useTranslations } from "next-intl";
+import { Ticket } from "./Ticket";
+
+type TicketBlockProps = {
+    saleStartOption: NonNullable<EVENT_QUERYResult>["saleStartOption"] | null;
+    saleStartDateTime:
+        | NonNullable<EVENT_QUERYResult>["saleStartDateTime"]
+        | null;
+    ticketInformation:
+        | NonNullable<EVENT_QUERYResult>["ticketInformation"]
+        | null;
+    dates: NonNullable<EVENT_QUERYResult>["dates"] | null;
+    id: string;
+};
+
+export const TicketBlock = ({
+    saleStartOption,
+    saleStartDateTime,
+    ticketInformation,
+    dates,
+    id,
+}: TicketBlockProps) => {
+    const t = useTranslations("event");
+
+    return (
+        <div id={id}>
+            <h2>{t("tickets")}</h2>
+            {ticketInformation && <p>{ticketInformation}</p>}
+            {dates?.map((date, i) => (
+                <Ticket
+                    {...{ date, saleStartOption, saleStartDateTime }}
+                    key={i}
+                />
+            ))}
+        </div>
+    );
+};

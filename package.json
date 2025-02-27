@@ -12,6 +12,8 @@
     "@formatjs/intl-localematcher": "^0.5.10",
     "@radix-ui/react-accordion": "^1.2.3",
     "@radix-ui/react-slot": "^1.1.1",
+    "@mux/mux-player": "^2.7.0",
+    "@mux/mux-player-react": "^2.7.0",
     "@sanity/document-internationalization": "^3.3.1",
     "@sanity/icons": "^3.6.0",
     "@sanity/image-url": "^1.1.0",

@@ -1,23 +1,36 @@
 {
-  "footer": {
-    "menu": "Meny",
-    "menu-a11y": "Gå til menyside",
-    "program": "Program",
-    "program-a11y": "Gå til programside"
-  },
-  "menu": {
-    "link-a11y": "Gå til"
-  },
-  "program": {
-    "link-a11y": "Gå til"
-  },
-  "event": {
-    "buy-ticket": "Kjøp billett",
-    "tickets": "Billetter",
-    "fewTicketsLeft": "Bare noen få billetter igjen",
-    "soldOut": "Utsolgt",
-    "saleStart": "Billettsalget starter",
-    "saleStartUnknown": "Billetter kommer snart for salg",
-    "buy-bus-ticket": "Bussbillett"
-  }
+    "footer": {
+        "menu": "Meny",
+        "menu-a11y": "Gå til menyside",
+        "program": "Program",
+        "program-a11y": "Gå til programside"
+    },
+    "menu": {
+        "link-a11y": "Gå til"
+    },
+    "program": {
+        "link-a11y": "Gå til"
+    },
+    "event": {
+        "buy-ticket": "Kjøp billett",
+        "tickets": "Billetter",
+        "fewTicketsLeft": "Bare noen få billetter igjen",
+        "soldOut": "Utsolgt",
+        "saleStart": "Billettsalget starter",
+        "saleStartUnknown": "Billetter kommer snart for salg",
+        "buy-bus-ticket": "Bussbillett"
+    },
+    "date-label": {
+        "plays": "Spilles",
+        "buy-ticket": "Kjøp billett",
+        "tickets": "Billetter",
+        "fewTicketsLeft": "Bare noen få billetter igjen",
+        "soldOut": "Utsolgt",
+        "saleStart": "Billettsalget starter",
+        "saleStartUnknown": "Billetter kommer snart for salg",
+        "buy-bus-ticket": "Bussbillett"
+    },
+    "article": {
+        "read-more": "Les mer om forestillingen"
+    }
 }

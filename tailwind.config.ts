@@ -1,6 +1,10 @@
 import type { Config } from "tailwindcss";
 const defaultTheme = require("tailwindcss/defaultTheme");
 
+const footerHeight = 20;
+const footerHeightExtensionEvent = footerHeight;
+const footerHeightExtension = 12;
+
 export default {
   darkMode: ["class"],
   content: [
@@ -60,13 +64,21 @@ export default {
         sm: "calc(var(--radius) - 4px)",
       },
       spacing: {
-        "footer-height": defaultTheme.spacing[16],
-        "footer-height-mobile": defaultTheme.spacing[20],
+        "footer-height": defaultTheme.spacing[footerHeight],
+        "footer-height-extension": defaultTheme.spacing[footerHeightExtension],
+        "footer-height-extension-event":
+          defaultTheme.spacing[footerHeightExtensionEvent],
+        "footer-height-mobile":
+          defaultTheme.spacing[footerHeight + footerHeightExtension],
+        "footer-height-mobile-event":
+          defaultTheme.spacing[footerHeight + footerHeightExtensionEvent],
       },
       minHeight: {
         "front-page-height": "calc(100vh - theme(\'spacing.footer-height\'))",
         "front-page-height-mobile":
           "calc(100vh - theme(\'spacing.footer-height-mobile\'))",
+        "front-page-height-mobile-event":
+          "calc(100vh - theme(\'spacing.footer-height-mobile-event\'))",
       },
       animation: {
         marquee: "marquee 25s linear infinite",

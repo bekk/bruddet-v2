@@ -5,25 +5,25 @@ import { FRONTPAGE_QUERYResult } from "@/sanity/types/types";
 import { SanityImageSource } from "@sanity/image-url/lib/types/types";
 
 export default async function Page({
-    params,
+  params,
 }: {
-    params: Promise<{ locale: string }>;
+  params: Promise<{ locale: string }>;
 }) {
-    const lang = (await params).locale;
-    const { data }: { data: FRONTPAGE_QUERYResult } = await sanityFetch({
-        query: FRONTPAGE_QUERY,
-        params: { lang },
-    });
+  const lang = (await params).locale;
+  const { data }: { data: FRONTPAGE_QUERYResult } = await sanityFetch({
+    query: FRONTPAGE_QUERY,
+    params: { lang },
+  });
 
-    return (
-        <div
-            className="flex justify-center items-center min-h-front-page-height bg-cover bg-center"
-            style={{
-                backgroundImage: `url(${urlFor(data?.image?.imageUrl as SanityImageSource).url()})`,
-            }}
-            aria-label={data?.image?.alt || ""}
-        >
-            <h1 className="text-primary-foreground">{data?.title}</h1>
-        </div>
-    );
+  return (
+    <div
+      className="flex justify-center items-center min-h-front-page-height-mobile bg-cover bg-center"
+      style={{
+        backgroundImage: `url(${urlFor(data?.image?.imageUrl as SanityImageSource).url()})`,
+      }}
+      aria-label={data?.image?.alt || ""}
+    >
+      <h1 className="text-primary-foreground">{data?.title}</h1>
+    </div>
+  );
 }

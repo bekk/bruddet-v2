@@ -1,7 +1,7 @@
 "use client";
 import { useLocale } from "next-intl";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
 
 type FooterProps = {
@@ -15,17 +15,6 @@ export default function Footer({ isEventPage }: FooterProps) {
 
   return (
     <footer className="flex flex-col h-full">
-      <div className="w-full bg-background-event md:hidden flex justify-center items-center">
-        {isEventPage ? (
-          <Link href="#top">
-            <span>{t("buy-ticket")}</span>
-          </Link>
-        ) : (
-          <Link href="/">
-            <span>Meld deg på vårt nyhetsbrev!</span>
-          </Link>
-        )}
-      </div>
       <div className="h-full flex justify-between border-t border-foreground">
         <FooterLink href={`/${locale}/meny`} ariaLabel={t("menu-a11y")}>
           {t("menu")}
@@ -83,7 +72,7 @@ function FooterLink({
   );
 }
 
-function ScrollingCTA() {
+export function ScrollingCTA() {
   return (
     <>
       <div className="animate-marquee whitespace-nowrap">

@@ -1,4 +1,4 @@
-import { Newsletter } from "@/components/newsletter/Newsletter";
+import HexagonBuyButton from "@/components/HexagonBuyButton";
 import { urlFor } from "@/sanity/lib/image";
 import { sanityFetch } from "@/sanity/lib/live";
 import { FRONTPAGE_QUERY } from "@/sanity/lib/queries/frontPage";
@@ -27,8 +27,11 @@ export default async function Page({
             }}
             aria-label={data?.image?.alt || ""}
         >
+            <div className="absolute lg:right-24 lg:top-24 right-6 top-16">
+                <HexagonBuyButton text="hei" />
+            </div>
+
             <h1 className="text-primary-foreground">{data?.title}</h1>
-            <Newsletter />
         </div>
     );
 }

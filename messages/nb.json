@@ -32,5 +32,8 @@
     },
     "article": {
         "read-more": "Les mer om forestillingen"
+    },
+    "header": {
+      "go-to-main": "Gå til hovedsiden"
     }
-}
+  }

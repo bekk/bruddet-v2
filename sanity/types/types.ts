@@ -537,7 +537,27 @@ export type FrontPage = {
         _weak?: boolean;
         [internalGroqTypeReferenceTo]?: "customImage";
     };
+    hexagon?: HexagonButton;
     language?: string;
+};
+
+export type HexagonButton = {
+    _type: "hexagonButton";
+    shouldShowNewsletter?: boolean;
+    text?: string;
+    linkToArticleOrEvent?:
+        | {
+              _ref: string;
+              _type: "reference";
+              _weak?: boolean;
+              [internalGroqTypeReferenceTo]?: "article";
+          }
+        | {
+              _ref: string;
+              _type: "reference";
+              _weak?: boolean;
+              [internalGroqTypeReferenceTo]?: "event";
+          };
 };
 
 export type Event = {
@@ -741,6 +761,7 @@ export type AllSanitySchemaTypes =
     | MenuPage
     | Article
     | FrontPage
+    | HexagonButton
     | Event
     | Person
     | CustomImage
@@ -1086,6 +1107,7 @@ export type FRONTPAGE_QUERYResult = {
         credit: string | null;
         imageUrl: string | null;
     } | null;
+    hexagon?: HexagonButton;
     language?: string;
 } | null;
 

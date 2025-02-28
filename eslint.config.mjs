@@ -18,27 +18,27 @@ const eslintConfig = [
 
   {
     ignores: [
-      "**/.next/**",   // Ignore everything inside .next folder
-      "**/node_modules/**",  // Ignore node_modules
-      "**/out/**", // Ignore out folder
+      '**/.next/**', // Ignore everything inside .next folder
+      '**/node_modules/**', // Ignore node_modules
+      '**/out/**', // Ignore out folder
     ],
   },
 
   // Main linting rules for JS/TS files
   {
-    files: ["**/*.{js,jsx,ts,tsx}"],  // Only lint JavaScript and TypeScript files
+    files: ['**/*.{js,jsx,ts,tsx}'], // Only lint JavaScript and TypeScript files
     plugins: {
       // Correctly import the prettier plugin for ES modules
       prettier: eslintPluginPrettier,
     },
     rules: {
-      "prettier/prettier": "error",  // Enforce Prettier rules
+      'prettier/prettier': 'error', // Enforce Prettier rules
     },
   },
 
   // Add TypeScript specific linting rules
   {
-    files: ["**/*.ts", "**/*.tsx"],  // Only apply these rules to TypeScript files
+    files: ['**/*.ts', '**/*.tsx'], // Only apply these rules to TypeScript files
     rules: {
       // Add any TypeScript specific rules here
     },

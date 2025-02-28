@@ -33,6 +33,7 @@ export default async function Footer({ isEventPage, lang }: FooterProps) {
                     isEventPage={isEventPage}
                     scrollingText={scrollingText ?? ""}
                     link={link ?? ""}
+                    showNewsletter={showNewsletter ?? true}
                 />
             </div>
             <div className="h-footer-height flex justify-between border-t border-foreground">

@@ -1,5 +1,5 @@
-import { stegaClean } from "next-sanity";
+import { stegaClean } from 'next-sanity';
 
 export const cleanHeaderIds = (header: string) => {
-    return stegaClean(header).replaceAll(" ", "-").toLowerCase();
+  return stegaClean(header).replaceAll(' ', '-').toLowerCase();
 };

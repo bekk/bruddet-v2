@@ -1,7 +1,7 @@
-import { EventPage } from "@/app/[locale]/(event)/program/[slug]/EventPage";
-import { sanityFetch } from "@/sanity/lib/live";
-import { EVENT_QUERY } from "@/sanity/lib/queries/event";
-import { EVENT_QUERYResult } from "@/sanity/types/types";
+import { EventPage } from '@/app/[locale]/(event)/program/[slug]/EventPage';
+import { sanityFetch } from '@/sanity/lib/live';
+import { EVENT_QUERY } from '@/sanity/lib/queries/event';
+import { EVENT_QUERYResult } from '@/sanity/types/types';
 
 export default async function Page({
   params,

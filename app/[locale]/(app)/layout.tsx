@@ -1,11 +1,7 @@
-import Footer from "@/components/footer/Footer";
-import MobileFooterExtension from "@/components/footer/MobileFooterExtension";
+import Footer from '@/components/footer/Footer';
+import MobileFooterExtension from '@/components/footer/MobileFooterExtension';
 
-export default async function Layout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default async function Layout({ children }: { children: React.ReactNode }) {
   return (
     <div className="bg-background text-foreground min-h-front-page-height-mobile md:min-h-front-page-height h-full mb-footer-height-mobile md:mb-footer-height">
       {children}

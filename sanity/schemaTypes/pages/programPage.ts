@@ -1,53 +1,53 @@
-import { defineType, defineField } from "sanity";
+import { defineType, defineField } from 'sanity';
 
 export const programPage = defineType({
-  name: "programPage",
-  title: "Programside",
-  type: "document",
+  name: 'programPage',
+  title: 'Programside',
+  type: 'document',
   fields: [
     defineField({
-      name: "language",
-      type: "string",
+      name: 'language',
+      type: 'string',
     }),
     defineField({
-      name: "title",
-      title: "Tittel",
-      type: "string",
+      name: 'title',
+      title: 'Tittel',
+      type: 'string',
       validation: (rule) => [
-        rule.max(100).warning("Anbefaler kortere tittel."),
-        rule.required().min(1).error("Tittel er påkrevd"),
+        rule.max(100).warning('Anbefaler kortere tittel.'),
+        rule.required().min(1).error('Tittel er påkrevd'),
       ],
     }),
     defineField({
-      name: "metaTitle",
-      title: "SEO tittel",
-      type: "metaTitle",
-      initialValue: "Meny",
-      validation: (rule) => [rule.required().error("Må ha SEO tittel")],
+      name: 'metaTitle',
+      title: 'SEO tittel',
+      type: 'metaTitle',
+      initialValue: 'Meny',
+      validation: (rule) => [rule.required().error('Må ha SEO tittel')],
     }),
     defineField({
-      name: "metaDescription",
-      title: "SEO beskrivelse",
-      type: "metaDescription",
-      initialValue: "Oversikt over menysider",
-      validation: (rule) => [rule.required().error("Må ha SEO beskrivelse")],
+      name: 'metaDescription',
+      title: 'SEO beskrivelse',
+      type: 'metaDescription',
+      initialValue: 'Oversikt over menysider',
+      validation: (rule) => [rule.required().error('Må ha SEO beskrivelse')],
     }),
     defineField({
-      name: "links",
-      title: "Forestillinger",
-      description: "Velg forestillinger som skal vises på programsiden",
-      type: "array",
+      name: 'links',
+      title: 'Forestillinger',
+      description: 'Velg forestillinger som skal vises på programsiden',
+      type: 'array',
       of: [
         {
-          type: "reference",
-          to: [{ type: "event" }],
+          type: 'reference',
+          to: [{ type: 'event' }],
           options: {
             filter: ({ document }) => {
               if (!document?.language) {
                 return {};
               }
               return {
-                filter: "language == $lang",
+                filter: 'language == $lang',
                 params: { lang: document.language },
               };
             },
@@ -61,10 +61,10 @@ export const programPage = defineType({
       },
     }),
     defineField({
-      name: "socialMediaText",
-      title: "Sosiale medier",
-      description: "Legg til tekst på sosiale medier blokk",
-      type: "string",
+      name: 'socialMediaText',
+      title: 'Sosiale medier',
+      description: 'Legg til tekst på sosiale medier blokk',
+      type: 'string',
     }),
   ],
 });

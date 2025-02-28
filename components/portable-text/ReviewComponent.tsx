@@ -1,18 +1,18 @@
-import DiceFive from "@/assets/review/dice/DiceFive";
-import DiceFour from "@/assets/review/dice/DiceFour";
-import DiceOne from "@/assets/review/dice/DiceOne";
-import DiceSix from "@/assets/review/dice/DiceSix";
-import DiceThree from "@/assets/review/dice/DiceThree";
-import DiceTwo from "@/assets/review/dice/DiceTwo";
-import StarsFive from "@/assets/review/stars/StarsFive";
-import StarsFour from "@/assets/review/stars/StarsFour";
-import StarsOne from "@/assets/review/stars/StarsOne";
-import StarsThree from "@/assets/review/stars/StarsThree";
-import StarsTwo from "@/assets/review/stars/StarsTwo";
+import DiceFive from '@/assets/review/dice/DiceFive';
+import DiceFour from '@/assets/review/dice/DiceFour';
+import DiceOne from '@/assets/review/dice/DiceOne';
+import DiceSix from '@/assets/review/dice/DiceSix';
+import DiceThree from '@/assets/review/dice/DiceThree';
+import DiceTwo from '@/assets/review/dice/DiceTwo';
+import StarsFive from '@/assets/review/stars/StarsFive';
+import StarsFour from '@/assets/review/stars/StarsFour';
+import StarsOne from '@/assets/review/stars/StarsOne';
+import StarsThree from '@/assets/review/stars/StarsThree';
+import StarsTwo from '@/assets/review/stars/StarsTwo';
 
 // ...existing code...
 function getRating(rating: number, ratingType: string) {
-  if (ratingType === "star") {
+  if (ratingType === 'star') {
     switch (rating) {
       case 1:
         return <StarsOne />;
@@ -27,7 +27,7 @@ function getRating(rating: number, ratingType: string) {
       default:
         return null;
     }
-  } else if (ratingType === "dice") {
+  } else if (ratingType === 'dice') {
     switch (rating) {
       case 1:
         return <DiceOne />;
@@ -68,19 +68,19 @@ export default function ReviewComponent({ value }: ReviewComponentProps) {
         {value.source?.toLocaleUpperCase()}
         {value.link ? (
           <>
-            {value.source && ","}{" "}
+            {value.source && ','}{' '}
             <a href={value.link} className="underline cursor-pointer">
               {value.company}
             </a>
           </>
         ) : (
           <>
-            {value.source && value.company && ","} {value.company}
+            {value.source && value.company && ','} {value.company}
           </>
         )}
       </p>
 
-      {value?.score && value?.type && value.type != "standard" ? (
+      {value?.score && value?.type && value.type != 'standard' ? (
         <div className="">{getRating(value.score, value.type)}</div>
       ) : null}
     </blockquote>

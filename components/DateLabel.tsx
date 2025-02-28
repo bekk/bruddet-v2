@@ -3,8 +3,8 @@ import {
   formatDateOnly,
   formatDayAndDate,
   getMonth,
-} from "@/lib/dateAndTime";
-import { useLocale, useTranslations } from "next-intl";
+} from '@/lib/dateAndTime';
+import { useLocale, useTranslations } from 'next-intl';
 
 type DatesLabelProps = {
   dates: DateObject[];
@@ -39,7 +39,7 @@ export const getDateLabel = ({
     return capitalizeFirstLetter(formattedDate);
   }
 
-  const lastDate = dates[dates.length - 1].date?.split("T")[0];
+  const lastDate = dates[dates.length - 1].date?.split('T')[0];
 
   const hasMoreThanOneDate = lastDate !== firstDate;
 
@@ -50,16 +50,16 @@ export const getDateLabel = ({
   const firstMonth = getMonth(firstDate, language);
   const lastMonth = getMonth(firstDate, language, lastDate);
 
-  return `${t ? t("date-label") : ""} ${datesOnlyFirst}. ${
+  return `${t ? t('date-label') : ''} ${datesOnlyFirst}. ${
     hasMoreThanOneDate && firstMonth?.toLowerCase()
   } - ${datesOnlyLast}. ${lastMonth?.toLowerCase()}`;
 };
 
 export const DatesLabel = ({ dates }: DatesLabelProps) => {
   const language = useLocale();
-  const firstDate = dates[0].date ?? "";
-  const lastdate = dates[dates.length - 1].date ?? "";
-  const formattedDate = formatDayAndDate(firstDate, "nb");
+  const firstDate = dates[0].date ?? '';
+  const lastdate = dates[dates.length - 1].date ?? '';
+  const formattedDate = formatDayAndDate(firstDate, 'nb');
   const datesOnlyFirst = formatDateOnly(firstDate);
   const datesOnlyLast = formatDateOnly(lastdate);
   const dateLabel = getDateLabel({

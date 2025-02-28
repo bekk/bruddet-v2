@@ -1,66 +1,66 @@
-import { isUniqueOtherThanLanguage } from "@/sanity/documentInternationalizationConfig";
-import { defineField, defineType } from "sanity";
+import { isUniqueOtherThanLanguage } from '@/sanity/documentInternationalizationConfig';
+import { defineField, defineType } from 'sanity';
 
 export const article = defineType({
-  name: "article",
-  title: "Artikkel",
-  type: "document",
+  name: 'article',
+  title: 'Artikkel',
+  type: 'document',
   groups: [
-    { title: "Innhold", name: "content" },
-    { title: "Visuelt", name: "visual" },
-    { title: "SEO", name: "seo" },
+    { title: 'Innhold', name: 'content' },
+    { title: 'Visuelt', name: 'visual' },
+    { title: 'SEO', name: 'seo' },
   ],
   preview: {
     select: {
-      title: "title",
-      media: "image",
+      title: 'title',
+      media: 'image',
     },
   },
   fields: [
     defineField({
-      name: "title",
-      title: "Tittel",
-      type: "string",
-      group: "content",
+      name: 'title',
+      title: 'Tittel',
+      type: 'string',
+      group: 'content',
       validation: (rule) =>
         rule
           .required()
           .min(2)
           .max(100)
           .error(
-            `Tittel er påkrevd for å poste en artikkel, minimum lengde på 2 og maksimum lengde på 100 tegn`
+            `Tittel er påkrevd for å poste en artikkel, minimum lengde på 2 og maksimum lengde på 100 tegn`,
           ),
     }),
     defineField({
-      name: "slug",
-      title: "Slug",
-      type: "slug",
-      options: { source: "title", isUnique: isUniqueOtherThanLanguage },
+      name: 'slug',
+      title: 'Slug',
+      type: 'slug',
+      options: { source: 'title', isUnique: isUniqueOtherThanLanguage },
       hidden: ({ document }) => !document?.title,
-      description: "Url: bruddet.no/xxx",
-      group: "seo",
-      validation: (rule) => [rule.required().error("Må ha en slug")],
+      description: 'Url: bruddet.no/xxx',
+      group: 'seo',
+      validation: (rule) => [rule.required().error('Må ha en slug')],
     }),
     defineField({
-      name: "ingress",
-      title: "Ingress",
-      type: "string",
-      description: "Teksten under tittel",
-      group: "content",
+      name: 'ingress',
+      title: 'Ingress',
+      type: 'string',
+      description: 'Teksten under tittel',
+      group: 'content',
     }),
     defineField({
-      name: "language",
-      type: "string",
+      name: 'language',
+      type: 'string',
       readOnly: true,
       hidden: true,
     }),
     defineField({
-      name: "text",
-      title: "Tekst",
-      type: "content",
+      name: 'text',
+      title: 'Tekst',
+      type: 'content',
       description:
-        "Innhold: Mulighet for å legge inn tekst, bilde, video, sitat og anmeldelse. Bruk av H2 vil generere underoverskrift på menysiden og en vaskelapp på toppen av artikkelsiden.",
-      group: "content",
+        'Innhold: Mulighet for å legge inn tekst, bilde, video, sitat og anmeldelse. Bruk av H2 vil generere underoverskrift på menysiden og en vaskelapp på toppen av artikkelsiden.',
+      group: 'content',
       options: {
         documentInternationalization: {
           exclude: true,
@@ -68,51 +68,51 @@ export const article = defineType({
       },
     }),
     defineField({
-      name: "galleryDisplayType",
-      title: "Visning av bilder",
-      type: "number",
+      name: 'galleryDisplayType',
+      title: 'Visning av bilder',
+      type: 'number',
       initialValue: 1,
-      group: "content",
+      group: 'content',
       description:
-        "Her kan du bestemme om bildene i høyre kolonne skal skiftes ut ved scroll (som er det anbefalte), eller hvis alle bildene skal vises under hverandre hele tiden.",
+        'Her kan du bestemme om bildene i høyre kolonne skal skiftes ut ved scroll (som er det anbefalte), eller hvis alle bildene skal vises under hverandre hele tiden.',
       options: {
         list: [
           {
-            title: "Vis ett bilde av gangen (skifter ved scrolling) - anbefalt",
+            title: 'Vis ett bilde av gangen (skifter ved scrolling) - anbefalt',
             value: 1,
           },
           {
-            title: "Vis alle bilder samtidig, plassert under hverandre",
+            title: 'Vis alle bilder samtidig, plassert under hverandre',
             value: 2,
           },
         ],
-        layout: "radio",
-        direction: "horizontal",
+        layout: 'radio',
+        direction: 'horizontal',
       },
     }),
     defineField({
-      name: "image",
-      title: "Bilde",
-      type: "reference",
-      group: "visual",
-      to: [{ type: "customImage" }],
+      name: 'image',
+      title: 'Bilde',
+      type: 'reference',
+      group: 'visual',
+      to: [{ type: 'customImage' }],
     }),
     defineField({
-      name: "video",
-      title: "Video",
-      type: "video",
-      description: "Legg til en video",
-      group: "visual",
+      name: 'video',
+      title: 'Video',
+      type: 'video',
+      description: 'Legg til en video',
+      group: 'visual',
     }),
     defineField({
-      name: "event",
-      type: "reference",
-      description: "Referer til valgt forestilling",
-      to: [{ type: "event" }],
+      name: 'event',
+      type: 'reference',
+      description: 'Referer til valgt forestilling',
+      to: [{ type: 'event' }],
       options: {
         filter: ({ document }) => {
           return {
-            filter: "language == $lang",
+            filter: 'language == $lang',
             params: { lang: document.language },
           };
         },
@@ -120,15 +120,15 @@ export const article = defineType({
           exclude: true,
         },
       },
-      group: "content",
+      group: 'content',
     }),
     defineField({
-      name: "roleGroups",
-      title: "Roller",
-      description: "Lag egne rollegrupper",
-      type: "array",
-      of: [{ type: "roleGroup" }],
-      group: "content",
+      name: 'roleGroups',
+      title: 'Roller',
+      description: 'Lag egne rollegrupper',
+      type: 'array',
+      of: [{ type: 'roleGroup' }],
+      group: 'content',
       options: {
         documentInternationalization: {
           exclude: true,
@@ -136,18 +136,18 @@ export const article = defineType({
       },
     }),
     defineField({
-      name: "metaTitle",
-      title: "SEO tittel",
-      type: "metaTitle",
-      group: "seo",
-      validation: (rule) => [rule.required().error("Må ha SEO tittel")],
+      name: 'metaTitle',
+      title: 'SEO tittel',
+      type: 'metaTitle',
+      group: 'seo',
+      validation: (rule) => [rule.required().error('Må ha SEO tittel')],
     }),
     defineField({
-      name: "metaDescription",
-      title: "SEO beskrivelse",
-      type: "metaDescription",
-      group: "seo",
-      validation: (rule) => [rule.required().error("Må ha SEO beskrivelse")],
+      name: 'metaDescription',
+      title: 'SEO beskrivelse',
+      type: 'metaDescription',
+      group: 'seo',
+      validation: (rule) => [rule.required().error('Må ha SEO beskrivelse')],
     }),
   ],
 });

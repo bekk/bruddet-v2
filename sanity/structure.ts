@@ -1,4 +1,4 @@
-import type { StructureResolver } from 'sanity/structure'
+import type { StructureResolver } from 'sanity/structure';
 import {
   CalendarIcon,
   DocumentTextIcon,
@@ -7,15 +7,15 @@ import {
   InfoOutlineIcon,
   EqualIcon,
   ImageIcon,
-} from '@sanity/icons'
+} from '@sanity/icons';
 
 const SINGLETONS = [
-  { 
+  {
     id: 'frontPage',
     title: 'Forside',
     _type: 'document',
     icon: HomeIcon,
-    schemaType: 'frontPage'
+    schemaType: 'frontPage',
   },
   {
     id: 'menuPage',
@@ -31,7 +31,7 @@ const SINGLETONS = [
     icon: EqualIcon,
     schemaType: 'programPage',
   },
-]
+];
 
 const MULTI = [
   {
@@ -61,7 +61,7 @@ const MULTI = [
     _type: 'document',
     schemaType: 'genre',
   },
-]
+];
 
 const NOT_LANGUAGE_SPECIFIC = [
   {
@@ -71,12 +71,12 @@ const NOT_LANGUAGE_SPECIFIC = [
     schemaType: 'customImage',
     icon: ImageIcon,
   },
-]
+];
 
 const LANGUAGES = [
   { id: `nb`, title: `🇳🇴 Norwegian (Bokmål)` },
   { id: `en`, title: `🇬🇧 English` },
-]
+];
 
 // https://www.sanity.io/docs/structure-builder-cheat-sheet
 export const structure: StructureResolver = (S) =>
@@ -135,10 +135,6 @@ export const structure: StructureResolver = (S) =>
         S.listItem()
           .title(item.title)
           .id(item.id)
-          .child(
-            S.documentList()
-              .title(item.title)
-              .filter(`_type=="${item.id}"`),
-          ),
+          .child(S.documentList().title(item.title).filter(`_type=="${item.id}"`)),
       ),
-    ])
+    ]);

@@ -1,8 +1,8 @@
-import { client } from "@/sanity/lib/client";
+import { client } from '@/sanity/lib/client';
 
-import { ARTICLEPAGE_QUERY } from "@/sanity/lib/queries/articlePage";
-import { ARTICLEPAGE_QUERYResult } from "@/sanity/types/types";
-import { ArticlePage } from "./ArticlePage";
+import { ARTICLEPAGE_QUERY } from '@/sanity/lib/queries/articlePage';
+import { ARTICLEPAGE_QUERYResult } from '@/sanity/types/types';
+import { ArticlePage } from './ArticlePage';
 
 export default async function Page({
   params,

@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
-import { useEffect, useRef } from "react";
-import { Button } from "../ui/button";
+import { useEffect, useRef } from 'react';
+import { Button } from '../ui/button';
 type InputProps = {
   type: string;
   name: string;
@@ -11,14 +11,7 @@ type InputProps = {
   pattern?: string;
 };
 
-function Input({
-  type,
-  name,
-  label,
-  required,
-  validationMessage,
-  pattern,
-}: InputProps) {
+function Input({ type, name, label, required, validationMessage, pattern }: InputProps) {
   const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
@@ -27,15 +20,15 @@ function Input({
     if (inputElement) {
       inputElement.oninvalid = (e: Event) => {
         const target = e.target as HTMLInputElement;
-        target.setCustomValidity("");
+        target.setCustomValidity('');
         if (!target.validity.valid) {
-          target.setCustomValidity(validationMessage || "Ugyldig verdi");
+          target.setCustomValidity(validationMessage || 'Ugyldig verdi');
         }
       };
 
       inputElement.oninput = (e: Event) => {
         const target = e.target as HTMLInputElement;
-        target.setCustomValidity("");
+        target.setCustomValidity('');
       };
     }
 
@@ -125,12 +118,7 @@ export default function NewsletterComponent() {
       </div>
       <div>
         <label className="text-sm">
-          <input
-            type="checkbox"
-            name="custom_fields[SAMTYKKESMS]"
-            value="1"
-            className="mr-2"
-          />
+          <input type="checkbox" name="custom_fields[SAMTYKKESMS]" value="1" className="mr-2" />
           Jeg samtykker til kommunikasjon via SMS
         </label>
       </div>

@@ -1,5 +1,4 @@
 import { ARTICLEPAGE_QUERYResult, EVENT_QUERYResult } from '@/sanity/types/types';
-import Image from 'next/image';
 type RoleGroups =
   | NonNullable<EVENT_QUERYResult>['roleGroups']
   | NonNullable<ARTICLEPAGE_QUERYResult>['roleGroups'];
@@ -20,7 +19,7 @@ const PersonCard = ({ details }: PersonCardProps) => {
   return (
     <div className="flex flex-row my-4">
       {person.image?.imageUrl && (
-        <Image
+        <img
           className="w-20 md:w-32 h-28 md:h-44 object-cover mr-4"
           src={person.image.imageUrl}
           alt={person.text ?? person.name ?? ''}

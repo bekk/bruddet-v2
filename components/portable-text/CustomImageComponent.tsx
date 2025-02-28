@@ -1,5 +1,4 @@
 import { urlFor } from '@/sanity/lib/image';
-import Image from 'next/image';
 
 interface CustomImageProps {
   image: {
@@ -19,7 +18,7 @@ export default function CustomImageComponent({ value }: { value: CustomImageProp
 
   return (
     <div>
-      <Image className="md:min-w-[400px] md:max-w-[450px]" src={url} alt={image.alt || ''} />
+      <img className="md:min-w-[400px] md:max-w-[450px]" src={url} alt={image.alt || ''} />
       {image.credit && <p className="text-sm text-gray-500">{image.credit}</p>}
     </div>
   );

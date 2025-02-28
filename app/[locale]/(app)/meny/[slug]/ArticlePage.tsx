@@ -18,23 +18,24 @@ export const ArticlePage = async ({ data, language }: ArticlePageProps) => {
     const { title, ingress, text, tagTexts, event, roleGroups } = data;
 
     return (
-        <div className="flex flex-col items-center gap-10 mx-5">
-            <div className="flex flex-col gap-10 items-center md:text-left lg:max-w-4xl">
-                <h1 className="text-3xl lg:text-6xl text-4xl font-normal text-center mt-40">
+        <div className="flex flex-col items-center">
+            <div className="article-header flex flex-col max-w-7xl mx-auto gap-8 my-8 md:my-20 px-6">
+                <h1 className="text-3xl lg:text-6xl font-normal text-center">
                     {title}
                 </h1>
                 <h2 className="text-xl lg:text-3xl text-left lg:text-center font-normal lg:leading-[48px] break-words">
                     {ingress}
                 </h2>
+
+                <TagButtons tagTexts={tagTexts} />
+                {event && (
+                    <Link href={`/${language}/program/${event.slug?.current}`}>
+                        {t("read-more")}
+                    </Link>
+                )}
             </div>
-            <TagButtons tagTexts={tagTexts} />
-            {event && (
-                <Link href={`/${language}/program/${event.slug?.current}`}>
-                    {t("read-more")}
-                </Link>
-            )}
             <RolesBlock roleGroups={roleGroups} />
-            <Columns className="mx-4 gap-4 lg:ml-8 xl:ml-24">
+            <Columns className="max-w-[1750px] mx-auto gap-4 pb-20 px-6">
                 <ColumnItem className="lg:w-1/2">
                     <MainBlock text={text} shouldGenerageH2Links={true} />
                     <RolesBlock roleGroups={roleGroups} />

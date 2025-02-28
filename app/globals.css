@@ -61,6 +61,11 @@ body {
   }
 
   h1 {
+    @apply text-5xl;
+    font-family: Impact, sans-serif;
+  }
+
+  h1.oversized {
     font-size: 14vw;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     line-height: 1;

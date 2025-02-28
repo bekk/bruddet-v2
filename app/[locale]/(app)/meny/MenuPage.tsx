@@ -36,7 +36,7 @@ export const MenuPage = ({ data }: MenuPageProps) => {
                             onMouseEnter={() => {
                                 setImage(link.image);
                             }}
-                            className="mt-14 w-full"
+                            className="mt-20 w-full"
                             key={index}
                         >
                             <h2>

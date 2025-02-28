@@ -22,7 +22,7 @@ export const ScrollSpyContent = ({
             {items.map((item, index) => (
                 <div
                     key={index}
-                    className={`absolute top-4 right-0 w-full transition-opacity duration-300 justify-items-center ${
+                    className={`absolute top-16 right-0 w-full transition-opacity duration-300 justify-items-center ${
                         index === activeIndex
                             ? "opacity-100"
                             : "opacity-0 pointer-events-none"

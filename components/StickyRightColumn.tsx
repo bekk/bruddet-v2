@@ -3,8 +3,8 @@ import {
     EVENT_QUERYResult,
 } from "@/sanity/types/types";
 import { PortableText } from "next-sanity";
-import { portableTextComponents } from "./portable-text/components";
 import { ScrollSpyContent } from "./ScrollSpyContent";
+import { portableTextComponents } from "./portable-text/components";
 
 type StickyRightColumnProps = {
     text:

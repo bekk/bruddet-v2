@@ -20,12 +20,14 @@ export default async function Page({
 
     return (
         <div
-            className="flex justify-center items-center min-h-front-page-height bg-cover bg-center"
+            className="flex justify-center items-center min-h-front-page-height-mobile md:min-h-front-page-height bg-cover bg-center"
             style={{
                 minHeight: minHeight,
                 backgroundImage: `url(${urlFor(data?.image?.imageUrl as SanityImageSource).url()})`,
             }}
-            aria-label={data?.image?.alt || ""}
+            aria-label={
+                typeof data?.image?.alt === "string" ? data.image.alt : ""
+            }
         >
             <div className="absolute lg:right-24 lg:top-24 right-6 top-16">
                 <HexagonBuyButton text="hei" />

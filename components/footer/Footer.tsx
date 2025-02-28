@@ -1,100 +1,58 @@
-"use client";
-import { useLocale } from "next-intl";
-import Link from "next/link";
-import React, { useEffect, useState } from "react";
-import { useTranslations } from "next-intl";
+import FooterLink from "./FooterLink";
+import DesktopMiddleFooter from "./DesktopMiddleFooter";
+import MobileFooterExtension from "./MobileFooterExtension";
+import { sanityFetch } from "@/sanity/lib/live";
+import { FOOTER_QUERY } from "@/sanity/lib/queries/footer";
 
 type FooterProps = {
-    isEventPage?: boolean;
+    isEventPage: boolean;
+    lang: string;
 };
 
-export default function Footer({ isEventPage }: FooterProps) {
-    const [isHovering, setIsHovering] = useState(false);
-    const locale = useLocale();
-    const t = useTranslations("footer");
-    const t_event = useTranslations("event");
-
+export default async function Footer({ isEventPage, lang }: FooterProps) {
+    const { data } = await sanityFetch({
+        query: FOOTER_QUERY,
+        params: { lang },
+    });
+    if (!data) return null;
+    const { scrollingText, hoverText, link, showNewsletter } = data;
+    const footerHeight = isEventPage
+        ? "h-footer-height"
+        : "h-footer-height-mobile";
+    const footerBackground = isEventPage
+        ? "bg-background-event"
+        : "bg-background";
     return (
-        <footer className="flex flex-col h-full">
-            <div className="h-full flex justify-between border-t border-foreground">
-                <FooterLink href={`/${locale}/meny`} ariaLabel={t("menu-a11y")}>
-                    {t("menu")}
-                </FooterLink>
-
-                {isEventPage ? (
-                    <Link
-                        href="#ticket-block"
-                        className="hidden md:w-[70%] md:flex justify-center items-center border-x border-foreground hover:bg-primary hover:text-primary-foreground hover:underline"
-                    >
-                        <span className="font-bold uppercase">
-                            {t_event("buy-ticket")}
-                        </span>
-                    </Link>
-                ) : (
-                    <Link
-                        href="/"
-                        className="hidden md:w-[70%] md:flex justify-center items-center relative overflow-x-hidden w-full h-full border-x border-foreground hover:bg-primary hover:text-primary-foreground hover:underline"
-                        onMouseOver={() => setIsHovering(true)}
-                        onMouseLeave={() => setIsHovering(false)}
-                        onFocus={() => setIsHovering(true)}
-                        onBlur={() => setIsHovering(false)}
-                    >
-                        {isHovering ? (
-                            <span className="font-bold ">Meld deg på!</span>
-                        ) : (
-                            <ScrollingCTA />
-                        )}
-                    </Link>
-                )}
-
+        <footer
+            className={`fixed bottom-0 ${footerHeight} ${footerBackground} w-full md:h-footer-height flex flex-col`}
+        >
+            <div
+                className={`${!isEventPage ? "md:hidden h-footer-height-extension" : ""}`}
+            >
+                <MobileFooterExtension
+                    isEventPage={isEventPage}
+                    scrollingText={scrollingText ?? ""}
+                />
+            </div>
+            <div className="h-footer-height flex justify-between border-t border-foreground">
                 <FooterLink
-                    href={`/${locale}/program`}
-                    ariaLabel={t("program-a11y")}
-                >
-                    {t("program")}
-                </FooterLink>
+                    translationKey="menu"
+                    allyTranslationKey="menu-a11y"
+                    link="meny"
+                />
+                <DesktopMiddleFooter
+                    isEventPage={isEventPage}
+                    scrollingText={scrollingText ?? ""}
+                    hoverText={hoverText ?? ""}
+                    link={link ?? ""}
+                    showNewsletter={showNewsletter ?? true}
+                />
+                <FooterLink
+                    translationKey="program"
+                    allyTranslationKey="program-a11y"
+                    link="program"
+                />
             </div>
         </footer>
-    );
-}
-
-function FooterLink({
-    href,
-    children,
-    ariaLabel,
-}: {
-    href: string;
-    children: React.ReactNode;
-    ariaLabel: string;
-}) {
-    return (
-        <Link
-            href={href}
-            className="w-[50%] md:w-[15%] flex justify-center items-center font-bold hover:bg-primary hover:text-primary-foreground hover:underline"
-            aria-label={ariaLabel}
-        >
-            {children}
-        </Link>
-    );
-}
-
-export function ScrollingCTA() {
-    return (
-        <>
-            <div className="animate-marquee whitespace-nowrap">
-                {Array.from({ length: 12 }).map((_, i) => (
-                    <span key={i} className="m-4">
-                        Sjekk ut vårt sommerprogram!
-                    </span>
-                ))}
-            </div>
-            <div className="absolute flex justify-center items-center animate-marquee2 whitespace-nowrap">
-                {Array.from({ length: 12 }).map((_, i) => (
-                    <span key={i} className="m-4">
-                        Sjekk ut vårt sommerprogram!
-                    </span>
-                ))}
-            </div>
-        </>
     );
 }

@@ -3,14 +3,16 @@
 import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { ScrollingCTA } from "./Footer";
+import ScrollingCTA from "./ScrollingCTA";
 
 type MobileFooterExtensionProps = {
-    isEventPage?: boolean;
+    isEventPage: boolean;
+    scrollingText: string;
 };
 
 export default function MobileFooterExtension({
     isEventPage,
+    scrollingText,
 }: MobileFooterExtensionProps) {
     const [isTargetVisible, setIsTargetVisible] = useState(false);
     const t = useTranslations("footer");
@@ -56,7 +58,7 @@ export default function MobileFooterExtension({
                     href="/"
                     className="flex justify-center items-center relative overflow-x-hidden w-full h-full border-x"
                 >
-                    <ScrollingCTA />
+                    <ScrollingCTA text={scrollingText} />
                 </Link>
             )}
         </div>

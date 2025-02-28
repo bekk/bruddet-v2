@@ -1,9 +1,9 @@
-import { getRequestConfig } from "next-intl/server";
-import { routing } from "./routing";
+import { getRequestConfig } from 'next-intl/server';
+import { routing } from './routing';
 
 enum Locale {
-  nb = "nb",
-  en = "en",
+  nb = 'nb',
+  en = 'en',
 }
 
 export default getRequestConfig(async ({ requestLocale }) => {

@@ -7,7 +7,6 @@ body {
 }
 
 @layer base {
-
   :root {
     --color-pyro: #ef1716;
     --color-sintild: #c81919;
@@ -26,7 +25,7 @@ body {
     --color-syrelys: #deff5c;
     --color-stovete-ponker: #efece6;
     --color-hvit: #ffffff;
-    --color-havfjas: #58A1B6;
+    --color-havfjas: #58a1b6;
 
     --background: var(--color-flotekos);
     --background-event: var(--color-skarlagenflukt);
@@ -39,19 +38,18 @@ body {
     --muted-foreground: var(--color-mosemork);
     --radius: 0;
 
-
     /* IKKE I BRUK PER NÅ */
     --border: var(--color-mosemork);
-    --input: #A65959;
-    --ring: #EF1616;
+    --input: #a65959;
+    --ring: #ef1616;
     --card: var(--color-flotekos);
     --card-foreground: var(--color-mosemork);
     --popover: var(--color-flotekos);
     --popover-foreground: var(--color-mosemork);
-    --accent: #EDDEE8;
+    --accent: #eddee8;
     --accent-foreground: #282424;
-    --destructive: 	#FF0000;
-    --destructive-foreground: #FFFFFF;
+    --destructive: #ff0000;
+    --destructive-foreground: #ffffff;
   }
 }
 
@@ -61,6 +59,11 @@ body {
   }
 
   h1 {
+    @apply text-5xl;
+    font-family: Impact, sans-serif;
+  }
+
+  h1.oversized {
     font-size: 14vw;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     line-height: 1;

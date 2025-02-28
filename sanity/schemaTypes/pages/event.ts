@@ -1,8 +1,6 @@
-
-
-import { CalendarIcon } from "@sanity/icons";
-import { defineField, defineType } from "sanity";
-import { isUniqueOtherThanLanguage } from "@/sanity/documentInternationalizationConfig";
+import { CalendarIcon } from '@sanity/icons';
+import { defineField, defineType } from 'sanity';
+import { isUniqueOtherThanLanguage } from '@/sanity/documentInternationalizationConfig';
 
 type ParentType = {
   saleStartOption?: 'saleStartKnown' | 'saleStartUnknown';
@@ -10,9 +8,9 @@ type ParentType = {
 };
 
 export const event = defineType({
-  name: "event",
-  title: "Forestilling",
-  type: "document",
+  name: 'event',
+  title: 'Forestilling',
+  type: 'document',
   fieldsets: [
     {
       name: 'saleStart',
@@ -20,65 +18,63 @@ export const event = defineType({
     },
   ],
   groups: [
-    { title: "Innhold", name: "content" },
-    { title: "Visuelt", name: "visual" },
-    { title: "SEO", name: "seo" },
+    { title: 'Innhold', name: 'content' },
+    { title: 'Visuelt', name: 'visual' },
+    { title: 'SEO', name: 'seo' },
   ],
   preview: {
     select: {
-      title: "title",
-      media: "image",
+      title: 'title',
+      media: 'image',
     },
   },
   fields: [
     defineField({
-      name: "title",
-      title: "Tittel",
-      type: "string",
-      group: "content",
+      name: 'title',
+      title: 'Tittel',
+      type: 'string',
+      group: 'content',
       validation: (rule) => [
         rule
           .required()
           .min(2)
-          .error(
-            `Tittel er påkrevd for å poste et arrangement, minimum lengde på 2 tegn.`
-          ),
-        rule.max(100).warning("Anbefaler kortere tittel."),
+          .error(`Tittel er påkrevd for å poste et arrangement, minimum lengde på 2 tegn.`),
+        rule.max(100).warning('Anbefaler kortere tittel.'),
       ],
     }),
     defineField({
-      name: "slug",
-      title: "Slug",
-      type: "slug",
-      options: { source: "title", isUnique: isUniqueOtherThanLanguage },
+      name: 'slug',
+      title: 'Slug',
+      type: 'slug',
+      options: { source: 'title', isUnique: isUniqueOtherThanLanguage },
       hidden: ({ document }) => !document?.title,
-      description: "Url: bruddet.no/xxx",
-      group: "seo",
-      validation: (rule) => [rule.required().error("Må ha en slug")],
+      description: 'Url: bruddet.no/xxx',
+      group: 'seo',
+      validation: (rule) => [rule.required().error('Må ha en slug')],
     }),
     defineField({
-      name: "language",
-      type: "string",
+      name: 'language',
+      type: 'string',
       readOnly: true,
       hidden: true,
     }),
     defineField({
-      name: "genre",
-      title: "Sjanger",
-      type: "reference",
-      to: [{ type: "genre" }],
-      group: "content",
-      validation: (rule) => rule.required().error("Må ha en sjanger"),
+      name: 'genre',
+      title: 'Sjanger',
+      type: 'reference',
+      to: [{ type: 'genre' }],
+      group: 'content',
+      validation: (rule) => rule.required().error('Må ha en sjanger'),
       options: {
         filter: ({ document }) => {
           if (!document?.language) {
             return {
-              filter: "",
+              filter: '',
               params: {},
             };
           }
           return {
-            filter: "language == $lang",
+            filter: 'language == $lang',
             params: { lang: document.language },
           };
         },
@@ -86,28 +82,28 @@ export const event = defineType({
       },
     }),
     defineField({
-      name: "image",
-      title: "Bilde",
-      type: "reference",
-      group: "visual",
-      to: [{ type: "customImage" }],
+      name: 'image',
+      title: 'Bilde',
+      type: 'reference',
+      group: 'visual',
+      to: [{ type: 'customImage' }],
     }),
     defineField({
-      name: "ingress",
-      title: "Ingress",
-      type: "string",
-      group: "content",
+      name: 'ingress',
+      title: 'Ingress',
+      type: 'string',
+      group: 'content',
       validation: (rule) => [
-        rule.required().min(2).error("Ingress er påkrevd."),
-        rule.max(200).warning("Anbefaler kortere ingress."),
+        rule.required().min(2).error('Ingress er påkrevd.'),
+        rule.max(200).warning('Anbefaler kortere ingress.'),
       ],
     }),
     {
-      name: "ticketInformation",
-      title: "Informasjon om billetter",
-      description: "Her kan du legge inn informasjon om f.eks. bussbilletter",
-      type: "string",
-      group: "content",
+      name: 'ticketInformation',
+      title: 'Informasjon om billetter',
+      description: 'Her kan du legge inn informasjon om f.eks. bussbilletter',
+      type: 'string',
+      group: 'content',
     },
     {
       name: 'saleStartOption',
@@ -127,119 +123,112 @@ export const event = defineType({
       group: 'content',
     },
     defineField({
-      name: "saleStartDateTime",
-      title: "Når billettsalget starter",
+      name: 'saleStartDateTime',
+      title: 'Når billettsalget starter',
       description:
-        "Her kan du legge inn data og tidspunkt for når billettsalget starter. Om det står tomt vil kjøpsknappen fungere når eventet blir publisert.",
-      type: "datetime",
+        'Her kan du legge inn data og tidspunkt for når billettsalget starter. Om det står tomt vil kjøpsknappen fungere når eventet blir publisert.',
+      type: 'datetime',
       fieldset: 'saleStart',
-      group: "content",
-      hidden: ({ parent }: { parent: ParentType }) =>
-        parent?.saleStartOption !== 'saleStartKnown',
+      group: 'content',
+      hidden: ({ parent }: { parent: ParentType }) => parent?.saleStartOption !== 'saleStartKnown',
     }),
     defineField({
-      name: "dates",
-      title: "Datoer",
+      name: 'dates',
+      title: 'Datoer',
       description:
-        "Datoer for forestilling, med billettlink. Spilledatoer blir vist i tekstboksene (vaskelappene).",
-      type: "array",
-      group: "content",
+        'Datoer for forestilling, med billettlink. Spilledatoer blir vist i tekstboksene (vaskelappene).',
+      type: 'array',
+      group: 'content',
       of: [
         {
-          type: "object",
+          type: 'object',
           icon: CalendarIcon,
 
           fields: [
             {
-              name: "date",
-              type: "datetime",
-              title: "Spilledato",
-              validation: (rule) => rule.required().error("Dato er påkrevd."),
+              name: 'date',
+              type: 'datetime',
+              title: 'Spilledato',
+              validation: (rule) => rule.required().error('Dato er påkrevd.'),
             },
             {
-              name: "ticketUrl",
-              type: "url",
-              title: "Link til forestillingsbillett",
-              validation: (rule) => [rule.required().error("URL er påkrevd.")],
+              name: 'ticketUrl',
+              type: 'url',
+              title: 'Link til forestillingsbillett',
+              validation: (rule) => [rule.required().error('URL er påkrevd.')],
             },
             {
-              name: "busTicketUrl",
-              type: "url",
-              title: "Link til bussbillett",
+              name: 'busTicketUrl',
+              type: 'url',
+              title: 'Link til bussbillett',
             },
             {
-              name: "eventTicketStatus",
-              title: "Status billetter (forestilling) igjen",
-              type: "number",
+              name: 'eventTicketStatus',
+              title: 'Status billetter (forestilling) igjen',
+              type: 'number',
               initialValue: 1,
               options: {
                 list: [
-                  { title: "Normalt", value: 1 },
-                  { title: "Få billetter igjen", value: 2 },
-                  { title: "Utsolgt", value: 3 },
+                  { title: 'Normalt', value: 1 },
+                  { title: 'Få billetter igjen', value: 2 },
+                  { title: 'Utsolgt', value: 3 },
                 ],
-                layout: "radio",
-                direction: "horizontal",
+                layout: 'radio',
+                direction: 'horizontal',
               },
-              validation: (rule) => [
-                rule.required().error("Status er påkrevd."),
-              ],
+              validation: (rule) => [rule.required().error('Status er påkrevd.')],
             },
             {
-              name: "busTicketStatus",
-              title: "Status billetter (buss) igjen",
-              type: "number",
+              name: 'busTicketStatus',
+              title: 'Status billetter (buss) igjen',
+              type: 'number',
               initialValue: 1,
               options: {
                 list: [
-                  { title: "Normalt", value: 1 },
-                  { title: "Få billetter igjen", value: 2 },
-                  { title: "Utsolgt", value: 3 },
+                  { title: 'Normalt', value: 1 },
+                  { title: 'Få billetter igjen', value: 2 },
+                  { title: 'Utsolgt', value: 3 },
                 ],
-                layout: "radio",
-                direction: "horizontal",
+                layout: 'radio',
+                direction: 'horizontal',
               },
             },
           ],
         },
       ],
-      validation: (rule) => [
-        rule.required().min(1).error("Minst en dato er påkrevd."),
-      ],
+      validation: (rule) => [rule.required().min(1).error('Minst en dato er påkrevd.')],
     }),
     defineField({
-      name: "duration",
-      title: "Varighet",
-      type: "string",
-      placeholder: "e.g 1 time og 30 minutter",
-      group: "content",
-      description:
-        "Varighet på forestillingen. Blir vist i tekstboksene (vaskelappene).",
+      name: 'duration',
+      title: 'Varighet',
+      type: 'string',
+      placeholder: 'e.g 1 time og 30 minutter',
+      group: 'content',
+      description: 'Varighet på forestillingen. Blir vist i tekstboksene (vaskelappene).',
     }),
     defineField({
-      name: "labels",
-      title: "Vaskelapper",
+      name: 'labels',
+      title: 'Vaskelapper',
       description:
-        "Fritekstfelt for tagger som kommer i bokser under tittel. Kan inneholde stikkord det er ønske om å fremheve, f.eks. pauser.",
-      type: "array",
-      group: "content",
+        'Fritekstfelt for tagger som kommer i bokser under tittel. Kan inneholde stikkord det er ønske om å fremheve, f.eks. pauser.',
+      type: 'array',
+      group: 'content',
       of: [
         {
-          type: "string",
+          type: 'string',
           validation: (rule) => [
             rule.required().min(2).error(`Minimum lengde 2 tegn`),
-            rule.max(20).warning("Anbefaler kortere tekst."),
+            rule.max(20).warning('Anbefaler kortere tekst.'),
           ],
         },
       ],
     }),
     defineField({
-      name: "text",
-      title: "Innhold",
-      type: "content",
-      group: "content",
-      description:
-        "Her kan du legge inn tekst, bilder, video, sitat og anmeldelser",
+      name: 'text',
+      title: 'Innhold',
+      type: 'content',
+      group: 'content',
+      description: 'Her kan du legge inn tekst, bilder, video, sitat og anmeldelser',
       options: {
         documentInternationalization: {
           exclude: true,
@@ -247,35 +236,35 @@ export const event = defineType({
       },
     }),
     defineField({
-      name: "galleryDisplayType",
-      title: "Visning av bilder",
-      type: "number",
+      name: 'galleryDisplayType',
+      title: 'Visning av bilder',
+      type: 'number',
       initialValue: 1,
-      group: "content",
+      group: 'content',
       description:
-        "Her kan du bestemme om bildene i høyre kolonne skal skiftes ut ved scroll (som er det anbefalte), eller hvis alle bildene skal vises under hverandre hele tiden.",
+        'Her kan du bestemme om bildene i høyre kolonne skal skiftes ut ved scroll (som er det anbefalte), eller hvis alle bildene skal vises under hverandre hele tiden.',
       options: {
         list: [
           {
-            title: "Vis ett bilde av gangen (skifter ved scrolling) - anbefalt",
+            title: 'Vis ett bilde av gangen (skifter ved scrolling) - anbefalt',
             value: 1,
           },
           {
-            title: "Vis alle bilder samtidig, plassert under hverandre",
+            title: 'Vis alle bilder samtidig, plassert under hverandre',
             value: 2,
           },
         ],
-        layout: "radio",
-        direction: "horizontal",
+        layout: 'radio',
+        direction: 'horizontal',
       },
     }),
     defineField({
-      name: "roleGroups",
-      title: "Roller",
-      description: "Lag egne rollegrupper",
-      type: "array",
-      of: [{ type: "roleGroup" }],
-      group: "content",
+      name: 'roleGroups',
+      title: 'Roller',
+      description: 'Lag egne rollegrupper',
+      type: 'array',
+      of: [{ type: 'roleGroup' }],
+      group: 'content',
       options: {
         documentInternationalization: {
           exclude: true,
@@ -283,18 +272,18 @@ export const event = defineType({
       },
     }),
     defineField({
-      name: "metaTitle",
-      title: "SEO tittel",
-      type: "metaTitle",
-      group: "seo",
-      validation: (rule) => [rule.required().error("Må ha SEO tittel")],
+      name: 'metaTitle',
+      title: 'SEO tittel',
+      type: 'metaTitle',
+      group: 'seo',
+      validation: (rule) => [rule.required().error('Må ha SEO tittel')],
     }),
     defineField({
-      name: "metaDescription",
-      title: "SEO beskrivelse",
-      type: "metaDescription",
-      group: "seo",
-      validation: (rule) => [rule.required().error("Må ha SEO beskrivelse")],
+      name: 'metaDescription',
+      title: 'SEO beskrivelse',
+      type: 'metaDescription',
+      group: 'seo',
+      validation: (rule) => [rule.required().error('Må ha SEO beskrivelse')],
     }),
   ],
 });

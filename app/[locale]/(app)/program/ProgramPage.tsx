@@ -1,12 +1,12 @@
-"use client";
-import { PROGRAMPAGE_QUERYResult } from "@/sanity/types/types";
-import { SocialMedia } from "@/components/SocialMedia";
-import { useState } from "react";
-import Link from "next/link";
-import Image from "next/image";
-import { ImageType } from "@/sanity/lib/queries/image";
-import { DynamicImage } from "@/components/DynamicImage";
-import { useLocale, useTranslations } from "next-intl";
+'use client';
+import { PROGRAMPAGE_QUERYResult } from '@/sanity/types/types';
+import { SocialMedia } from '@/components/SocialMedia';
+import { useState } from 'react';
+import Link from 'next/link';
+import Image from 'next/image';
+import { ImageType } from '@/sanity/lib/queries/image';
+import { DynamicImage } from '@/components/DynamicImage';
+import { useLocale, useTranslations } from 'next-intl';
 
 type ProgramPageProps = {
   data: PROGRAMPAGE_QUERYResult;
@@ -14,7 +14,7 @@ type ProgramPageProps = {
 
 export const ProgramPage = ({ data }: ProgramPageProps) => {
   const [image, setImage] = useState<ImageType>(null);
-  const t = useTranslations("program");
+  const t = useTranslations('program');
   const locale = useLocale();
 
   if (!data) return;
@@ -26,7 +26,7 @@ export const ProgramPage = ({ data }: ProgramPageProps) => {
         <SocialMedia socialMediaText={data?.socialMediaText} />
       </div>
 
-      <ul className="flex grow flex-col items-center mt-12 lg:mt-20 px-6 sm:px-44 lg:px-4">
+      <ul className="flex grow flex-col items-center mt-20 lg:mt-20 px-6 sm:px-44 lg:px-4">
         {data?.links?.map((link, index) => (
           <li
             onMouseEnter={() => {
@@ -38,15 +38,15 @@ export const ProgramPage = ({ data }: ProgramPageProps) => {
             <Link
               key={index}
               href={`/${locale}/program/${link.slug?.current}`}
-              aria-label={`${t("link-a11y")} ${link.title}`}
+              aria-label={`${t('link-a11y')} ${link.title}`}
               className="block text-center hover:underline"
             >
               <div className="lg:hidden flex justify-center aspect-square w-full">
                 {link.image && (
                   <Image
                     key={index}
-                    src={link.image?.imageUrl || ""}
-                    alt={link.image?.alt || ""}
+                    src={link.image?.imageUrl || ''}
+                    alt={link.image?.alt || ''}
                     width={350}
                     height={350}
                     className="inline-block object-cover w-full h-full"
@@ -58,17 +58,14 @@ export const ProgramPage = ({ data }: ProgramPageProps) => {
               </h2>
               {link.dates && link.dates.length > 0 && (
                 <span className="inline-block mt-2">
-                  Sett inn dato her{" "}
-                  {/*<DatesLabel dates={link.dates} showBorder={false} />*/}
+                  Sett inn dato her {/*<DatesLabel dates={link.dates} showBorder={false} />*/}
                 </span>
               )}
             </Link>
           </li>
         ))}
       </ul>
-      <div className="hidden lg:block w-[25%]">
-        {image && <DynamicImage image={image} />}
-      </div>
+      <div className="hidden lg:block w-[25%]">{image && <DynamicImage image={image} />}</div>
     </div>
   );
 };

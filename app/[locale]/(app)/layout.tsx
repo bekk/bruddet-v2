@@ -1,22 +1,16 @@
-import Footer from "@/components/footer/Footer";
-import MobileFooterExtension from "@/components/footer/MobileFooterExtension";
+import Footer from '@/components/footer/Footer';
 
-export default async function Layout({
-  children,
-}: {
+type LayoutProps = {
   children: React.ReactNode;
-}) {
+  params: Promise<{ locale: string }>;
+};
+
+export default async function Layout({ children, params }: LayoutProps) {
+  const lang = (await params).locale || 'nb';
   return (
     <div className="bg-background text-foreground min-h-front-page-height-mobile md:min-h-front-page-height h-full mb-footer-height-mobile md:mb-footer-height">
       {children}
-      <div className="fixed inset-x-0 bottom-0 h-footer-height-mobile md:h-footer-height bg-background text-foreground">
-        <div className="md:hidden h-footer-height-extension">
-          <MobileFooterExtension isEventPage={false} />
-        </div>
-        <div className="h-footer-height">
-          <Footer isEventPage={false} />
-        </div>
-      </div>
+      <Footer isEventPage={false} lang={lang} />
     </div>
   );
 }

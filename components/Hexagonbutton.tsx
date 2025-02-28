@@ -7,7 +7,7 @@ interface Props {
     text: string;
 }
 
-export default function HexagonBuyButton({ text }: Props) {
+export default function Hexagonbutton({ text }: Props) {
     const lines = stegaClean(text.split("_"));
     const [isHovering, setIsHovering] = useState(false);
     const { setNewsletterOpen } = useNewsLetterContext();

@@ -30,7 +30,7 @@ export default async function Page({
             }
         >
             <div className="absolute lg:right-24 lg:top-24 right-6 top-16">
-                <HexagonBuyButton text="hei" />
+                <HexagonBuyButton text="Meld deg_på vårt_nyhetsbrev" />
             </div>
 
             <h1 className="text-primary-foreground">{data?.title}</h1>

@@ -16,7 +16,7 @@ export const Newsletter = () => {
     const { isNewsletterOpen, setNewsletterOpen } = useNewsLetterContext();
     return (
         <Dialog open={isNewsletterOpen} onOpenChange={setNewsletterOpen}>
-            <DialogContent className="fixed inset-0 flex items-center justify-center bg-opacity-50 z-50">
+            <DialogContent className="fixed inset-0 flex items-center justify-center bg-black/50 z-50">
                 <DialogHeader>
                     <div
                         className={`relative bg-background-event max-w-xl border border-black flex flex-col pb-8 px-28 p-12 gap-5`}

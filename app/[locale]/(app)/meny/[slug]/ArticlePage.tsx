@@ -19,7 +19,7 @@ export const ArticlePage = async ({ data, language }: ArticlePageProps) => {
 
     return (
         <div className="flex flex-col items-center">
-            <div className="article-header flex flex-col max-w-7xl mx-auto gap-8 my-24 px-6 md:px-12">
+            <div className="article-header flex flex-col max-w-7xl mx-auto gap-8 mt-24 mb-8 md:mb-24 px-6 md:px-12">
                 <h1 className="text-3xl lg:text-6xl font-normal text-center">
                     {title}
                 </h1>
@@ -29,7 +29,10 @@ export const ArticlePage = async ({ data, language }: ArticlePageProps) => {
 
                 <TagButtons tagTexts={tagTexts} />
                 {event && (
-                    <Link href={`/${language}/program/${event.slug?.current}`}>
+                    <Link
+                        className="block md:text-center"
+                        href={`/${language}/program/${event.slug?.current}`}
+                    >
                         {t("read-more")}
                     </Link>
                 )}

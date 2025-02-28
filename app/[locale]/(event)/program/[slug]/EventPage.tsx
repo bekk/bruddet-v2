@@ -25,7 +25,7 @@ export const EventPage = async ({ data }: EventPageProps) => {
 
     return (
         <>
-            <div id="eventIngress" className="flex flex-col gap-8">
+            <div id="eventIngress" className="event-header flex flex-col">
                 {image?.imageUrl && (
                     <ImageEventPage
                         url={urlFor(image.imageUrl).url() || ""}
@@ -33,10 +33,10 @@ export const EventPage = async ({ data }: EventPageProps) => {
                         title={title || ""}
                     />
                 )}
-                <div className="flex flex-col mx-6 md:mx-8 lg:mx-24 gap-8">
+                <div className="flex flex-col max-w-7xl mx-auto gap-8 my-8 md:my-20 px-6 md:px-12">
                     {ingress && <h2>{ingress}</h2>}
 
-                    <div className="flex flex-wrap gap-4">
+                    <div className="flex flex-wrap gap-4 md:justify-center">
                         {labels?.map((label, i) => (
                             <Badge variant={"outline"} key={i}>
                                 {label.toUpperCase()}
@@ -56,7 +56,7 @@ export const EventPage = async ({ data }: EventPageProps) => {
                     </div>
                 </div>
             </div>
-            <Columns className="mx-4 gap-4 lg:ml-8 xl:ml-24">
+            <Columns className="max-w-content-width mx-auto gap-4 pb-20 px-6 md:px-12">
                 <ColumnItem className="lg:w-1/2">
                     <MainBlock text={text} />
                     <RolesBlock roleGroups={data.roleGroups} />

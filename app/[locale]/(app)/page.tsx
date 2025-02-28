@@ -33,7 +33,7 @@ export default async function Page({
                 <Hexagonbutton text="Meld deg_på vårt_nyhetsbrev" />
             </div>
 
-            <h1 className="text-primary-foreground">{data?.title}</h1>
+            <h1 className="oversized text-primary-foreground">
         </div>
     );
 }

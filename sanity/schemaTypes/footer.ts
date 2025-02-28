@@ -1,4 +1,4 @@
-import { defineField } from 'sanity';
+import { defineField, StringRule } from 'sanity';
 
 export const footer = defineField({
   name: 'footer',
@@ -15,13 +15,13 @@ export const footer = defineField({
       name: 'scrollingText',
       title: 'Tekst',
       type: 'string',
-      validation: (Rule: any) => Rule.required(),
+      validation: (Rule: StringRule) => Rule.required(),
     }),
     defineField({
       name: 'hoverText',
       title: 'Hover tekst',
       type: 'string',
-      validation: (Rule: any) => Rule.required(),
+      validation: (Rule: StringRule) => Rule.required(),
     }),
     defineField({
       name: 'link',
@@ -29,7 +29,7 @@ export const footer = defineField({
       type: 'reference',
       to: [{ type: 'event' }],
       options: {
-        filter: ({ document }) => {
+        filter: ({ document }: { document: { language?: string } }) => {
           if (!document?.language) {
             return {
               filter: '',

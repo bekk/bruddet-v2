@@ -22,8 +22,8 @@ export const portableTextComponents = {
 export const portableTextComponentsWithH2Tag = {
   ...portableTextComponents,
   block: {
-    h2: ({ children }: any) => {
-      const headingId = cleanHeaderIds(children[0]);
+    h2: ({ children }: { children: React.ReactNode[] }) => {
+      const headingId = cleanHeaderIds(String(children[0]));
       return (
         <div id={headingId}>
           <Link

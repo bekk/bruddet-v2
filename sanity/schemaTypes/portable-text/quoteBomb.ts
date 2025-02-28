@@ -53,7 +53,7 @@ export const quoteBomb = {
     select: {
       title: 'quote',
     },
-    prepare: ({ title }: any) => {
+    prepare: ({ title }: { title: string }) => {
       return {
         title: `Sitatbombe med tekst: ${title}`,
       };

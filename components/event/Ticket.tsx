@@ -11,10 +11,25 @@ type TicketProps = {
 };
 
 export const Ticket = ({ date, saleStartOption, saleStartDateTime }: TicketProps) => {
-  const t = useTranslations('event');
-  const renderSaleButton = renderSaleButtonByStatus(saleStartOption, saleStartDateTime, date);
-
   const format = useFormatter();
+  const t = useTranslations('event');
+  const formattedDate = saleStartDateTime
+    ? format.dateTime(new Date(saleStartDateTime), {
+        weekday: 'long',
+        day: '2-digit',
+        month: 'long',
+        hour: '2-digit',
+        minute: '2-digit',
+      })
+    : '';
+
+  const renderSaleButton = renderSaleButtonByStatus(
+    saleStartOption,
+    saleStartDateTime,
+    date,
+    formattedDate,
+    t,
+  );
 
   return (
     <div>
@@ -40,22 +55,15 @@ const renderSaleButtonByStatus = (
   saleStartOption: TicketProps['saleStartOption'],
   saleStartDateTime: TicketProps['saleStartDateTime'],
   date: TicketProps['date'],
+  formattedDate: string, // Consider using a more specific type
+  t: (key: string) => string,
 ) => {
-  const format = useFormatter();
-  const t = useTranslations('event');
   switch (saleStartOption) {
     case 'saleStartKnown':
       if (saleStartDateTime) {
         return (
           <Badge variant={'outline'} size={'lg'} className="uppercase">
-            {t('saleStart')}{' '}
-            {format.dateTime(new Date(saleStartDateTime), {
-              weekday: 'long',
-              day: '2-digit',
-              month: 'long',
-              hour: '2-digit',
-              minute: '2-digit',
-            })}
+            {t('saleStart')} {formattedDate}
           </Badge>
         );
       }
@@ -94,5 +102,5 @@ const renderSaleButtonByStatus = (
         </>
       );
   }
-  return <p>Nassing</p>;
+  return null;
 };

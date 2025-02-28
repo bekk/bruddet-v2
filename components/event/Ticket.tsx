@@ -3,6 +3,7 @@ import { useFormatter, useTranslations } from 'next-intl';
 import { Badge } from '../ui/badge';
 import { Button } from '../ui/button';
 import Link from 'next/link';
+import EventDate from './EventDate';
 
 type TicketProps = {
   date: NonNullable<NonNullable<EVENT_QUERYResult>['dates']>[number] | null;
@@ -34,11 +35,7 @@ export const Ticket = ({ date, saleStartOption, saleStartDateTime }: TicketProps
   return (
     <div>
       <h3 className="uppercase">
-        {format.dateTime(new Date(date?.date || ''), {
-          weekday: 'long',
-          day: '2-digit',
-          month: 'long',
-        })}
+        <EventDate startDate={date?.date || ''} />
       </h3>
       <h4 className="uppercase">
         {format.dateTime(new Date(date?.date || ''), {

@@ -1,4 +1,5 @@
 import { ColumnItem, Columns } from '@/components/column-layout';
+import EventDate from '@/components/event/EventDate';
 import ImageEventPage from '@/components/event/ImageEventPage';
 import { RolesBlock } from '@/components/event/RolesBlock';
 import { TicketBlock } from '@/components/event/TicketBlock';
@@ -8,6 +9,7 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { urlFor } from '@/sanity/lib/image';
 import { EVENT_QUERYResult } from '@/sanity/types/types';
+import { getFirstAndLastDate } from '@/utils/formatDates';
 import { getTranslations } from 'next-intl/server';
 import Link from 'next/link';
 
@@ -41,7 +43,14 @@ export const EventPage = async ({ data }: EventPageProps) => {
                 {label.toUpperCase()}
               </Badge>
             ))}
-            {dates && <Badge variant={'outline'}>DATO</Badge>}
+            {dates && (
+              <Badge variant={'outline'}>
+                <EventDate
+                  startDate={getFirstAndLastDate(dates).startDate}
+                  endDate={getFirstAndLastDate(dates).endDate}
+                />
+              </Badge>
+            )}
             {genre?.title && <Badge variant={'outline'}>{genre.title.toUpperCase()}</Badge>}
             <Button>
               <Link href="#ticket-block" scroll={true}>

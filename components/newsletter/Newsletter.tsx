@@ -1,3 +1,6 @@
+"use client";
+
+import { useNewsLetterContext } from "@/hooks/useDialog";
 import {
     Dialog,
     DialogClose,
@@ -9,14 +12,10 @@ import exitButton from "../../public/exit.svg";
 import { DialogHeader } from "../ui/dialog";
 import NewsletterComponent from "./NewsletterComponent";
 
-interface NewsLetterProps {
-    open: boolean;
-    setOpen: (open: boolean) => void;
-}
-
-export const Newsletter = ({ open, setOpen }: NewsLetterProps) => {
+export const Newsletter = () => {
+    const { isNewsletterOpen, setNewsletterOpen } = useNewsLetterContext();
     return (
-        <Dialog open={open} onOpenChange={setOpen}>
+        <Dialog open={isNewsletterOpen} onOpenChange={setNewsletterOpen}>
             <DialogContent className="fixed inset-0 flex items-center justify-center bg-opacity-50 z-50">
                 <DialogHeader>
                     <div
@@ -37,7 +36,7 @@ export const Newsletter = ({ open, setOpen }: NewsLetterProps) => {
                             info, billetter til redusert pris og andre tilbud!
                         </DialogTitle>
 
-                        <div className="w-100% self-center">
+                        <div className="self-center">
                             <NewsletterComponent />
                         </div>
 

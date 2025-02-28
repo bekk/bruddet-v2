@@ -1,7 +1,7 @@
 "use client";
+import { useNewsLetterContext } from "@/hooks/useDialog";
 import { stegaClean } from "@sanity/client/stega";
 import { useState } from "react";
-import { Newsletter } from "./newsletter/Newsletter";
 
 interface Props {
     text: string;
@@ -10,7 +10,7 @@ interface Props {
 export default function HexagonBuyButton({ text }: Props) {
     const lines = stegaClean(text.split("_"));
     const [isHovering, setIsHovering] = useState(false);
-    const [newsletterIsOpen, setNewsletterIsopen] = useState(false);
+    const { setNewsletterOpen } = useNewsLetterContext();
 
     return (
         <>
@@ -23,7 +23,7 @@ export default function HexagonBuyButton({ text }: Props) {
                     padding: 0,
                     cursor: "pointer",
                 }}
-                onClick={() => setNewsletterIsopen(true)}
+                onClick={() => setNewsletterOpen(true)}
             >
                 <svg
                     width={lines.length === 2 ? "106" : "126"}
@@ -60,7 +60,6 @@ export default function HexagonBuyButton({ text }: Props) {
                     ))}
                 </svg>
             </button>
-            <Newsletter open={newsletterIsOpen} setOpen={setNewsletterIsopen} />
         </>
     );
 }

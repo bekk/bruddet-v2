@@ -32,6 +32,7 @@ export default async function Footer({ isEventPage, lang }: FooterProps) {
                 <MobileFooterExtension
                     isEventPage={isEventPage}
                     scrollingText={scrollingText ?? ""}
+                    link={link ?? ""}
                 />
             </div>
             <div className="h-footer-height flex justify-between border-t border-foreground">

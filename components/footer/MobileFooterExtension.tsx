@@ -8,11 +8,13 @@ import ScrollingCTA from "./ScrollingCTA";
 type MobileFooterExtensionProps = {
     isEventPage: boolean;
     scrollingText: string;
+    link: string;
 };
 
 export default function MobileFooterExtension({
     isEventPage,
     scrollingText,
+    link,
 }: MobileFooterExtensionProps) {
     const [isTargetVisible, setIsTargetVisible] = useState(false);
     const t = useTranslations("footer");
@@ -55,7 +57,7 @@ export default function MobileFooterExtension({
                 )
             ) : (
                 <Link
-                    href="/"
+                    href={`/program/${link}`}
                     className="flex justify-center items-center relative overflow-x-hidden w-full h-full border-x"
                 >
                     <ScrollingCTA text={scrollingText} />

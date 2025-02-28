@@ -33,7 +33,7 @@ export const EventPage = async ({ data }: EventPageProps) => {
                         title={title || ""}
                     />
                 )}
-                <div className="flex flex-col max-w-7xl mx-auto gap-8 my-8 md:my-20 px-6">
+                <div className="flex flex-col max-w-7xl mx-auto gap-8 my-8 md:my-20 px-6 md:px-12">
                     {ingress && <h2>{ingress}</h2>}
 
                     <div className="flex flex-wrap gap-4 md:justify-center">
@@ -56,7 +56,7 @@ export const EventPage = async ({ data }: EventPageProps) => {
                     </div>
                 </div>
             </div>
-            <Columns className="max-w-[1750px] mx-auto gap-4 pb-20 px-6">
+            <Columns className="max-w-content-width mx-auto gap-4 pb-20 px-6 md:px-12">
                 <ColumnItem className="lg:w-1/2">
                     <MainBlock text={text} />
                     <RolesBlock roleGroups={data.roleGroups} />

@@ -79,6 +79,9 @@ export default {
                         footerHeight + footerHeightExtensionEvent
                     ],
             },
+            maxWidth: {
+                "content-width": "1750px",
+            },
             minHeight: {
                 "front-page-height":
                     "calc(100vh - theme(\'spacing.footer-height\'))",

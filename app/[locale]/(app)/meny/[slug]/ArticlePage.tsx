@@ -19,7 +19,7 @@ export const ArticlePage = async ({ data, language }: ArticlePageProps) => {
 
     return (
         <div className="flex flex-col items-center">
-            <div className="article-header flex flex-col max-w-7xl mx-auto gap-8 my-8 md:my-20 px-6">
+            <div className="article-header flex flex-col max-w-7xl mx-auto gap-8 my-24 px-6 md:px-12">
                 <h1 className="text-3xl lg:text-6xl font-normal text-center">
                     {title}
                 </h1>
@@ -35,7 +35,7 @@ export const ArticlePage = async ({ data, language }: ArticlePageProps) => {
                 )}
             </div>
             <RolesBlock roleGroups={roleGroups} />
-            <Columns className="max-w-[1750px] mx-auto gap-4 pb-20 px-6">
+            <Columns className="max-w-content-width mx-auto gap-4 pb-20 px-6 md:px-12">
                 <ColumnItem className="lg:w-1/2">
                     <MainBlock text={text} shouldGenerageH2Links={true} />
                     <RolesBlock roleGroups={roleGroups} />

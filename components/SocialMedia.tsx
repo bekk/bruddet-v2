@@ -1,4 +1,4 @@
-import Ibsen from "./images/Ibsen";
+import Ibsen from './images/Ibsen';
 
 type Props = {
   socialMediaText?: string | null | undefined;
@@ -9,10 +9,7 @@ export const SocialMedia = ({ socialMediaText }: Props) => (
     <Ibsen />
     <p>{socialMediaText}</p>
     <div className="flex gap-4">
-      <a
-        className="hover:underline"
-        href="https://www.instagram.com/fjaereheia_amfi/"
-      >
+      <a className="hover:underline" href="https://www.instagram.com/fjaereheia_amfi/">
         INSTAGRAM
       </a>
       <a className="hover:underline" href="https://www.facebook.com/Fjareheia/">

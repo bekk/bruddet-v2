@@ -1,4 +1,4 @@
-import { stegaClean } from "next-sanity";
+import { stegaClean } from 'next-sanity';
 
 interface QuoteBombProps {
   value: {
@@ -15,37 +15,37 @@ export default function QuoteBombComponent({ value }: QuoteBombProps) {
 
   const getFontSize = () => {
     if (lengthOfString < 30) {
-      return "80px";
+      return '80px';
     } else if (lengthOfString >= 30 && lengthOfString < 45) {
-      return "70px";
+      return '70px';
     } else if (lengthOfString >= 45 && lengthOfString < 60) {
-      return "55px";
+      return '55px';
     } else if (lengthOfString >= 60 && lengthOfString < 80) {
-      return "45px";
+      return '45px';
     } else if (lengthOfString >= 80 && lengthOfString < 90) {
-      return "40px";
+      return '40px';
     } else if (lengthOfString >= 90 && lengthOfString < 100) {
-      return "35px";
+      return '35px';
     } else {
-      return "20px";
+      return '20px';
     }
   };
 
   const getLineHeight = () => {
     if (lengthOfString < 30) {
-      return "70px";
+      return '70px';
     } else if (lengthOfString >= 30 && lengthOfString < 45) {
-      return "55px";
+      return '55px';
     } else if (lengthOfString >= 45 && lengthOfString < 60) {
-      return "50px";
+      return '50px';
     } else if (lengthOfString >= 60 && lengthOfString < 80) {
-      return "45px";
+      return '45px';
     } else if (lengthOfString >= 80 && lengthOfString < 90) {
-      return "40px";
+      return '40px';
     } else if (lengthOfString >= 85 && lengthOfString < 100) {
-      return "35px";
+      return '35px';
     } else {
-      return "20px";
+      return '20px';
     }
   };
 
@@ -58,7 +58,7 @@ export default function QuoteBombComponent({ value }: QuoteBombProps) {
         width="474"
         viewBox="0 0 474 360"
         fill="none"
-        style={{ maxWidth: "15em" }}
+        style={{ maxWidth: '15em' }}
         xmlns="http://www.w3.org/2000/svg"
       >
         <path

@@ -1,46 +1,33 @@
-"use client";
+'use client';
 
-import * as React from "react";
-import { cva, type VariantProps } from "class-variance-authority";
-import { cn } from "@/lib/utils";
+import * as React from 'react';
+import { cva, type VariantProps } from 'class-variance-authority';
+import { cn } from '@/lib/utils';
 
-const columnsVariants = cva("flex");
+const columnsVariants = cva('flex');
 
-const columnItemVariants = cva("");
+const columnItemVariants = cva('');
 
 interface ColumnsProps
-    extends React.HTMLAttributes<HTMLDivElement>,
-        VariantProps<typeof columnsVariants> {}
+  extends React.HTMLAttributes<HTMLDivElement>,
+    VariantProps<typeof columnsVariants> {}
 
 interface ColumnItemProps
-    extends React.HTMLAttributes<HTMLDivElement>,
-        VariantProps<typeof columnItemVariants> {}
+  extends React.HTMLAttributes<HTMLDivElement>,
+    VariantProps<typeof columnItemVariants> {}
 
-const Columns = React.forwardRef<HTMLDivElement, ColumnsProps>(
-    ({ className, ...props }, ref) => {
-        return (
-            <div
-                id="scroll-content"
-                ref={ref}
-                className={cn(columnsVariants({}), className)}
-                {...props}
-            />
-        );
-    },
-);
-Columns.displayName = "Columns";
+const Columns = React.forwardRef<HTMLDivElement, ColumnsProps>(({ className, ...props }, ref) => {
+  return (
+    <div id="scroll-content" ref={ref} className={cn(columnsVariants({}), className)} {...props} />
+  );
+});
+Columns.displayName = 'Columns';
 
 const ColumnItem = React.forwardRef<HTMLDivElement, ColumnItemProps>(
-    ({ className, ...props }, ref) => {
-        return (
-            <div
-                ref={ref}
-                className={cn(columnItemVariants({}), className)}
-                {...props}
-            />
-        );
-    },
+  ({ className, ...props }, ref) => {
+    return <div ref={ref} className={cn(columnItemVariants({}), className)} {...props} />;
+  },
 );
-ColumnItem.displayName = "ColumnItem";
+ColumnItem.displayName = 'ColumnItem';
 
 export { Columns, ColumnItem, type ColumnsProps, type ColumnItemProps };

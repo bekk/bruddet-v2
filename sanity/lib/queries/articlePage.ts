@@ -1,8 +1,8 @@
-import { defineQuery } from "next-sanity";
-import { imageProjectionAsReference } from "./image";
+import { defineQuery } from 'next-sanity';
+import { imageProjectionAsReference } from './image';
 
 export const ARTICLEPAGE_QUERY = defineQuery(
-    `*[_type=="article" && slug.current == $slug && language==$lang][0]{
+  `*[_type=="article" && slug.current == $slug && language==$lang][0]{
         title, 
         slug, 
         ingress,

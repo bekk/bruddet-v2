@@ -3,9 +3,13 @@ import { imageProjectionAsReference } from "./image";
 
 export const FRONTPAGE_QUERY = defineQuery(
     `
-    *[_type == "frontPage"][0]{
+    *[_type == "frontPage" && language == $lang][0]{
       ...,
-      ${imageProjectionAsReference}
+      hexagon {
+        ..., 
+        linkToArticleOrEvent -> {...,},
+      },
+      ${imageProjectionAsReference},
     }
   `,
 );

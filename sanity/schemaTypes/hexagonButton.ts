@@ -18,6 +18,9 @@ export const hexagonButton = defineType({
             type: "string",
             description:
                 "Legg til tittel på hexagon-knappen som vises på forsiden. OBS! det er opp til redaktøren og velge ord som passer med formen. Bruk understrek '_' mellom ord for å få ny linje. Eksempel: 'Program_slipp'",
+            validation: (rule) => [
+                rule.required().error("Hexagonknappen må ha en tekst"),
+            ],
         }),
         defineField({
             name: "linkToArticleOrEvent",

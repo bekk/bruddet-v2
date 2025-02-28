@@ -18,6 +18,13 @@ export default async function Page({
 
     const minHeight = "calc(100vh-theme('spacing.12'))";
 
+    const hexagon = data?.hexagon;
+
+    const pathFromHexagon =
+        data?.hexagon?.linkToArticleOrEvent?._type == "article"
+            ? "/meny/"
+            : "/program/";
+
     return (
         <div
             className="flex justify-center items-center min-h-front-page-height-mobile md:min-h-front-page-height bg-cover bg-center"
@@ -30,7 +37,11 @@ export default async function Page({
             }
         >
             <div className="absolute lg:right-24 lg:top-24 right-6 top-16">
-                <Hexagonbutton text="Meld deg_på vårt_nyhetsbrev" />
+                <Hexagonbutton
+                    text={hexagon?.text ?? "Program_slipp"}
+                    slug={`${pathFromHexagon}${hexagon?.linkToArticleOrEvent?.slug?.current}`}
+                    shouldShowNewsletter={hexagon?.shouldShowNewsletter}
+                />
             </div>
 
             <h1 className="text-primary-foreground">{data?.title}</h1>

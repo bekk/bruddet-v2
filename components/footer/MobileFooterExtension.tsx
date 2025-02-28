@@ -3,18 +3,26 @@
 import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { ScrollingCTA } from "./Footer";
+import ScrollingCTA from "./ScrollingCTA";
+import { useNewsLetterContext } from "@/hooks/useDialog";
 
 type MobileFooterExtensionProps = {
-    isEventPage?: boolean;
+    isEventPage: boolean;
+    scrollingText: string;
+    link: string;
+    showNewsletter: boolean;
 };
 
 export default function MobileFooterExtension({
     isEventPage,
+    scrollingText,
+    link,
+    showNewsletter,
 }: MobileFooterExtensionProps) {
     const [isTargetVisible, setIsTargetVisible] = useState(false);
-    const t = useTranslations("footer");
+    const { setNewsletterOpen } = useNewsLetterContext();
     const t_event = useTranslations("event");
+
     useEffect(() => {
         const observer = new IntersectionObserver(
             (entries) => {
@@ -41,6 +49,13 @@ export default function MobileFooterExtension({
         };
     }, []);
 
+    const handleClick = (e: React.MouseEvent) => {
+        if (showNewsletter) {
+            e.preventDefault();
+            setNewsletterOpen(true);
+        }
+    };
+
     return (
         <div className="flex h-full border-t">
             {isEventPage ? (
@@ -53,10 +68,11 @@ export default function MobileFooterExtension({
                 )
             ) : (
                 <Link
-                    href="/"
+                    href={`/program/${link}`}
                     className="flex justify-center items-center relative overflow-x-hidden w-full h-full border-x"
+                    onClick={handleClick}
                 >
-                    <ScrollingCTA />
+                    <ScrollingCTA text={scrollingText} />
                 </Link>
             )}
         </div>

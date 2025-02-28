@@ -61,6 +61,24 @@ export type SanityFileAsset = {
     source?: SanityAssetSourceData;
 };
 
+export type Footer = {
+    _id: string;
+    _type: "footer";
+    _createdAt: string;
+    _updatedAt: string;
+    _rev: string;
+    language?: string;
+    scrollingText?: string;
+    hoverText?: string;
+    link?: {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: "event";
+    };
+    showNewsletter?: boolean;
+};
+
 export type ExpandableContent = Array<
     | {
           children?: Array<{
@@ -716,6 +734,7 @@ export type AllSanitySchemaTypes =
     | SanityImagePalette
     | SanityImageDimensions
     | SanityFileAsset
+    | Footer
     | ExpandableContent
     | MetaDescription
     | MetaTitle
@@ -1067,6 +1086,22 @@ export type EVENT_QUERYResult = {
     metaDescription?: MetaDescription;
 } | null;
 
+// Source: ./sanity/lib/queries/footer.ts
+// Variable: FOOTER_QUERY
+// Query: *[_type=="footer"][0] {..., "link": link->slug.current}
+export type FOOTER_QUERYResult = {
+    _id: string;
+    _type: "footer";
+    _createdAt: string;
+    _updatedAt: string;
+    _rev: string;
+    language?: string;
+    scrollingText?: string;
+    hoverText?: string;
+    link: string | null;
+    showNewsletter?: boolean;
+} | null;
+
 // Source: ./sanity/lib/queries/frontPage.ts
 // Variable: FRONTPAGE_QUERY
 // Query: *[_type == "frontPage"][0]{      ...,                  image->{                "alt": image.alt[$lang],                "credit": image.credit,                "imageUrl": image.asset->url            }            }
@@ -1176,6 +1211,7 @@ declare module "@sanity/client" {
     interface SanityQueries {
         '*[_type=="article" && slug.current == $slug && language==$lang][0]{\n        title, \n        slug, \n        ingress,\n        metaTitle, \n        metaDescription, \n        galleryDisplayType,\n        image, \n        text[]{..., \n          _type=="video" => {\n            title, muxVideo{asset->{playbackId}\n            }\n          }\n      },  \n      "tagTexts": text[style == "h2"]\n      {"subtitle": children[0].text, _key},\n        roleGroups[]{\n          _type,\n          _key,\n          name, \n          persons[]{\n          _type,\n          ...,\n          person->{\n            name,\n            \n            image->{\n                "alt": image.alt[$lang],\n                "credit": image.credit,\n                "imageUrl": image.asset->url\n            }\n        , \n            text,\n            }\n          }\n        }, \n        video{\n          title, \n          muxVideo{\n            asset->{\n              playbackId}\n            }\n        },\n        \'event\': event->{slug},\n        "_translations": *[_type == "translation.metadata" && references(^._id)].translations[].value->{\n          slug,\n          language,\n        }\n    }': ARTICLEPAGE_QUERYResult;
         '\n    *[_type == "event" && slug.current == $slug && language == $lang][0]{\n      ...,\n      genre->,\n      \n            image->{\n                "alt": image.alt[$lang],\n                "credit": image.credit,\n                "imageUrl": image.asset->url\n            }\n        ,\n      text[]{\n        ...,\n        _type == "customImage" => {\n          \n            image {\n                "alt": alt[$lang],\n                "credit": credit,\n                "imageUrl": asset->url\n            }\n        ,\n        },\n      },\n       roleGroups[]{\n        ...,\n        persons[]{\n          ...,\n          person->{\n            ...,\n            \n            image->{\n                "alt": image.alt[$lang],\n                "credit": image.credit,\n                "imageUrl": image.asset->url\n            }\n        ,\n          }\n        }\n      }\n      \n\n    }\n  ': EVENT_QUERYResult;
+        '*[_type=="footer"][0] {..., "link": link->slug.current}': FOOTER_QUERYResult;
         '\n    *[_type == "frontPage"][0]{\n      ...,\n      \n            image->{\n                "alt": image.alt[$lang],\n                "credit": image.credit,\n                "imageUrl": image.asset->url\n            }\n        \n    }\n  ': FRONTPAGE_QUERYResult;
         '\n            image->{\n                "alt": image.alt[$lang],\n                "credit": image.credit,\n                "imageUrl": image.asset->url\n            }\n        ': ImageProjectionAsReferenceResult;
         '\n            image {\n                "alt": alt[$lang],\n                "credit": credit,\n                "imageUrl": asset->url\n            }\n        ': ImageProjectionResult;

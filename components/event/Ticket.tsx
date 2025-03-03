@@ -31,19 +31,32 @@ export const Ticket = ({ date, saleStartOption, saleStartDateTime }: TicketProps
     formattedDate,
     t,
   );
+  const status =
+    date?.eventTicketStatus == 2
+      ? t('fewTicketsLeft')
+      : date?.eventTicketStatus == 3
+        ? t('soldOut')
+        : null;
 
   return (
     <div>
-      <h3 className="uppercase">
-        <EventDate startDate={date?.date || ''} />
-      </h3>
-      <h4 className="uppercase">
-        {format.dateTime(new Date(date?.date || ''), {
-          hour: '2-digit',
-          minute: '2-digit',
-        })}
-      </h4>
-      {renderSaleButton}
+      <div>
+        <h3 className="uppercase">
+          <EventDate startDate={date?.date || ''} />
+        </h3>
+        <h4 className="uppercase">
+          {format.dateTime(new Date(date?.date || ''), {
+            hour: '2-digit',
+            minute: '2-digit',
+          })}
+        </h4>
+        {status && (
+          <Badge variant={'outline'} size={'lg'} className="uppercase">
+            {status}
+          </Badge>
+        )}
+      </div>
+      <div>{renderSaleButton}</div>
     </div>
   );
 };
@@ -71,8 +84,6 @@ const renderSaleButtonByStatus = (
           {t('saleStartUnknown')}
         </Badge>
       );
-      break;
-
     case 'saleStarted':
       return (
         <>

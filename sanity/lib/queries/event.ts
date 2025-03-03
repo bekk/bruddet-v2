@@ -6,14 +6,14 @@ export const EVENT_QUERY = defineQuery(
     *[_type == "event" && slug.current == $slug && language == $lang][0]{
       ...,
       genre->,
-      ${imageProjectionAsReference},
+        ${imageProjectionAsReference},
       text[]{
         ...,
         _type == "customImage" => {
           ${imageProjection},
         },
       },
-       roleGroups[]{
+      roleGroups[]{
         ...,
         persons[]{
           ...,
@@ -22,9 +22,10 @@ export const EVENT_QUERY = defineQuery(
             ${imageProjectionAsReference},
           }
         }
-      }
-      
-
+      },
+      dates[]{
+        ...,
+      } | order(date asc)
     }
   `,
 );

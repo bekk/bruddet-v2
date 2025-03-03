@@ -18,6 +18,8 @@ import { googleMaps } from './portable-text/googleMaps';
 import { review } from './portable-text/review';
 import { video } from './portable-text/video';
 import { roleGroup } from './roleGroup';
+import { footer } from './footer';
+import { quoteBomb } from './portable-text/quoteBomb';
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -41,5 +43,7 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     customImage,
     localizedString,
     hexagonButton,
+    footer,
+    quoteBomb,
   ],
 };

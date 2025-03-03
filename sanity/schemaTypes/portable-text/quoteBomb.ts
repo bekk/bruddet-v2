@@ -24,7 +24,7 @@ export const quoteBomb = {
       type: 'text',
       description:
         'OBS: redaktør må selv passe på ord-deling for at det skal se bra ut, da figuren ikke tilpasser seg tekst.',
-      validation: (rule) => [rule.max(100).warning('Anbefaler kortere quote.')],
+      validation: (rule) => [rule.max(100).warning('Anbefaler kortere quote.').required()],
     }),
     defineField({
       title: 'Kreditering - person',
@@ -53,7 +53,8 @@ export const quoteBomb = {
     select: {
       title: 'quote',
     },
-    prepare: ({ title }: { title: string }) => {
+    prepare: (selection: Record<string, any>) => {
+      const { title } = selection;
       return {
         title: `Sitatbombe med tekst: ${title}`,
       };

@@ -1,4 +1,4 @@
-import Hexagonbutton from '@/components/Hexagonbutton';
+import HexagonButton from '@/components/Hexagonbutton';
 import { urlFor } from '@/sanity/lib/image';
 import { sanityFetch } from '@/sanity/lib/live';
 import { FRONTPAGE_QUERY } from '@/sanity/lib/queries/frontPage';
@@ -29,7 +29,7 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
       aria-label={typeof data?.image?.alt === 'string' ? data.image.alt : ''}
     >
       <div className="absolute lg:right-24 lg:top-24 right-6 top-16">
-        <Hexagonbutton
+        <HexagonButton
           text={hexagon?.text ?? 'Program_slipp'}
           slug={`${pathFromHexagon}${hexagon?.linkToArticleOrEvent?.slug?.current}`}
           shouldShowNewsletter={hexagon?.shouldShowNewsletter}

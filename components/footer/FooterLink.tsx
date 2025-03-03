@@ -16,7 +16,7 @@ export default function FooterLink({
   return (
     <Link
       href={`/${locale}/${link}`}
-      className="w-[50%] md:w-[15%] flex justify-center items-center font-bold hover:bg-primary hover:text-primary-foreground hover:underline"
+      className="border-r border-foreground md:border-0 w-[50%] md:w-[15%] flex justify-center items-center font-bold hover:bg-primary hover:text-primary-foreground hover:underline"
       aria-label={t(allyTranslationKey)}
     >
       {t(translationKey)}

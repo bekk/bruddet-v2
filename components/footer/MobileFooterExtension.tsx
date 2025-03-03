@@ -55,19 +55,20 @@ export default function MobileFooterExtension({
   };
 
   return (
-    <div className="flex h-full border-t">
+    <div className="flex h-full">
       {isEventPage ? (
         !isTargetVisible && (
-          <div className="fixed bottom-footer-height h-footer-height border-t w-full bg-background-event md:hidden flex justify-center items-center">
-            <Link href="#ticket-block">
-              <span>{t_event('buy-ticket')}</span>
-            </Link>
-          </div>
+          <Link
+            href="#ticket-block"
+            className="hover:underline uppercase fixed bottom-footer-height h-footer-height border-t w-full bg-background-event md:hidden flex justify-center items-center"
+          >
+            <span className="font-bold">{t_event('buy-ticket')}</span>
+          </Link>
         )
       ) : (
         <Link
           href={`/program/${link}`}
-          className="flex justify-center items-center relative overflow-x-hidden w-full h-full border-x"
+          className="flex justify-center items-center relative overflow-x-hidden w-full h-full border-t"
           onClick={handleClick}
         >
           <ScrollingCTA text={scrollingText} />

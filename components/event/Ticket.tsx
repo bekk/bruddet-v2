@@ -41,22 +41,22 @@ export const Ticket = ({ date, saleStartOption, saleStartDateTime }: TicketProps
   return (
     <div>
       <div>
-        <h3 className="uppercase mt-12">
+        <h3 className="uppercase">
           <EventDate startDate={date?.date || ''} />
         </h3>
-        <h4 className="uppercase mt-4">
+        <h4 className="uppercase">
           {format.dateTime(new Date(date?.date || ''), {
             hour: '2-digit',
             minute: '2-digit',
           })}
         </h4>
         {status && (
-          <Badge variant={'outline'} size={'lg'} className="uppercase mt-4">
+          <Badge variant={'outline'} size={'lg'} className="uppercase">
             {status}
           </Badge>
         )}
       </div>
-      <div className="mt-4">{renderSaleButton}</div>
+      <div>{renderSaleButton}</div>
     </div>
   );
 };

@@ -55,7 +55,7 @@ export default function MobileFooterExtension({
   };
 
   return (
-    <div className="flex h-full border-t">
+    <div className="flex h-full">
       {isEventPage ? (
         !isTargetVisible && (
           <Link
@@ -68,7 +68,7 @@ export default function MobileFooterExtension({
       ) : (
         <Link
           href={`/program/${link}`}
-          className="flex justify-center items-center relative overflow-x-hidden w-full h-full border-x"
+          className="flex justify-center items-center relative overflow-x-hidden w-full h-full border-t"
           onClick={handleClick}
         >
           <ScrollingCTA text={scrollingText} />

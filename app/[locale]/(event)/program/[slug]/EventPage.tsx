@@ -53,7 +53,7 @@ export const EventPage = async ({ data }: EventPageProps) => {
             )}
             {genre?.title && <Badge variant={'outline'}>{genre.title.toUpperCase()}</Badge>}
             <Button>
-              <Link href="#ticket-block" scroll={true}>
+              <Link href="#ticket-block" scroll={true} className="uppercase font-bold">
                 {t('buy-ticket')}
               </Link>
             </Button>

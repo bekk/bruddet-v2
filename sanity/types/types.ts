@@ -555,7 +555,27 @@ export type FrontPage = {
     _weak?: boolean;
     [internalGroqTypeReferenceTo]?: 'customImage';
   };
+  hexagon?: HexagonButton;
   language?: string;
+};
+
+export type HexagonButton = {
+  _type: 'hexagonButton';
+  shouldShowNewsletter?: boolean;
+  text?: string;
+  linkToArticleOrEvent?:
+    | {
+        _ref: string;
+        _type: 'reference';
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: 'article';
+      }
+    | {
+        _ref: string;
+        _type: 'reference';
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: 'event';
+      };
 };
 
 export type Event = {
@@ -760,6 +780,7 @@ export type AllSanitySchemaTypes =
   | MenuPage
   | Article
   | FrontPage
+  | HexagonButton
   | Event
   | Person
   | CustomImage
@@ -1088,7 +1109,7 @@ export type EVENT_QUERYResult = {
 
 // Source: ./sanity/lib/queries/footer.ts
 // Variable: FOOTER_QUERY
-// Query: *[_type=="footer"][0] {..., "link": link->slug.current}
+// Query: *[_type=="footer" && language==$lang][0] {..., "link": link->slug.current}
 export type FOOTER_QUERYResult = {
   _id: string;
   _type: 'footer';
@@ -1104,7 +1125,7 @@ export type FOOTER_QUERYResult = {
 
 // Source: ./sanity/lib/queries/frontPage.ts
 // Variable: FRONTPAGE_QUERY
-// Query: *[_type == "frontPage"][0]{      ...,                  image->{                "alt": image.alt[$lang],                "credit": image.credit,                "imageUrl": image.asset->url            }            }
+// Query: *[_type == "frontPage" && language == $lang][0]{      ...,      hexagon {        ...,         linkToArticleOrEvent -> {...,},      },                  image->{                "alt": image.alt[$lang],                "credit": image.credit,                "imageUrl": image.asset->url            }        ,    }
 export type FRONTPAGE_QUERYResult = {
   _id: string;
   _type: 'frontPage';
@@ -1120,6 +1141,95 @@ export type FRONTPAGE_QUERYResult = {
     }> | null;
     credit: string | null;
     imageUrl: string | null;
+  } | null;
+  hexagon: {
+    _type: 'hexagonButton';
+    shouldShowNewsletter?: boolean;
+    text?: string;
+    linkToArticleOrEvent:
+      | {
+          _id: string;
+          _type: 'article';
+          _createdAt: string;
+          _updatedAt: string;
+          _rev: string;
+          title?: string;
+          slug?: Slug;
+          ingress?: string;
+          language?: string;
+          text?: Content;
+          galleryDisplayType?: 1 | 2;
+          image?: {
+            _ref: string;
+            _type: 'reference';
+            _weak?: boolean;
+            [internalGroqTypeReferenceTo]?: 'customImage';
+          };
+          video?: {
+            title?: string;
+            muxVideo?: MuxVideo;
+            _type: 'video';
+          };
+          event?: {
+            _ref: string;
+            _type: 'reference';
+            _weak?: boolean;
+            [internalGroqTypeReferenceTo]?: 'event';
+          };
+          roleGroups?: Array<
+            {
+              _key: string;
+            } & RoleGroup
+          >;
+          metaTitle?: MetaTitle;
+          metaDescription?: MetaDescription;
+        }
+      | {
+          _id: string;
+          _type: 'event';
+          _createdAt: string;
+          _updatedAt: string;
+          _rev: string;
+          title?: string;
+          slug?: Slug;
+          language?: string;
+          genre?: {
+            _ref: string;
+            _type: 'reference';
+            _weak?: boolean;
+            [internalGroqTypeReferenceTo]?: 'genre';
+          };
+          image?: {
+            _ref: string;
+            _type: 'reference';
+            _weak?: boolean;
+            [internalGroqTypeReferenceTo]?: 'customImage';
+          };
+          ingress?: string;
+          ticketInformation?: string;
+          saleStartOption?: 'saleStarted' | 'saleStartKnown' | 'saleStartUnknown';
+          saleStartDateTime?: string;
+          dates?: Array<{
+            date?: string;
+            ticketUrl?: string;
+            busTicketUrl?: string;
+            eventTicketStatus?: 1 | 2 | 3;
+            busTicketStatus?: 1 | 2 | 3;
+            _key: string;
+          }>;
+          duration?: string;
+          labels?: Array<string>;
+          text?: Content;
+          galleryDisplayType?: 1 | 2;
+          roleGroups?: Array<
+            {
+              _key: string;
+            } & RoleGroup
+          >;
+          metaTitle?: MetaTitle;
+          metaDescription?: MetaDescription;
+        }
+      | null;
   } | null;
   language?: string;
 } | null;
@@ -1211,8 +1321,8 @@ declare module '@sanity/client' {
   interface SanityQueries {
     '*[_type=="article" && slug.current == $slug && language==$lang][0]{\n        title, \n        slug, \n        ingress,\n        metaTitle, \n        metaDescription, \n        galleryDisplayType,\n        image, \n        text[]{..., \n          _type=="video" => {\n            title, muxVideo{asset->{playbackId}\n            }\n          }\n      },  \n      "tagTexts": text[style == "h2"]\n      {"subtitle": children[0].text, _key},\n        roleGroups[]{\n          _type,\n          _key,\n          name, \n          persons[]{\n          _type,\n          ...,\n          person->{\n            name,\n            \n            image->{\n                "alt": image.alt[$lang],\n                "credit": image.credit,\n                "imageUrl": image.asset->url\n            }\n        , \n            text,\n            }\n          }\n        }, \n        video{\n          title, \n          muxVideo{\n            asset->{\n              playbackId}\n            }\n        },\n        \'event\': event->{slug},\n        "_translations": *[_type == "translation.metadata" && references(^._id)].translations[].value->{\n          slug,\n          language,\n        }\n    }': ARTICLEPAGE_QUERYResult;
     '\n    *[_type == "event" && slug.current == $slug && language == $lang][0]{\n      ...,\n      genre->,\n      \n            image->{\n                "alt": image.alt[$lang],\n                "credit": image.credit,\n                "imageUrl": image.asset->url\n            }\n        ,\n      text[]{\n        ...,\n        _type == "customImage" => {\n          \n            image {\n                "alt": alt[$lang],\n                "credit": credit,\n                "imageUrl": asset->url\n            }\n        ,\n        },\n      },\n       roleGroups[]{\n        ...,\n        persons[]{\n          ...,\n          person->{\n            ...,\n            \n            image->{\n                "alt": image.alt[$lang],\n                "credit": image.credit,\n                "imageUrl": image.asset->url\n            }\n        ,\n          }\n        }\n      }\n      \n\n    }\n  ': EVENT_QUERYResult;
-    '*[_type=="footer"][0] {..., "link": link->slug.current}': FOOTER_QUERYResult;
-    '\n    *[_type == "frontPage"][0]{\n      ...,\n      \n            image->{\n                "alt": image.alt[$lang],\n                "credit": image.credit,\n                "imageUrl": image.asset->url\n            }\n        \n    }\n  ': FRONTPAGE_QUERYResult;
+    '*[_type=="footer" && language==$lang][0] {..., "link": link->slug.current}': FOOTER_QUERYResult;
+    '\n    *[_type == "frontPage" && language == $lang][0]{\n      ...,\n      hexagon {\n        ..., \n        linkToArticleOrEvent -> {...,},\n      },\n      \n            image->{\n                "alt": image.alt[$lang],\n                "credit": image.credit,\n                "imageUrl": image.asset->url\n            }\n        ,\n    }\n  ': FRONTPAGE_QUERYResult;
     '\n            image->{\n                "alt": image.alt[$lang],\n                "credit": image.credit,\n                "imageUrl": image.asset->url\n            }\n        ': ImageProjectionAsReferenceResult;
     '\n            image {\n                "alt": alt[$lang],\n                "credit": credit,\n                "imageUrl": asset->url\n            }\n        ': ImageProjectionResult;
     '*[_type == "menuPage" && language == $lang][0] {\n    metaTitle, \n    metaDescription,\n    title,\n    links[]->{\n      title,\n      \n            image->{\n                "alt": image.alt[$lang],\n                "credit": image.credit,\n                "imageUrl": image.asset->url\n            }\n        ,\n      slug,\n      _type,\n      text[style=="h2"] {\n        defined(_key) => {_key},\n        "subtitle": children[0].text,\n        "slug": ^.slug.current\n      }[defined(subtitle)],\n    },\n    socialMediaText,\n    bottomLink {\n      text,\n      link->{\n      _type,\n      slug\n      },\n    }\n  }': MENUPAGE_QUERYResult;

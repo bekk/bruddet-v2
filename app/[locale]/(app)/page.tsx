@@ -1,4 +1,4 @@
-import Hexagonbutton from '@/components/Hexagonbutton';
+import HexagonButton from '@/components/Hexagonbutton';
 import { urlFor } from '@/sanity/lib/image';
 import { sanityFetch } from '@/sanity/lib/live';
 import { FRONTPAGE_QUERY } from '@/sanity/lib/queries/frontPage';
@@ -14,6 +14,11 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
 
   const minHeight = "calc(100vh-theme('spacing.12'))";
 
+  const hexagon = data?.hexagon;
+
+  const pathFromHexagon =
+    data?.hexagon?.linkToArticleOrEvent?._type == 'article' ? '/meny/' : '/program/';
+
   return (
     <div
       className="flex justify-center items-center min-h-front-page-height-mobile md:min-h-front-page-height bg-cover bg-center"
@@ -24,7 +29,11 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
       aria-label={typeof data?.image?.alt === 'string' ? data.image.alt : ''}
     >
       <div className="absolute lg:right-24 lg:top-24 right-6 top-16">
-        <Hexagonbutton text="Meld deg_på vårt_nyhetsbrev" />
+        <HexagonButton
+          text={hexagon?.text ?? 'Program_slipp'}
+          slug={`${pathFromHexagon}${hexagon?.linkToArticleOrEvent?.slug?.current}`}
+          shouldShowNewsletter={hexagon?.shouldShowNewsletter}
+        />
       </div>
 
       {data?.title && <h1 className="oversized text-primary-foreground">{data?.title}</h1>}

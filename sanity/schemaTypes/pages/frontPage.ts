@@ -27,6 +27,11 @@ export const frontPage = defineType({
       to: [{ type: 'customImage' }],
     }),
     defineField({
+      name: 'hexagon',
+      title: 'Hexagonknapp',
+      type: 'hexagonButton',
+    }),
+    defineField({
       name: 'language',
       type: 'string',
       readOnly: true,

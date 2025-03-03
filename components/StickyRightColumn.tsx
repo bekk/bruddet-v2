@@ -25,7 +25,7 @@ export const StickyRightColumn = ({ text }: StickyRightColumnProps) => {
             <PortableText key={index} components={portableTextComponents} value={block} />
           )) || []
         }
-        className="h-screen"
+        className="h-max"
       />
     </>
   );

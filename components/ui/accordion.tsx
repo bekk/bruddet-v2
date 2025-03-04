@@ -5,19 +5,20 @@ import * as AccordionPrimitive from '@radix-ui/react-accordion';
 
 import { cn } from '@/lib/utils';
 
-const Accordion = AccordionPrimitive.Root;
-
-const AccordionItem = React.forwardRef<
-  React.ElementRef<typeof AccordionPrimitive.Item>,
-  React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Item>
+const Accordion = React.forwardRef<
+  React.ElementRef<typeof AccordionPrimitive.Root>,
+  React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Root>
 >(({ className, ...props }, ref) => (
-  <AccordionPrimitive.Item
+  <AccordionPrimitive.Root
     ref={ref}
-    className={cn('border-b border-foreground', className)}
+    className={cn('border-t border-b first:border-b-0', className)}
     {...props}
   />
 ));
-AccordionItem.displayName = 'AccordionItem';
+
+Accordion.displayName = 'Accordion';
+
+const AccordionItem = AccordionPrimitive.Item;
 
 const AccordionTrigger = React.forwardRef<
   React.ElementRef<typeof AccordionPrimitive.Trigger>,

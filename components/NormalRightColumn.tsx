@@ -15,10 +15,14 @@ export const NormalRightColumn = ({ text }: NormalRightColumnProps) => {
       (block._type === 'quoteBomb' && block.placement === 1),
   );
 
+  const numberOfRightBlocks = normalRightBlocks?.length;
+
   return (
-    <div className="flex flex-col items-center">
+    <div className={`grid grid-rows-${numberOfRightBlocks} mx-auto`}>
       {normalRightBlocks?.map((block, index) => (
-        <PortableText key={index} components={portableTextComponents} value={block} />
+        <div>
+          <PortableText key={index} components={portableTextComponents} value={block} />
+        </div>
       ))}
     </div>
   );

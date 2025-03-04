@@ -21,7 +21,7 @@ export const MainBlock = ({ text, shouldGenerageH2Links = false }: LeftBlockProp
 
   return (
     <>
-      <div className="hidden lg:block">
+      <div className="hidden lg:block space-y-9">
         {leftBlocks?.map((block) => (
           <PortableText
             key={block._key}
@@ -32,7 +32,7 @@ export const MainBlock = ({ text, shouldGenerageH2Links = false }: LeftBlockProp
           />
         ))}
       </div>
-      <div className="lg:hidden">
+      <div className="lg:hidden space-y-9">
         {text?.map((block) => (
           <PortableText
             key={block._key}

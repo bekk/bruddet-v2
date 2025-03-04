@@ -38,6 +38,8 @@ body {
     --primary-active: var(--color-sintild);
     --secondary: var(--color-mosemork);
     --secondary-foreground: var(--color-flotekos);
+    --secondary-hover: var(--color-nattpatrulje);
+    --secondary-active: var(--color-skyggejeger);
     --muted: var(--color-skarlagenflukt);
     --muted-foreground: var(--color-mosemork);
     --radius: 0;

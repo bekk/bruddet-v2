@@ -42,6 +42,8 @@ export default {
         secondary: {
           DEFAULT: 'var(--secondary)',
           foreground: 'var(--secondary-foreground)',
+          hover: 'var(--secondary-hover)',
+          active: 'var(--secondary-active)',
         },
         muted: {
           DEFAULT: 'var(--muted)',

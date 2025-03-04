@@ -34,6 +34,10 @@ export default {
         primary: {
           DEFAULT: 'var(--primary)',
           foreground: 'var(--primary-foreground)',
+          'foreground-hover': 'var(--primary-foreground-hover)',
+          'foreground-active': 'var(--primary-foreground-active)',
+          hover: 'var(--primary-hover)',
+          active: 'var(--primary-active)',
         },
         secondary: {
           DEFAULT: 'var(--secondary)',

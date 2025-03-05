@@ -12,6 +12,7 @@ import { Geist, Geist_Mono } from 'next/font/google';
 import { draftMode } from 'next/headers';
 import { notFound } from 'next/navigation';
 import '../globals.css';
+import { JumpToContent } from '@/components/JumpToContent';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -50,8 +51,9 @@ export default async function Layout({
     <html lang={locale}>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <NextIntlClientProvider messages={messages}>
+          <JumpToContent />
           <Header />
-          <main>
+          <main id="main-content">
             <NewsLetterProvider>
               {children}
               <Newsletter />

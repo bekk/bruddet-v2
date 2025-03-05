@@ -35,5 +35,8 @@
   },
   "header": {
     "go-to-main": "Go to main content"
+  },
+  "accessibility": {
+    "jump-to-content": "Jump to content"
   }
 }

@@ -1,6 +1,6 @@
 import { stegaClean } from 'next-sanity';
 
-interface QuoteBombProps {
+export interface QuoteBombProps {
   value: {
     quote: string;
     creditsSource: string;

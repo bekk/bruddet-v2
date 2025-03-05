@@ -51,7 +51,7 @@ const RoleGroup = ({ roleGroup }: RoleGroupProps) => {
   if (!roleGroup.persons?.length) return null;
 
   return (
-    <div>
+    <div className="my-8 md:my-12">
       {roleGroup.name && <h2>{roleGroup.name}</h2>}
       <div className="mt-4 flex flex-col">
         {roleGroup.persons.map((personRole, index) => (
@@ -77,7 +77,7 @@ export const RolesBlock = ({ roleGroups }: RolesBlockProps) => {
   if (!roleGroups?.length) return null;
 
   return (
-    <div className="space-y-9 mt-12">
+    <div className="my-12 md:my-20">
       {roleGroups.map((roleGroup, index) => (
         <RoleGroup key={roleGroup._key ?? index} roleGroup={roleGroup} />
       ))}

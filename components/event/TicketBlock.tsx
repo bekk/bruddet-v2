@@ -20,7 +20,7 @@ export const TicketBlock = ({
   const t = useTranslations('event');
 
   return (
-    <div id={id} className="space-y-9 mt-12">
+    <div id={id} className="space-y-9 my-12 md:my-20">
       <h2>{t('tickets')}</h2>
       {ticketInformation && <p>{ticketInformation}</p>}
       {dates?.map((date, i) => (

@@ -51,12 +51,12 @@ export const Ticket = ({ date, saleStartOption, saleStartDateTime }: TicketProps
           })}
         </h4>
         {status && (
-          <Badge variant={'outline'} size={'lg'} className="uppercase">
+          <Badge variant="outline" size="lg" className="uppercase mt-6">
             {status}
           </Badge>
         )}
       </div>
-      <div>{renderSaleButton}</div>
+      <div className="mt-4">{renderSaleButton}</div>
     </div>
   );
 };
@@ -72,7 +72,7 @@ const renderSaleButtonByStatus = (
     case 'saleStartKnown':
       if (saleStartDateTime) {
         return (
-          <Badge variant={'outline'} size={'lg'} className="uppercase">
+          <Badge variant="outline" size="lg" className="uppercase">
             {t('saleStart')} {formattedDate}
           </Badge>
         );
@@ -80,14 +80,14 @@ const renderSaleButtonByStatus = (
       break;
     case 'saleStartUnknown':
       return (
-        <Badge variant={'outline'} size={'lg'} className="uppercase">
+        <Badge variant="outline" size="lg" className="uppercase">
           {t('saleStartUnknown')}
         </Badge>
       );
     case 'saleStarted':
       return (
         <>
-          <Button size={'lg'} disabled={date?.eventTicketStatus === 3}>
+          <Button asChild size="lg" disabled={date?.eventTicketStatus === 3}>
             <Link
               href={date?.ticketUrl || ''}
               className="uppercase"
@@ -97,7 +97,13 @@ const renderSaleButtonByStatus = (
               {t('buy-ticket')}
             </Link>
           </Button>
-          <Button size={'lg'} disabled={date?.busTicketStatus === 3} variant={'secondary'}>
+          <Button
+            asChild
+            size="lg"
+            className="ml-2"
+            disabled={date?.busTicketStatus === 3}
+            variant="secondary"
+          >
             <Link
               href={date?.busTicketUrl || ''}
               className="uppercase"

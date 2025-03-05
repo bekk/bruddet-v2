@@ -1,6 +1,6 @@
 import type { Config } from 'tailwindcss';
-import defaultTheme from 'tailwindcss/defaultTheme';
 import animate from 'tailwindcss-animate';
+import defaultTheme from 'tailwindcss/defaultTheme';
 
 // NOTE: footerHeight + footerHeightExtension must sum to a valid Tailwind spacing value
 // Valid values are typically multiples of 4 (in pixels), e.g. 16 + 12 = 28 (7rem)
@@ -42,6 +42,10 @@ export default {
         muted: {
           DEFAULT: 'var(--muted)',
           foreground: 'var(--muted-foreground)',
+        },
+        hover: {
+          DEFAULT: 'var(--primary-hover)',
+          foreground: 'var(--primary-hover)',
         },
         accent: {
           DEFAULT: 'var(--accent)',

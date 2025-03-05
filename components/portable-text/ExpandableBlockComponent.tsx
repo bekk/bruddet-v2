@@ -6,7 +6,7 @@ interface ExpandableBlockProps {
   value: {
     title: string;
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    content: any; // Adjust the type as necessary based on the expected content structure
+    content: any;
   };
 }
 

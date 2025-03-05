@@ -32,6 +32,7 @@ body {
     --foreground: var(--color-mosemork);
     --primary: var(--color-pyro);
     --primary-foreground: var(--color-flotekos);
+    --primary-hover: var(--color-magma);
     --secondary: var(--color-mosemork);
     --secondary-foreground: var(--color-flotekos);
     --muted: var(--color-skarlagenflukt);

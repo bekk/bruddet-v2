@@ -39,20 +39,20 @@ export const EventPage = async ({ data }: EventPageProps) => {
 
           <div className="flex flex-wrap gap-4 md:justify-center">
             {labels?.map((label, i) => (
-              <Badge variant={'outline'} key={i}>
+              <Badge variant="outline" key={i}>
                 {label.toUpperCase()}
               </Badge>
             ))}
             {dates && (
-              <Badge variant={'outline'}>
+              <Badge variant="outline" className="uppercase">
                 <EventDate
                   startDate={getFirstAndLastDate(dates).startDate}
                   endDate={getFirstAndLastDate(dates).endDate}
                 />
               </Badge>
             )}
-            {genre?.title && <Badge variant={'outline'}>{genre.title.toUpperCase()}</Badge>}
-            <Button>
+            {genre?.title && <Badge variant="outline">{genre.title.toUpperCase()}</Badge>}
+            <Button asChild>
               <Link href="#ticket-block" scroll={true} className="uppercase font-bold">
                 {t('buy-ticket')}
               </Link>

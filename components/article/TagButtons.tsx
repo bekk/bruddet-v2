@@ -13,7 +13,7 @@ export const TagButtons = ({ tagTexts }: TagButtonProps) => {
       <div className="flex gap-2 flex-wrap md:justify-center">
         {tagTexts?.map((tagText) =>
           tagText.subtitle ? (
-            <Button key={tagText._key}>
+            <Button asChild key={tagText._key}>
               <Link href={`#${cleanHeaderIds(tagText.subtitle)}`}>{tagText.subtitle}</Link>
             </Button>
           ) : null,

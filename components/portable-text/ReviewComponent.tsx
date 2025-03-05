@@ -48,7 +48,7 @@ function getRating(rating: number, ratingType: string) {
   return null;
 }
 
-type ReviewComponentProps = {
+export type ReviewComponentProps = {
   value: {
     content?: string;
     source?: string;

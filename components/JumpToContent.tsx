@@ -15,7 +15,7 @@ export const JumpToContent = () => {
           content.focus();
         }
       }}
-      className="sr-only focus:not-sr-only focus:fixed focus:top-0 focus:left-0 focus:right-0 focus:z-[60] focus:p-4 focus:bg-primary border-dashed border-2 border-black outline-none focus:text-primary  text-center underline"
+      className="sr-only focus:not-sr-only focus:fixed focus:top-0 focus:left-0 focus:right-0 focus:z-[60] focus:p-4 focus:bg-primary border-dashed border-2 border-primary-foreground outline-none focus:text-primary-foreground text-center underline"
     >
       {t('jump-to-content')}
     </a>

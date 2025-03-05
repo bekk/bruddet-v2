@@ -44,7 +44,7 @@ export const Ticket = ({ date, saleStartOption, saleStartDateTime }: TicketProps
         <h3 className="uppercase">
           <EventDate startDate={date?.date || ''} />
         </h3>
-        <h4 className="uppercase mt-1">
+        <h4 className="uppercase">
           {format.dateTime(new Date(date?.date || ''), {
             hour: '2-digit',
             minute: '2-digit',
@@ -102,7 +102,7 @@ const renderSaleButtonByStatus = (
             size="lg"
             className="ml-2"
             disabled={date?.busTicketStatus === 3}
-            variant={'secondary'}
+            variant="secondary"
           >
             <Link
               href={date?.busTicketUrl || ''}

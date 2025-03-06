@@ -46,7 +46,7 @@ const RoleGroup = ({ roleGroup }: RoleGroupProps) => {
   if (!roleGroup.persons?.length) return null;
 
   return (
-    <div className="my-14 md:my-20">
+    <div className="my-14 md:my-24">
       {roleGroup.name && <h2>{roleGroup.name}</h2>}
       <div className="mt-2 md:mt-4 flex flex-col">
         {roleGroup.persons.map((personRole, index) => (

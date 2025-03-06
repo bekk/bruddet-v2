@@ -18,7 +18,7 @@ const badgeVariants = cva(
       size: {
         default: 'min-h-10 px-4 py-2',
         sm: 'min-h-9 rounded-md px-3',
-        lg: 'min-h-11 rounded-md px-8',
+        lg: 'min-h-11 rounded-md px-4',
         icon: 'h-10 w-10',
       },
     },

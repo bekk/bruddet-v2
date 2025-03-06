@@ -35,5 +35,8 @@
   },
   "header": {
     "go-to-main": "Gå til hovedsiden"
+  },
+  "accessibility": {
+    "jump-to-content": "Hopp til hovedinnhold"
   }
 }

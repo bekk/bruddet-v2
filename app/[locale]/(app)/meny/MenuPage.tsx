@@ -41,7 +41,7 @@ export const MenuPage = ({ data }: MenuPageProps) => {
                 <Link
                   href={`/${locale}/${RedirectType(link._type)}/${link.slug?.current}`}
                   aria-label={`${t('link-a11y')} ${link.title}`}
-                  className="block text-center hover:underline text-2xl lg:text-4xl"
+                  className="block text-center hover:underline"
                 >
                   {link.title?.toLocaleUpperCase() || ''}
                 </Link>
@@ -52,7 +52,7 @@ export const MenuPage = ({ data }: MenuPageProps) => {
                     <li key={index}>
                       <Link
                         href={`/${locale}/meny/${text.slug}#${text.subtitle && cleanHeaderIds(text.subtitle)}`}
-                        className="block text-center  hover:underline text-xl lg:text-xl"
+                        className="block text-center hover:underline text-lg lg:text-xl"
                         aria-label={`${t('link-a11y')} ${text.subtitle}`}
                       >
                         {text.subtitle}

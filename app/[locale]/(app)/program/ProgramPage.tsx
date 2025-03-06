@@ -55,9 +55,9 @@ export const ProgramPage = ({ data }: ProgramPageProps) => {
                   />
                 )}
               </div>
-              <h2 className="text-2xl lg:text-4xl mt-4 lg:mt-0 uppercase">{link.title}</h2>
+              <h2 className="mt-4 lg:mt-0 uppercase">{link.title}</h2>
               {link.dates && link.dates.length > 0 && (
-                <span className="inline-block mt-2 first-letter:capitalize">
+                <span className="inline-block text-lg mt-5 lg:text-xl first-letter:capitalize ">
                   <EventDate
                     startDate={getFirstAndLastDate(link.dates).startDate}
                     endDate={getFirstAndLastDate(link.dates).endDate}

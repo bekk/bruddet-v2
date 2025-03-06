@@ -52,10 +52,6 @@ export default {
           DEFAULT: 'var(--muted)',
           foreground: 'var(--muted-foreground)',
         },
-        hover: {
-          DEFAULT: 'var(--primary-hover)',
-          foreground: 'var(--primary-hover)',
-        },
         accent: {
           DEFAULT: 'var(--accent)',
           foreground: 'var(--accent-foreground)',

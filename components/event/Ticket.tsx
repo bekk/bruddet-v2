@@ -75,7 +75,7 @@ const renderSaleButtonByStatus = (
     case 'saleStartKnown':
       if (saleStartDateTime) {
         return (
-          <Badge variant="outline" size="lg" className="uppercase text-md">
+          <Badge variant="outline" size="lg">
             {t('saleStart')} {formattedDate}
           </Badge>
         );
@@ -83,19 +83,14 @@ const renderSaleButtonByStatus = (
       break;
     case 'saleStartUnknown':
       return (
-        <Badge variant="outline" size="lg" className="uppercase text-md">
+        <Badge variant="outline" size="lg">
           {t('saleStartUnknown')}
         </Badge>
       );
     case 'saleStarted':
       return (
         <>
-          <Button
-            asChild
-            size="lg"
-            disabled={date?.eventTicketStatus === 3}
-            className="mr-2 mb-2 uppercase text-md font-bold"
-          >
+          <Button asChild size="lg" disabled={date?.eventTicketStatus === 3} className="mr-2 mb-2">
             <Link href={date?.ticketUrl || ''} rel="noopener noreferrer" target="_blank">
               {t('buy-ticket')}
             </Link>

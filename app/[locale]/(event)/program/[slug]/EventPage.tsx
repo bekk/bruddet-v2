@@ -40,24 +40,20 @@ export const EventPage = async ({ data }: EventPageProps) => {
 
           <div className="flex flex-wrap gap-4 md:justify-center">
             {labels?.map((label, i) => (
-              <Badge variant="outline" key={i} className="uppercase text-sm font-bold">
+              <Badge variant="outline" key={i}>
                 {label}
               </Badge>
             ))}
             {dates && (
-              <Badge variant="outline" className="uppercase text-sm font-bold">
+              <Badge variant="outline">
                 <EventDate
                   startDate={getFirstAndLastDate(dates).startDate}
                   endDate={getFirstAndLastDate(dates).endDate}
                 />
               </Badge>
             )}
-            {genre?.title && (
-              <Badge variant="outline" className="uppercase text-sm font-bold">
-                {genre.title}
-              </Badge>
-            )}
-            <Button asChild className="uppercase text-sm font-bold">
+            {genre?.title && <Badge variant="outline">{genre.title}</Badge>}
+            <Button asChild>
               <Link href="#ticket-block" scroll={true}>
                 {t('buy-ticket')}
               </Link>

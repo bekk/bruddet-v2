@@ -35,7 +35,7 @@ export const EventPage = async ({ data }: EventPageProps) => {
             title={title || ''}
           />
         )}
-        <div className="flex flex-col max-w-6xl mx-auto gap-8 md:gap-14 my-8 md:my-14 px-6 md:px-12">
+        <div className="flex flex-col max-w-6xl mx-auto gap-8 md:gap-14 my-8 md:my-16 px-6 md:px-12">
           {ingress && <p className="text-xl text-center md:text-3xl font-bold">{ingress}</p>}
 
           <div className="flex flex-wrap gap-4 md:justify-center">

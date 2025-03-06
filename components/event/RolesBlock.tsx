@@ -30,7 +30,7 @@ const PersonCard = ({ details }: PersonCardProps) => {
         />
       )}
       <div className="flex flex-col gap-2">
-        <h3>{person.name}</h3>
+        <span className="block text-2xl font-bold">{person.name}</span>
         {occupation && <p className="font-bold">{occupation}</p>}
         {description && <p className="text-base break-words">{description}</p>}
       </div>

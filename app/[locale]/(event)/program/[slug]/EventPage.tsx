@@ -35,17 +35,19 @@ export const EventPage = async ({ data }: EventPageProps) => {
             title={title || ''}
           />
         )}
-        <div className="flex flex-col max-w-7xl mx-auto gap-8 my-8 md:my-20 px-6 md:px-12">
-          {ingress && <h2>{ingress}</h2>}
+        <div className="flex flex-col max-w-7xl mx-auto gap-8 md:gap-14 my-8 md:my-14 px-6 md:px-12">
+          {ingress && (
+            <p className="text-xl text-center md:text-3xl md:text-left font-bold">{ingress}</p>
+          )}
 
           <div className="flex flex-wrap gap-4 md:justify-center">
             {labels?.map((label, i) => (
-              <Badge variant="outline" size="sm" key={i}>
-                {label.toUpperCase()}
+              <Badge variant="outline" key={i} className="uppercase text-sm font-bold">
+                {label}
               </Badge>
             ))}
             {dates && (
-              <Badge variant="outline" size="sm" className="uppercase">
+              <Badge variant="outline" className="uppercase text-sm font-bold">
                 <EventDate
                   startDate={getFirstAndLastDate(dates).startDate}
                   endDate={getFirstAndLastDate(dates).endDate}
@@ -53,12 +55,12 @@ export const EventPage = async ({ data }: EventPageProps) => {
               </Badge>
             )}
             {genre?.title && (
-              <Badge variant="outline" size="sm">
-                {genre.title.toUpperCase()}
+              <Badge variant="outline" className="uppercase text-sm font-bold">
+                {genre.title}
               </Badge>
             )}
-            <Button asChild size="sm">
-              <Link href="#ticket-block" scroll={true} className="uppercase font-bold">
+            <Button asChild className="uppercase text-sm font-bold">
+              <Link href="#ticket-block" scroll={true}>
                 {t('buy-ticket')}
               </Link>
             </Button>

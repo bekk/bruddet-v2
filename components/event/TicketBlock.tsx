@@ -22,7 +22,7 @@ export const TicketBlock = ({
   return (
     <div id={id} className="space-y-9 my-12 md:my-20">
       <h2>{t('tickets')}</h2>
-      {ticketInformation && <p>{ticketInformation}</p>}
+      {ticketInformation && <p className="md:text-lg">{ticketInformation}</p>}
       {dates?.map((date, i) => (
         <Ticket {...{ date, saleStartOption, saleStartDateTime }} key={i} />
       ))}

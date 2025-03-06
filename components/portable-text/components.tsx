@@ -19,7 +19,7 @@ const headingSpacingWrapper = (
   );
 };
 
-const componentSpacing = 'my-12 md:my-24';
+const componentSpacing = 'my-12 md:my-20';
 const componentSpacingWrapper = (Tag: React.ElementType, value: any) => {
   return (
     <div className={componentSpacing}>

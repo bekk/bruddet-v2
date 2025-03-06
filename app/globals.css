@@ -7,7 +7,7 @@ body {
 }
 
 p {
-  @apply md:text-lg;
+  @apply md:text-xl;
 
   a {
     @apply underline hover:no-underline;

@@ -65,7 +65,7 @@ export const EventPage = async ({ data }: EventPageProps) => {
           </div>
         </div>
       </div>
-      <Columns className="max-w-content-width mx-auto gap-24 pb-20 px-6 md:px-12">
+      <Columns className="max-w-content-width mx-auto gap-24 pb-20 px-6 md:px-24">
         <ColumnItem className="lg:w-1/2">
           <MainBlock text={text} />
           <RolesBlock roleGroups={data.roleGroups} />

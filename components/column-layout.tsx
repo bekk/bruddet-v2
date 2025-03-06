@@ -18,7 +18,16 @@ interface ColumnItemProps
 
 const Columns = React.forwardRef<HTMLDivElement, ColumnsProps>(({ className, ...props }, ref) => {
   return (
-    <div id="scroll-content" ref={ref} className={cn(columnsVariants({}), className)} {...props} />
+    <div
+      id="scroll-content"
+      ref={ref}
+      className={cn(
+        columnsVariants({}),
+        className,
+        'max-w-content-width mx-auto gap-24 pb-20 px-6 md:px-24',
+      )}
+      {...props}
+    />
   );
 });
 Columns.displayName = 'Columns';

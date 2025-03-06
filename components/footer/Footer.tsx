@@ -31,7 +31,12 @@ export default async function Footer({ isEventPage, lang }: FooterProps) {
         />
       </div>
       <div className="h-footer-height flex justify-between border-t border-foreground">
-        <FooterLink translationKey="menu" allyTranslationKey="menu-a11y" link="meny" />
+        <FooterLink
+          translationKey="menu"
+          allyTranslationKey="menu-a11y"
+          link="meny"
+          className="md:justify-start"
+        />
         <DesktopMiddleFooter
           isEventPage={isEventPage}
           scrollingText={scrollingText ?? ''}
@@ -39,7 +44,12 @@ export default async function Footer({ isEventPage, lang }: FooterProps) {
           link={link ?? ''}
           showNewsletter={showNewsletter ?? true}
         />
-        <FooterLink translationKey="program" allyTranslationKey="program-a11y" link="program" />
+        <FooterLink
+          translationKey="program"
+          allyTranslationKey="program-a11y"
+          link="program"
+          className="md:justify-end"
+        />
       </div>
     </footer>
   );

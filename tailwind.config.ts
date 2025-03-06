@@ -5,7 +5,7 @@ import animate from 'tailwindcss-animate';
 // NOTE: footerHeight + footerHeightExtension must sum to a valid Tailwind spacing value
 // Valid values are typically multiples of 4 (in pixels), e.g. 16 + 12 = 28 (7rem)
 // See https://tailwindcss.com/docs/customizing-spacing for default spacing values
-const footerHeight = 20;
+const footerHeight = 16;
 const footerHeightExtensionEvent = footerHeight;
 const footerHeightExtension = 12;
 

@@ -17,6 +17,9 @@ export default {
     './app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
+    fontFamily: {
+      'pt-serif': ['PT Serif', 'sans-serif'],
+    },
     extend: {
       colors: {
         flotekos: 'var(--color-flotekos)',

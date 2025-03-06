@@ -2,6 +2,7 @@ import { TagButtons } from '@/components/article/TagButtons';
 import { ColumnItem, Columns } from '@/components/column-layout';
 import { RolesBlock } from '@/components/event/RolesBlock';
 import { MainBlock } from '@/components/MainBlock';
+import { NormalRightColumn } from '@/components/NormalRightColumn';
 import { StickyRightColumn } from '@/components/StickyRightColumn';
 import { ARTICLEPAGE_QUERYResult } from '@/sanity/types/types';
 import { getTranslations } from 'next-intl/server';
@@ -15,7 +16,7 @@ export const ArticlePage = async ({ data, language }: ArticlePageProps) => {
     return;
   }
 
-  const { title, ingress, text, tagTexts, event, roleGroups } = data;
+  const { title, ingress, text, tagTexts, event, roleGroups, galleryDisplayType } = data;
 
   return (
     <div className="flex flex-col items-center">
@@ -42,7 +43,11 @@ export const ArticlePage = async ({ data, language }: ArticlePageProps) => {
           <RolesBlock roleGroups={roleGroups} />
         </ColumnItem>
         <ColumnItem className="hidden lg:flex lg:w-1/2">
-          <StickyRightColumn text={text} />
+          {galleryDisplayType === 1 ? (
+            <StickyRightColumn text={text} />
+          ) : (
+            <NormalRightColumn text={text} />
+          )}
         </ColumnItem>
       </Columns>
     </div>

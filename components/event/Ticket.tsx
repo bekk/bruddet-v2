@@ -51,7 +51,7 @@ export const Ticket = ({ date, saleStartOption, saleStartDateTime }: TicketProps
           })}
         </h4>
         {status && (
-          <Badge variant="outline" size="lg" className="uppercase mt-6">
+          <Badge variant="outline" size="sm" className="uppercase mt-6">
             {status}
           </Badge>
         )}

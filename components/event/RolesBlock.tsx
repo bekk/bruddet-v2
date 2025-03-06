@@ -28,11 +28,6 @@ const PersonCard = ({ details }: PersonCardProps) => {
           height={1000}
           objectFit="contain"
         />
-        // <img
-        //   className="w-20 md:w-32 h-28 md:h-44 object-cover mr-4"
-        //   src={person.image.imageUrl}
-        //   alt={person.text ?? person.name ?? ''}
-        // />
       )}
       <div className="flex flex-col gap-2">
         <h3>{person.name}</h3>

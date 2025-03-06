@@ -4,7 +4,7 @@ type ScrollingCTAProps = {
 
 export default function ScrollingCTA({ text }: ScrollingCTAProps) {
   return (
-    <>
+    <div className="font-bold">
       <div className="animate-marquee whitespace-nowrap">
         {Array.from({ length: 12 }).map((_, i) => (
           <span key={i} className="m-4">
@@ -19,6 +19,6 @@ export default function ScrollingCTA({ text }: ScrollingCTAProps) {
           </span>
         ))}
       </div>
-    </>
+    </div>
   );
 }

@@ -4,6 +4,7 @@ import ImageEventPage from '@/components/event/ImageEventPage';
 import { RolesBlock } from '@/components/event/RolesBlock';
 import { TicketBlock } from '@/components/event/TicketBlock';
 import { MainBlock } from '@/components/MainBlock';
+import { NormalRightColumn } from '@/components/NormalRightColumn';
 import { StickyRightColumn } from '@/components/StickyRightColumn';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -22,7 +23,7 @@ export const EventPage = async ({ data }: EventPageProps) => {
 
   if (!data) return;
 
-  const { image, title, ingress, dates, labels, genre, text } = data;
+  const { image, title, ingress, dates, labels, genre, text, galleryDisplayType } = data;
 
   return (
     <>
@@ -30,7 +31,7 @@ export const EventPage = async ({ data }: EventPageProps) => {
         {image?.imageUrl && (
           <ImageEventPage
             url={urlFor(image.imageUrl).url() || ''}
-            alt={image.alt || ''}
+            alt={(image.alt || '') as string}
             title={title || ''}
           />
         )}
@@ -39,20 +40,24 @@ export const EventPage = async ({ data }: EventPageProps) => {
 
           <div className="flex flex-wrap gap-4 md:justify-center">
             {labels?.map((label, i) => (
-              <Badge variant="outline" key={i}>
+              <Badge variant="outline" size="sm" key={i}>
                 {label.toUpperCase()}
               </Badge>
             ))}
             {dates && (
-              <Badge variant="outline" className="uppercase">
+              <Badge variant="outline" size="sm" className="uppercase">
                 <EventDate
                   startDate={getFirstAndLastDate(dates).startDate}
                   endDate={getFirstAndLastDate(dates).endDate}
                 />
               </Badge>
             )}
-            {genre?.title && <Badge variant="outline">{genre.title.toUpperCase()}</Badge>}
-            <Button asChild>
+            {genre?.title && (
+              <Badge variant="outline" size="sm">
+                {genre.title.toUpperCase()}
+              </Badge>
+            )}
+            <Button asChild size="sm">
               <Link href="#ticket-block" scroll={true} className="uppercase font-bold">
                 {t('buy-ticket')}
               </Link>
@@ -73,7 +78,11 @@ export const EventPage = async ({ data }: EventPageProps) => {
           />
         </ColumnItem>
         <ColumnItem className="hidden lg:flex lg:w-1/2">
-          <StickyRightColumn text={text} />
+          {galleryDisplayType === 1 ? (
+            <StickyRightColumn text={text} />
+          ) : (
+            <NormalRightColumn text={text} />
+          )}
         </ColumnItem>
       </Columns>
     </>

@@ -5,7 +5,7 @@ import defaultTheme from 'tailwindcss/defaultTheme';
 // NOTE: footerHeight + footerHeightExtension must sum to a valid Tailwind spacing value
 // Valid values are typically multiples of 4 (in pixels), e.g. 16 + 12 = 28 (7rem)
 // See https://tailwindcss.com/docs/customizing-spacing for default spacing values
-const footerHeight = 20;
+const footerHeight = 16;
 const footerHeightExtensionEvent = footerHeight;
 const footerHeightExtension = 12;
 
@@ -34,10 +34,16 @@ export default {
         primary: {
           DEFAULT: 'var(--primary)',
           foreground: 'var(--primary-foreground)',
+          'foreground-hover': 'var(--primary-foreground-hover)',
+          'foreground-active': 'var(--primary-foreground-active)',
+          hover: 'var(--primary-hover)',
+          active: 'var(--primary-active)',
         },
         secondary: {
           DEFAULT: 'var(--secondary)',
           foreground: 'var(--secondary-foreground)',
+          hover: 'var(--secondary-hover)',
+          active: 'var(--secondary-active)',
         },
         muted: {
           DEFAULT: 'var(--muted)',

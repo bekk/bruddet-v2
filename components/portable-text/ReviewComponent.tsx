@@ -68,10 +68,7 @@ export default function ReviewComponent({ value }: ReviewComponentProps) {
         {value.source?.toLocaleUpperCase()}
         {value.link ? (
           <>
-            {value.source && ','}{' '}
-            <a href={value.link} className="underline cursor-pointer">
-              {value.company}
-            </a>
+            {value.source && ','} <a href={value.link}>{value.company}</a>
           </>
         ) : (
           <>

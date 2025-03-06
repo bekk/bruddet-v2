@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'PT Serif', serif;
 }
 
 @layer base {
@@ -32,8 +32,14 @@ body {
     --foreground: var(--color-mosemork);
     --primary: var(--color-pyro);
     --primary-foreground: var(--color-flotekos);
+    --primary-foreground-hover: var(--color-sort);
+    --primary-foreground-active: var(--color-sintild);
+    --primary-hover: var(--color-magma);
+    --primary-active: var(--color-sintild);
     --secondary: var(--color-mosemork);
     --secondary-foreground: var(--color-flotekos);
+    --secondary-hover: var(--color-nattpatrulje);
+    --secondary-active: var(--color-skyggejeger);
     --muted: var(--color-skarlagenflukt);
     --muted-foreground: var(--color-mosemork);
     --radius: 0;

@@ -41,7 +41,7 @@ export const ProgramPage = ({ data }: ProgramPageProps) => {
               key={index}
               href={`/${locale}/program/${link.slug?.current}`}
               aria-label={`${t('link-a11y')} ${link.title}`}
-              className="block text-center hover:underline"
+              className="block lg:text-center hover:underline"
             >
               <div className="lg:hidden flex justify-center aspect-square w-full">
                 {link.image && (
@@ -55,9 +55,7 @@ export const ProgramPage = ({ data }: ProgramPageProps) => {
                   />
                 )}
               </div>
-              <h2 className="text-2xl lg:text-4xl mt-4 lg:mt-0">
-                {link.title?.toLocaleUpperCase()}
-              </h2>
+              <h2 className="text-2xl lg:text-4xl mt-4 lg:mt-0 uppercase">{link.title}</h2>
               {link.dates && link.dates.length > 0 && (
                 <span className="inline-block mt-2 first-letter:capitalize">
                   <EventDate

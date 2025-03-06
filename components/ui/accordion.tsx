@@ -1,7 +1,7 @@
 'use client';
 
-import * as React from 'react';
 import * as AccordionPrimitive from '@radix-ui/react-accordion';
+import * as React from 'react';
 
 import { cn } from '@/lib/utils';
 
@@ -28,7 +28,7 @@ const AccordionTrigger = React.forwardRef<
     <AccordionPrimitive.Trigger
       ref={ref}
       className={cn(
-        'flex flex-1 items-center justify-between py-2 transition-all hover:underline [&[data-state=open]>svg]:rotate-180',
+        'flex flex-1 items-center justify-between py-2 transition-all [&[data-state=open]>svg]:rotate-180 hover:fill-hover-foreground [&[data-state=open]]:fill-primary [&[data-state=open]]:hover:fill-hover-foreground text-xl',
         className,
       )}
       {...props}
@@ -62,11 +62,11 @@ export const Arrow = ({ className = '' }) => {
       height="16"
       viewBox="0 0 24 16"
       xmlns="http://www.w3.org/2000/svg"
-      className={`fill-primary ${className}`}
+      className={`fill-sort ${className}`}
     >
       <path d="M12 16L-5.08584e-07 -2.09815e-06L24 0L12 16Z" />
     </svg>
   );
 };
 
-export { Accordion, AccordionItem, AccordionTrigger, AccordionContent };
+export { Accordion, AccordionContent, AccordionItem, AccordionTrigger };

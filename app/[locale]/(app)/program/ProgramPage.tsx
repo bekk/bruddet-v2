@@ -59,7 +59,7 @@ export const ProgramPage = ({ data }: ProgramPageProps) => {
                 {link.title?.toLocaleUpperCase()}
               </h2>
               {link.dates && link.dates.length > 0 && (
-                <span className="inline-block mt-2">
+                <span className="inline-block mt-2 first-letter:capitalize">
                   <EventDate
                     startDate={getFirstAndLastDate(link.dates).startDate}
                     endDate={getFirstAndLastDate(link.dates).endDate}

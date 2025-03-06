@@ -6,6 +6,15 @@ body {
   font-family: "PT Serif", serif;
 }
 
+p {
+  @apply md:text-lg;
+
+  a {
+    @apply underline hover:no-underline;
+  }
+}
+
+
 @layer base {
   :root {
     --color-pyro: #ef1716;

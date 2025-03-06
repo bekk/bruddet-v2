@@ -29,7 +29,7 @@ export const ArticlePage = async ({ data, language }: ArticlePageProps) => {
         <TagButtons tagTexts={tagTexts} />
         {event && (
           <Link
-            className="block md:text-center"
+            className="block md:text-center underline hover:no-underline"
             href={`/${language}/program/${event.slug?.current}`}
           >
             {t('read-more')}

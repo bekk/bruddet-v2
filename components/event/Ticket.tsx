@@ -1,5 +1,6 @@
+'use client';
 import { EVENT_QUERYResult } from '@/sanity/types/types';
-import { useFormatter, useTranslations } from 'next-intl';
+import { useFormatter, useLocale, useTranslations } from 'next-intl';
 import { Badge } from '../ui/badge';
 import { Button } from '../ui/button';
 import Link from 'next/link';
@@ -13,6 +14,7 @@ type TicketProps = {
 
 export const Ticket = ({ date, saleStartOption, saleStartDateTime }: TicketProps) => {
   const format = useFormatter();
+  const locale = useLocale();
   const t = useTranslations('event');
   const formattedDate = saleStartDateTime
     ? format.dateTime(new Date(saleStartDateTime), {
@@ -41,22 +43,23 @@ export const Ticket = ({ date, saleStartOption, saleStartDateTime }: TicketProps
   return (
     <div>
       <div>
-        <h3 className="uppercase">
+        <span className="block text-2xl font-bold first-letter:capitalize">
           <EventDate startDate={date?.date || ''} />
-        </h3>
-        <h4 className="uppercase">
+        </span>
+        <span className="block text-xl uppercase mt-1">
+          {locale === 'nb' && 'KL. '}
           {format.dateTime(new Date(date?.date || ''), {
             hour: '2-digit',
             minute: '2-digit',
           })}
-        </h4>
+        </span>
         {status && (
-          <Badge variant="outline" size="sm" className="uppercase mt-6">
+          <Badge variant="outline" size="lg" className="uppercase mt-6 text-md font-bold">
             {status}
           </Badge>
         )}
       </div>
-      <div className="mt-4">{renderSaleButton}</div>
+      <div className="mt-6">{renderSaleButton}</div>
     </div>
   );
 };
@@ -72,7 +75,7 @@ const renderSaleButtonByStatus = (
     case 'saleStartKnown':
       if (saleStartDateTime) {
         return (
-          <Badge variant="outline" size="lg" className="uppercase">
+          <Badge variant="outline" size="lg">
             {t('saleStart')} {formattedDate}
           </Badge>
         );
@@ -80,36 +83,26 @@ const renderSaleButtonByStatus = (
       break;
     case 'saleStartUnknown':
       return (
-        <Badge variant="outline" size="lg" className="uppercase">
+        <Badge variant="outline" size="lg">
           {t('saleStartUnknown')}
         </Badge>
       );
     case 'saleStarted':
       return (
         <>
-          <Button asChild size="lg" disabled={date?.eventTicketStatus === 3}>
-            <Link
-              href={date?.ticketUrl || ''}
-              className="uppercase"
-              rel="noopener noreferrer"
-              target="_blank"
-            >
+          <Button asChild size="lg" disabled={date?.eventTicketStatus === 3} className="mr-2 mb-2">
+            <Link href={date?.ticketUrl || ''} rel="noopener noreferrer" target="_blank">
               {t('buy-ticket')}
             </Link>
           </Button>
           <Button
             asChild
             size="lg"
-            className="ml-2"
+            className="uppercase text-md font-bold"
             disabled={date?.busTicketStatus === 3}
             variant="secondary"
           >
-            <Link
-              href={date?.busTicketUrl || ''}
-              className="uppercase"
-              rel="noopener noreferrer"
-              target="_blank"
-            >
+            <Link href={date?.busTicketUrl || ''} rel="noopener noreferrer" target="_blank">
               {t('buy-bus-ticket')}
             </Link>
           </Button>

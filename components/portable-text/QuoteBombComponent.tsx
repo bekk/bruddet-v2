@@ -75,7 +75,7 @@ export default function QuoteBombComponent({ value }: QuoteBombProps) {
               lineHeight: lineHeight,
             }}
           >
-            <p className="p-0 m-0 text-primary-foreground">{quote}</p>
+            <span className="p-0 m-0 text-primary-foreground">{quote}</span>
           </div>
         </foreignObject>
       </svg>

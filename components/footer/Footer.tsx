@@ -35,7 +35,7 @@ export default async function Footer({ isEventPage, lang }: FooterProps) {
           translationKey="menu"
           allyTranslationKey="menu-a11y"
           link="meny"
-          className="md:justify-start"
+          className="justify-end md:justify-start"
         />
         <DesktopMiddleFooter
           isEventPage={isEventPage}
@@ -48,7 +48,7 @@ export default async function Footer({ isEventPage, lang }: FooterProps) {
           translationKey="program"
           allyTranslationKey="program-a11y"
           link="program"
-          className="md:justify-end"
+          className="justify-start md:justify-end"
         />
       </div>
     </footer>

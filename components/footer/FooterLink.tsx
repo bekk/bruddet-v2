@@ -21,7 +21,7 @@ export default function FooterLink({
   return (
     <Link
       href={`/${locale}/${link}`}
-      className={`md:border-0 border-foreground ${isActive ? 'underline' : ''} w-[50%] md:w-[15%] flex items-center sm:justify-center px-6 text-xl font-bold hover:bg-primary hover:text-primary-foreground hover:underline ${className}`}
+      className={`md:border-0 border-foreground ${isActive ? 'md:underline' : ''} w-[50%] md:w-[15%] flex items-center sm:justify-center px-6 text-xl font-bold hover:bg-primary hover:text-primary-foreground hover:underline ${className}`}
       aria-label={t(allyTranslationKey)}
     >
       {t(translationKey)}

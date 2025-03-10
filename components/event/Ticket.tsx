@@ -54,7 +54,7 @@ export const Ticket = ({ date, saleStartOption, saleStartDateTime }: TicketProps
           })}
         </span>
         {status && (
-          <Badge variant="outline" size="lg" className="uppercase mt-6 text-md font-bold">
+          <Badge variant="outline" size="lg" className="mt-6">
             {status}
           </Badge>
         )}
@@ -95,13 +95,7 @@ const renderSaleButtonByStatus = (
               {t('buy-ticket')}
             </Link>
           </Button>
-          <Button
-            asChild
-            size="lg"
-            className="uppercase text-md font-bold"
-            disabled={date?.busTicketStatus === 3}
-            variant="secondary"
-          >
+          <Button asChild size="lg" disabled={date?.busTicketStatus === 3} variant="secondary">
             <Link href={date?.busTicketUrl || ''} rel="noopener noreferrer" target="_blank">
               {t('buy-bus-ticket')}
             </Link>

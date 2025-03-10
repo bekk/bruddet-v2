@@ -17,6 +17,9 @@ export default {
     './app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
+    fontFamily: {
+      'pt-serif': ['PT Serif', 'sans-serif'],
+    },
     extend: {
       colors: {
         flotekos: 'var(--color-flotekos)',
@@ -48,10 +51,6 @@ export default {
         muted: {
           DEFAULT: 'var(--muted)',
           foreground: 'var(--muted-foreground)',
-        },
-        hover: {
-          DEFAULT: 'var(--primary-hover)',
-          foreground: 'var(--primary-hover)',
         },
         accent: {
           DEFAULT: 'var(--accent)',

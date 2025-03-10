@@ -63,8 +63,8 @@ export type ReviewComponentProps = {
 export default function ReviewComponent({ value }: ReviewComponentProps) {
   return (
     <blockquote className="flex flex-col text-center justify-center items-center gap-4">
-      <h3>{value.content}</h3>
-      <p className="not-italic text-basic">
+      <span className="block text-2xl font-bold">{value.content}</span>
+      <p className="not-italic text-lg">
         {value.source?.toLocaleUpperCase()}
         {value.link ? (
           <>

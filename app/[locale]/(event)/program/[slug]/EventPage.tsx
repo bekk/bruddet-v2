@@ -35,37 +35,33 @@ export const EventPage = async ({ data }: EventPageProps) => {
             title={title || ''}
           />
         )}
-        <div className="flex flex-col max-w-7xl mx-auto gap-8 my-8 md:my-20 px-6 md:px-12">
-          {ingress && <h2>{ingress}</h2>}
+        <div className="flex flex-col max-w-6xl mx-auto gap-8 md:gap-14 my-8 md:my-16 px-6 md:px-12">
+          {ingress && <p className="text-xl text-center md:text-3xl font-bold">{ingress}</p>}
 
           <div className="flex flex-wrap gap-4 md:justify-center">
             {labels?.map((label, i) => (
-              <Badge variant="outline" size="sm" key={i}>
-                {label.toUpperCase()}
+              <Badge variant="outline" key={i}>
+                {label}
               </Badge>
             ))}
             {dates && (
-              <Badge variant="outline" size="sm" className="uppercase">
+              <Badge variant="outline">
                 <EventDate
                   startDate={getFirstAndLastDate(dates).startDate}
                   endDate={getFirstAndLastDate(dates).endDate}
                 />
               </Badge>
             )}
-            {genre?.title && (
-              <Badge variant="outline" size="sm">
-                {genre.title.toUpperCase()}
-              </Badge>
-            )}
-            <Button asChild size="sm">
-              <Link href="#ticket-block" scroll={true} className="uppercase font-bold">
+            {genre?.title && <Badge variant="outline">{genre.title}</Badge>}
+            <Button asChild>
+              <Link href="#ticket-block" scroll={true}>
                 {t('buy-ticket')}
               </Link>
             </Button>
           </div>
         </div>
       </div>
-      <Columns className="max-w-content-width mx-auto gap-4 pb-20 px-6 md:px-12">
+      <Columns>
         <ColumnItem className="lg:w-1/2">
           <MainBlock text={text} />
           <RolesBlock roleGroups={data.roleGroups} />

@@ -122,7 +122,7 @@ export default function NewsletterComponent() {
           Jeg samtykker til kommunikasjon via SMS
         </label>
       </div>
-      <Button type="submit" variant="default" size="xl" className="mt-12">
+      <Button type="submit" size="xl" className="mt-12">
         MELD DEG PÅ
       </Button>
     </form>

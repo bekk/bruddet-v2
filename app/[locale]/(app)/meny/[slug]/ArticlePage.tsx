@@ -19,8 +19,8 @@ export const ArticlePage = async ({ data, language }: ArticlePageProps) => {
   const { title, ingress, text, tagTexts, event, roleGroups, galleryDisplayType } = data;
 
   return (
-    <div className="flex flex-col items-center">
-      <div className="article-header flex flex-col max-w-7xl mx-auto gap-8 mt-24 mb-8 md:mb-24 px-6 md:px-12">
+    <>
+      <div className="article-header flex flex-col max-w-7xl mx-auto gap-8 pt-24 pb-8 md:pb-24 px-6 md:px-12">
         <h1 className="font-normal text-center">{title}</h1>
         <p className="text-xl lg:text-3xl text-left lg:text-center font-normal break-words">
           {ingress}
@@ -38,7 +38,7 @@ export const ArticlePage = async ({ data, language }: ArticlePageProps) => {
       </div>
       <RolesBlock roleGroups={roleGroups} />
       <Columns>
-        <ColumnItem className="lg:w-1/2">
+        <ColumnItem className="lg:w-1/2 max-w-[591px]">
           <MainBlock text={text} shouldGenerageH2Links={true} />
           <RolesBlock roleGroups={roleGroups} />
         </ColumnItem>
@@ -50,6 +50,6 @@ export const ArticlePage = async ({ data, language }: ArticlePageProps) => {
           )}
         </ColumnItem>
       </Columns>
-    </div>
+    </>
   );
 };

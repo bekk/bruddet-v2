@@ -12,17 +12,7 @@
     "link-a11y": "Go to"
   },
   "event": {
-    "buy-ticket": "Buy ticket",
-    "tickets": "Tickets",
-    "fewTicketsLeft": "Only a few tickets left",
-    "soldOut": "Sold out",
-    "saleStart": "TICKETS RELEASED",
-    "saleStartUnknown": "Tickets coming soon",
-    "buy-bus-ticket": "Bus ticket"
-  },
-  "date-label": {
-    "plays": "Performs",
-    "buy-ticket": "Buy ticket",
+    "buy-ticket": "Buy",
     "tickets": "Tickets",
     "fewTicketsLeft": "Only a few tickets left",
     "soldOut": "Sold out",

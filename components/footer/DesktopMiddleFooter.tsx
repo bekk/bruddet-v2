@@ -25,7 +25,7 @@ export default function DesktopMiddleFooter({
           href="#ticket-block"
           className="hidden md:w-[70%] md:flex justify-center items-center border-x border-foreground hover:bg-primary hover:text-primary-foreground hover:underline"
         >
-          <span className="font-bold uppercase">{t_event('buy-ticket')}</span>
+          <span className="font-bold uppercase text-xl">{t_event('buy-ticket')}</span>
         </Link>
       ) : (
         <FooterHoverCTALink

@@ -62,7 +62,7 @@ export default function MobileFooterExtension({
             href="#ticket-block"
             className="hover:underline fixed bottom-footer-height h-footer-height border-t w-full bg-background-event md:hidden flex justify-center items-center"
           >
-            <span className="uppercase font-bold">{t_event('buy-ticket')}</span>
+            <span className="font-bold uppercase text-xl">{t_event('buy-ticket')}</span>
           </Link>
         )
       ) : (

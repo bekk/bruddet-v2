@@ -58,7 +58,7 @@ export default function QuoteBombComponent({ value }: QuoteBombProps) {
         width="474"
         viewBox="0 0 474 360"
         fill="none"
-        style={{ maxWidth: '15em' }}
+        style={{ maxWidth: '300px' }}
         xmlns="http://www.w3.org/2000/svg"
       >
         <path
@@ -69,7 +69,7 @@ export default function QuoteBombComponent({ value }: QuoteBombProps) {
 
         <foreignObject x="80" y="30" width="290" height="300">
           <div
-            className="flex items-center justify-center h-full"
+            className="flex items-center justify-center text-center h-full"
             style={{
               fontSize: fontSize,
               lineHeight: lineHeight,

@@ -53,7 +53,7 @@ export default async function Layout({
         <NextIntlClientProvider messages={messages}>
           <JumpToContent />
           <Header />
-          <main id="main-content">
+          <main id="main-content" tabIndex={0}>
             <NewsLetterProvider>
               {children}
               <Newsletter />

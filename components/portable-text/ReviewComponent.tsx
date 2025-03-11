@@ -65,7 +65,7 @@ export default function ReviewComponent({ value }: ReviewComponentProps) {
     <blockquote className="flex flex-col text-center justify-center items-center gap-4">
       <span className="block text-2xl font-bold">{value.content}</span>
       <p className="not-italic text-lg">
-        {value.source?.toLocaleUpperCase()}
+        <span className="uppercase">{value.source}</span>
         {value.link ? (
           <>
             {value.source && ','} <a href={value.link}>{value.company}</a>

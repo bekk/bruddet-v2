@@ -58,7 +58,7 @@ export default function QuoteBombComponent({ value }: QuoteBombProps) {
         width="474"
         viewBox="0 0 474 360"
         fill="none"
-        style={{ maxWidth: '300px' }}
+        className="max-w-xs"
         xmlns="http://www.w3.org/2000/svg"
       >
         <path

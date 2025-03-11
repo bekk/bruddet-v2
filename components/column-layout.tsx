@@ -6,7 +6,7 @@ import { cn } from '@/lib/utils';
 
 const columnsVariants = cva('flex');
 
-const columnItemVariants = cva('');
+const columnItemVariants = cva('max-w-xl');
 
 interface ColumnsProps
   extends React.HTMLAttributes<HTMLDivElement>,
@@ -24,7 +24,7 @@ const Columns = React.forwardRef<HTMLDivElement, ColumnsProps>(({ className, ...
       className={cn(
         columnsVariants({}),
         className,
-        'max-w-content-width mx-auto gap-24 pb-20 px-6 md:px-24',
+        'max-w-content-width mx-auto gap-32 pb-16 px-6 md:px-24',
       )}
       {...props}
     />

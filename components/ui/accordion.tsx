@@ -28,13 +28,13 @@ const AccordionTrigger = React.forwardRef<
     <AccordionPrimitive.Trigger
       ref={ref}
       className={cn(
-        'font-pt-serif font-bold text-lg flex flex-1 items-center justify-between py-2 transition-all [&[data-state=open]>svg]:rotate-180 hover:fill-primary-hover [&[data-state=open]]:fill-primary [&[data-state=open]]:hover:fill-primary-hover',
+        'font-pt-serif font-bold text-xl flex flex-1 items-center justify-between py-2 transition-all [&[data-state=open]>svg]:rotate-180 hover:fill-primary-hover [&[data-state=open]]:fill-primary [&[data-state=open]]:hover:fill-primary-hover',
         className,
       )}
       {...props}
     >
       {children}
-      <Arrow className="h-4 w-4 shrink-0 transition-transform duration-200" />
+      <Arrow className="shrink-0 transition-transform duration-200" />
     </AccordionPrimitive.Trigger>
   </AccordionPrimitive.Header>
 ));

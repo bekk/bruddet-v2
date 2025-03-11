@@ -37,5 +37,19 @@ export const frontPage = defineType({
       readOnly: true,
       hidden: false,
     }),
+    defineField({
+      name: 'metaTitle',
+      title: 'SEO tittel',
+      type: 'metaTitle',
+      group: 'seo',
+      validation: (rule) => [rule.required().error('Må ha SEO tittel')],
+    }),
+    defineField({
+      name: 'metaDescription',
+      title: 'SEO beskrivelse',
+      type: 'metaDescription',
+      group: 'seo',
+      validation: (rule) => [rule.required().error('Må ha SEO beskrivelse')],
+    }),
   ],
 });

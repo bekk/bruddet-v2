@@ -1,9 +1,11 @@
 import HexagonButton from '@/components/Hexagonbutton';
+import { client } from '@/sanity/lib/client';
 import { urlFor } from '@/sanity/lib/image';
 import { sanityFetch } from '@/sanity/lib/live';
 import { FRONTPAGE_QUERY } from '@/sanity/lib/queries/frontPage';
 import { FRONTPAGE_QUERYResult } from '@/sanity/types/types';
 import { SanityImageSource } from '@sanity/image-url/lib/types/types';
+import { Metadata } from 'next';
 
 export default async function Page({ params }: { params: Promise<{ locale: string }> }) {
   const lang = (await params).locale;
@@ -39,4 +41,24 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
       {data?.title && <h1 className="oversized text-primary-foreground">{data?.title}</h1>}
     </div>
   );
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const lang = (await params).locale;
+  const data: FRONTPAGE_QUERYResult = await client.fetch(FRONTPAGE_QUERY, {
+    lang,
+  });
+
+  return {
+    title: data?.metaTitle,
+    description: data?.metaDescription,
+    openGraph: {
+      title: data?.metaTitle as string,
+      description: data?.metaDescription as string,
+    },
+  };
 }

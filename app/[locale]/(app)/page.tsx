@@ -1,5 +1,5 @@
 import HexagonButton from '@/components/Hexagonbutton';
-import { client } from '@/sanity/lib/client';
+import { generateSeoData } from '@/lib/utils';
 import { urlFor } from '@/sanity/lib/image';
 import { sanityFetch } from '@/sanity/lib/live';
 import { FRONTPAGE_QUERY } from '@/sanity/lib/queries/frontPage';
@@ -48,17 +48,5 @@ export async function generateMetadata({
 }: {
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
-  const lang = (await params).locale;
-  const data: FRONTPAGE_QUERYResult = await client.fetch(FRONTPAGE_QUERY, {
-    lang,
-  });
-
-  return {
-    title: data?.metaTitle,
-    description: data?.metaDescription,
-    openGraph: {
-      title: data?.metaTitle as string,
-      description: data?.metaDescription as string,
-    },
-  };
+  return generateSeoData({ params, query: FRONTPAGE_QUERY });
 }

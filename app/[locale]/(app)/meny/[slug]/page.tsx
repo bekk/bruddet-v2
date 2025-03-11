@@ -1,5 +1,6 @@
 import { client } from '@/sanity/lib/client';
 
+import { generateSeoData } from '@/lib/utils';
 import { ARTICLEPAGE_QUERY } from '@/sanity/lib/queries/articlePage';
 import { ARTICLEPAGE_QUERYResult } from '@/sanity/types/types';
 import { Metadata } from 'next';
@@ -25,17 +26,5 @@ export async function generateMetadata({
 }: {
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
-  const lang = (await params).locale;
-  const data: ARTICLEPAGE_QUERYResult = await client.fetch(ARTICLEPAGE_QUERY, {
-    lang,
-  });
-
-  return {
-    title: data?.metaTitle,
-    description: data?.metaDescription,
-    openGraph: {
-      title: data?.metaTitle as string,
-      description: data?.metaDescription as string,
-    },
-  };
+  return generateSeoData({ params, query: ARTICLEPAGE_QUERY });
 }

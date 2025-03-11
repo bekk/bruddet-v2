@@ -1,5 +1,5 @@
 import { EventPage } from '@/app/[locale]/(event)/program/[slug]/EventPage';
-import { client } from '@/sanity/lib/client';
+import { generateSeoData } from '@/lib/utils';
 import { sanityFetch } from '@/sanity/lib/live';
 import { EVENT_QUERY } from '@/sanity/lib/queries/event';
 import { EVENT_QUERYResult } from '@/sanity/types/types';
@@ -24,19 +24,7 @@ export default async function Page({
 export async function generateMetadata({
   params,
 }: {
-  params: Promise<{ locale: string }>;
+  params: Promise<{ locale: string; slug: string }>;
 }): Promise<Metadata> {
-  const lang = (await params).locale;
-  const data: EVENT_QUERYResult = await client.fetch(EVENT_QUERY, {
-    lang,
-  });
-
-  return {
-    title: data?.metaTitle,
-    description: data?.metaDescription,
-    openGraph: {
-      title: data?.metaTitle as string,
-      description: data?.metaDescription as string,
-    },
-  };
+  return generateSeoData({ params, query: EVENT_QUERY });
 }

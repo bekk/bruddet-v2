@@ -6,7 +6,7 @@ import { cn } from '@/lib/utils';
 
 const columnsVariants = cva('flex');
 
-const columnItemVariants = cva('');
+const columnItemVariants = cva('max-w-xl');
 
 interface ColumnsProps
   extends React.HTMLAttributes<HTMLDivElement>,

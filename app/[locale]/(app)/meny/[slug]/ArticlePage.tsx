@@ -38,7 +38,7 @@ export const ArticlePage = async ({ data, language }: ArticlePageProps) => {
       </div>
       <RolesBlock roleGroups={roleGroups} />
       <Columns>
-        <ColumnItem className="lg:w-1/2 max-w-[591px]">
+        <ColumnItem className="lg:w-1/2">
           <MainBlock text={text} shouldGenerageH2Links={true} />
           <RolesBlock roleGroups={roleGroups} />
         </ColumnItem>

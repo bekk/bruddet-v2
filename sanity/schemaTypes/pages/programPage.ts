@@ -1,9 +1,10 @@
-import { defineType, defineField } from 'sanity';
+import { defineField, defineType } from 'sanity';
 
 export const programPage = defineType({
   name: 'programPage',
   title: 'Programside',
   type: 'document',
+  groups: [{ title: 'SEO', name: 'seo' }],
   fields: [
     defineField({
       name: 'language',
@@ -23,12 +24,14 @@ export const programPage = defineType({
       title: 'SEO tittel',
       type: 'metaTitle',
       initialValue: 'Meny',
+      group: 'seo',
       validation: (rule) => [rule.required().error('Må ha SEO tittel')],
     }),
     defineField({
       name: 'metaDescription',
       title: 'SEO beskrivelse',
       type: 'metaDescription',
+      group: 'seo',
       initialValue: 'Oversikt over menysider',
       validation: (rule) => [rule.required().error('Må ha SEO beskrivelse')],
     }),

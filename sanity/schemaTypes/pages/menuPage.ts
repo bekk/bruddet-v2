@@ -4,6 +4,7 @@ export const menuPage = defineType({
   name: 'menuPage',
   title: 'Menyside',
   type: 'document',
+  groups: [{ title: 'SEO', name: 'seo' }],
   fields: [
     defineField({
       name: 'language',
@@ -23,6 +24,7 @@ export const menuPage = defineType({
       title: 'SEO tittel',
       type: 'metaTitle',
       initialValue: 'Meny',
+      group: 'seo',
       validation: (rule) => [rule.required().error('Må ha SEO tittel')],
     }),
     defineField({
@@ -30,6 +32,7 @@ export const menuPage = defineType({
       title: 'SEO beskrivelse',
       type: 'metaDescription',
       initialValue: 'Oversikt over menysider',
+      group: 'seo',
       validation: (rule) => [rule.required().error('Må ha SEO beskrivelse')],
     }),
     defineField({

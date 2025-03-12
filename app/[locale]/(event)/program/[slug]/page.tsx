@@ -1,7 +1,9 @@
 import { EventPage } from '@/app/[locale]/(event)/program/[slug]/EventPage';
+import { generateSeoData } from '@/lib/utils';
 import { sanityFetch } from '@/sanity/lib/live';
 import { EVENT_QUERY } from '@/sanity/lib/queries/event';
 import { EVENT_QUERYResult } from '@/sanity/types/types';
+import { Metadata } from 'next';
 
 export default async function Page({
   params,
@@ -17,4 +19,12 @@ export default async function Page({
   });
 
   return <EventPage data={data} />;
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string; slug: string }>;
+}): Promise<Metadata> {
+  return generateSeoData({ params, query: EVENT_QUERY });
 }

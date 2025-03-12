@@ -61,6 +61,18 @@ export type SanityFileAsset = {
   source?: SanityAssetSourceData;
 };
 
+export type QuoteBomb = {
+  _id: string;
+  _type: 'quoteBomb';
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  quote?: string;
+  creditsSource?: string;
+  creditsMedia?: string;
+  placement?: 0 | 1;
+};
+
 export type Footer = {
   _id: string;
   _type: 'footer';
@@ -166,18 +178,6 @@ export type Review = {
   company?: string;
   link?: string;
   date?: string;
-};
-
-export type QuoteBomb = {
-  _id: string;
-  _type: 'quoteBomb';
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  quote?: string;
-  creditsSource?: string;
-  creditsMedia?: string;
-  placement?: 0 | 1;
 };
 
 export type GoogleMaps = {
@@ -557,6 +557,8 @@ export type FrontPage = {
   };
   hexagon?: HexagonButton;
   language?: string;
+  metaTitle?: MetaTitle;
+  metaDescription?: MetaDescription;
 };
 
 export type HexagonButton = {
@@ -754,6 +756,7 @@ export type AllSanitySchemaTypes =
   | SanityImagePalette
   | SanityImageDimensions
   | SanityFileAsset
+  | QuoteBomb
   | Footer
   | ExpandableContent
   | MetaDescription
@@ -761,7 +764,6 @@ export type AllSanitySchemaTypes =
   | RoleGroup
   | Video
   | Review
-  | QuoteBomb
   | GoogleMaps
   | Geopoint
   | Faq
@@ -949,7 +951,7 @@ export type ARTICLEPAGE_QUERYResult = {
 
 // Source: ./sanity/lib/queries/event.ts
 // Variable: EVENT_QUERY
-// Query: *[_type == "event" && slug.current == $slug && language == $lang][0]{      ...,      genre->,                  image->{                "alt": image.alt[$lang],                "credit": image.credit,                "imageUrl": image.asset->url            }        ,      text[]{        ...,        _type == "customImage" => {                      image {                "alt": alt[$lang],                "credit": credit,                "imageUrl": asset->url            }        ,        },      },       roleGroups[]{        ...,        persons[]{          ...,          person->{            ...,                        image->{                "alt": image.alt[$lang],                "credit": image.credit,                "imageUrl": image.asset->url            }        ,          }        }      }          }
+// Query: *[_type == "event" && slug.current == $slug && language == $lang][0]{      ...,      genre->,                    image->{                "alt": image.alt[$lang],                "credit": image.credit,                "imageUrl": image.asset->url            }        ,      text[]{        ...,        _type == "customImage" => {                      image {                "alt": alt[$lang],                "credit": credit,                "imageUrl": asset->url            }        ,        },      },      roleGroups[]{        ...,        persons[]{          ...,          person->{            ...,                        image->{                "alt": image.alt[$lang],                "credit": image.credit,                "imageUrl": image.asset->url            }        ,          }        }      },      dates[]{        ...,      } | order(date asc)    }
 export type EVENT_QUERYResult = {
   _id: string;
   _type: 'event';
@@ -982,14 +984,14 @@ export type EVENT_QUERYResult = {
   ticketInformation?: string;
   saleStartOption?: 'saleStarted' | 'saleStartKnown' | 'saleStartUnknown';
   saleStartDateTime?: string;
-  dates?: Array<{
+  dates: Array<{
     date?: string;
     ticketUrl?: string;
     busTicketUrl?: string;
     eventTicketStatus?: 1 | 2 | 3;
     busTicketStatus?: 1 | 2 | 3;
     _key: string;
-  }>;
+  }> | null;
   duration?: string;
   labels?: Array<string>;
   text: Array<
@@ -1232,6 +1234,8 @@ export type FRONTPAGE_QUERYResult = {
       | null;
   } | null;
   language?: string;
+  metaTitle?: MetaTitle;
+  metaDescription?: MetaDescription;
 } | null;
 
 // Source: ./sanity/lib/queries/image.ts
@@ -1320,7 +1324,7 @@ import '@sanity/client';
 declare module '@sanity/client' {
   interface SanityQueries {
     '*[_type=="article" && slug.current == $slug && language==$lang][0]{\n        title, \n        slug, \n        ingress,\n        metaTitle, \n        metaDescription, \n        galleryDisplayType,\n        image, \n        text[]{..., \n          _type=="video" => {\n            title, muxVideo{asset->{playbackId}\n            }\n          }\n      },  \n      "tagTexts": text[style == "h2"]\n      {"subtitle": children[0].text, _key},\n        roleGroups[]{\n          _type,\n          _key,\n          name, \n          persons[]{\n          _type,\n          ...,\n          person->{\n            name,\n            \n            image->{\n                "alt": image.alt[$lang],\n                "credit": image.credit,\n                "imageUrl": image.asset->url\n            }\n        , \n            text,\n            }\n          }\n        }, \n        video{\n          title, \n          muxVideo{\n            asset->{\n              playbackId}\n            }\n        },\n        \'event\': event->{slug},\n        "_translations": *[_type == "translation.metadata" && references(^._id)].translations[].value->{\n          slug,\n          language,\n        }\n    }': ARTICLEPAGE_QUERYResult;
-    '\n    *[_type == "event" && slug.current == $slug && language == $lang][0]{\n      ...,\n      genre->,\n      \n            image->{\n                "alt": image.alt[$lang],\n                "credit": image.credit,\n                "imageUrl": image.asset->url\n            }\n        ,\n      text[]{\n        ...,\n        _type == "customImage" => {\n          \n            image {\n                "alt": alt[$lang],\n                "credit": credit,\n                "imageUrl": asset->url\n            }\n        ,\n        },\n      },\n       roleGroups[]{\n        ...,\n        persons[]{\n          ...,\n          person->{\n            ...,\n            \n            image->{\n                "alt": image.alt[$lang],\n                "credit": image.credit,\n                "imageUrl": image.asset->url\n            }\n        ,\n          }\n        }\n      }\n      \n\n    }\n  ': EVENT_QUERYResult;
+    '\n    *[_type == "event" && slug.current == $slug && language == $lang][0]{\n      ...,\n      genre->,\n        \n            image->{\n                "alt": image.alt[$lang],\n                "credit": image.credit,\n                "imageUrl": image.asset->url\n            }\n        ,\n      text[]{\n        ...,\n        _type == "customImage" => {\n          \n            image {\n                "alt": alt[$lang],\n                "credit": credit,\n                "imageUrl": asset->url\n            }\n        ,\n        },\n      },\n      roleGroups[]{\n        ...,\n        persons[]{\n          ...,\n          person->{\n            ...,\n            \n            image->{\n                "alt": image.alt[$lang],\n                "credit": image.credit,\n                "imageUrl": image.asset->url\n            }\n        ,\n          }\n        }\n      },\n      dates[]{\n        ...,\n      } | order(date asc)\n    }\n  ': EVENT_QUERYResult;
     '*[_type=="footer" && language==$lang][0] {..., "link": link->slug.current}': FOOTER_QUERYResult;
     '\n    *[_type == "frontPage" && language == $lang][0]{\n      ...,\n      hexagon {\n        ..., \n        linkToArticleOrEvent -> {...,},\n      },\n      \n            image->{\n                "alt": image.alt[$lang],\n                "credit": image.credit,\n                "imageUrl": image.asset->url\n            }\n        ,\n    }\n  ': FRONTPAGE_QUERYResult;
     '\n            image->{\n                "alt": image.alt[$lang],\n                "credit": image.credit,\n                "imageUrl": image.asset->url\n            }\n        ': ImageProjectionAsReferenceResult;

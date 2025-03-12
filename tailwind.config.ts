@@ -8,6 +8,8 @@ import defaultTheme from 'tailwindcss/defaultTheme';
 const footerHeight = 16;
 const footerHeightExtensionEvent = footerHeight;
 const footerHeightExtension = 12;
+const footerHeightMobile = 28;
+const footerHeightMobileEvent = 32;
 
 export default {
   darkMode: ['class'],
@@ -80,9 +82,8 @@ export default {
         'footer-height': defaultTheme.spacing[footerHeight],
         'footer-height-extension': defaultTheme.spacing[footerHeightExtension],
         'footer-height-extension-event': defaultTheme.spacing[footerHeightExtensionEvent],
-        'footer-height-mobile': defaultTheme.spacing[footerHeight + footerHeightExtension],
-        'footer-height-mobile-event':
-          defaultTheme.spacing[footerHeight + footerHeightExtensionEvent],
+        'footer-height-mobile': defaultTheme.spacing[footerHeightMobile],
+        'footer-height-mobile-event': defaultTheme.spacing[footerHeightMobileEvent],
       },
       maxWidth: {
         'content-width': '1750px',

@@ -1,16 +1,16 @@
 import { defineQuery } from 'next-sanity';
-import { imageProjection, imageProjectionAsReference } from './image';
+import { imageProjection } from './image';
 
 export const EVENT_QUERY = defineQuery(
   `
     *[_type == "event" && slug.current == $slug && language == $lang][0]{
       ...,
       genre->,
-        ${imageProjectionAsReference},
+        image->${imageProjection},
       text[]{
         ...,
         _type == "customImage" => {
-          ${imageProjection},
+          "image": ${imageProjection}
         },
       },
       roleGroups[]{
@@ -19,7 +19,7 @@ export const EVENT_QUERY = defineQuery(
           ...,
           person->{
             ...,
-            ${imageProjectionAsReference},
+            image->${imageProjection},
           }
         }
       },

@@ -1,5 +1,5 @@
 import { defineQuery } from 'next-sanity';
-import { imageProjectionAsReference } from './image';
+import { imageProjection } from './image';
 
 export const FRONTPAGE_QUERY = defineQuery(
   `
@@ -9,7 +9,7 @@ export const FRONTPAGE_QUERY = defineQuery(
         ..., 
         linkToArticleOrEvent -> {...,},
       },
-      ${imageProjectionAsReference},
+      image->${imageProjection},
     }
   `,
 );

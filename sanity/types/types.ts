@@ -798,7 +798,7 @@ export type AllSanitySchemaTypes =
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ./sanity/lib/queries/articlePage.ts
 // Variable: ARTICLEPAGE_QUERY
-// Query: *[_type=="article" && slug.current == $slug && language==$lang][0]{        title,         slug,         ingress,        metaTitle,         metaDescription,         galleryDisplayType,        image,         text[]{...,           _type=="video" => {            title, muxVideo{asset->{playbackId}            }          }      },        "tagTexts": text[style == "h2"]      {"subtitle": children[0].text, _key},        roleGroups[]{          _type,          _key,          name,           persons[]{          _type,          ...,          person->{            name,                        image->{                "alt": image.alt[$lang],                "credit": image.credit,                "imageUrl": image.asset->url            }        ,             text,            }          }        },         video{          title,           muxVideo{            asset->{              playbackId}            }        },        'event': event->{slug},        "_translations": *[_type == "translation.metadata" && references(^._id)].translations[].value->{          slug,          language,        }    }
+// Query: *[_type=="article" && slug.current == $slug && language==$lang][0]{        title,         slug,         ingress,        metaTitle,         metaDescription,         galleryDisplayType,        image,         text[]{...,           _type=="video" => {            title, muxVideo{asset->{playbackId}            }          }      },        "tagTexts": text[style == "h2"]      {"subtitle": children[0].text, _key},        roleGroups[]{          _type,          _key,          name,           persons[]{          _type,          ...,          person->{            name,            image->          {              "alt": select(                $lang == "en" => image.alt.en,                $lang == "nb" => image.alt.nb,              ),              "credit": image.credit,              "imageUrl": image.asset->url          }        ,             text,            }          }        },         video{          title,           muxVideo{            asset->{              playbackId}            }        },        'event': event->{slug},        "_translations": *[_type == "translation.metadata" && references(^._id)].translations[].value->{          slug,          language,        }    }
 export type ARTICLEPAGE_QUERYResult = {
   title: string | null;
   slug: Slug | null;
@@ -912,11 +912,7 @@ export type ARTICLEPAGE_QUERYResult = {
       person: {
         name: string | null;
         image: {
-          alt: Array<{
-            _type: 'localizedString';
-            nb?: string;
-            en?: string;
-          }> | null;
+          alt: string | null;
           credit: string | null;
           imageUrl: string | null;
         } | null;
@@ -951,7 +947,7 @@ export type ARTICLEPAGE_QUERYResult = {
 
 // Source: ./sanity/lib/queries/event.ts
 // Variable: EVENT_QUERY
-// Query: *[_type == "event" && slug.current == $slug && language == $lang][0]{      ...,      genre->,                    image->{                "alt": image.alt[$lang],                "credit": image.credit,                "imageUrl": image.asset->url            }        ,      text[]{        ...,        _type == "customImage" => {                      image {                "alt": alt[$lang],                "credit": credit,                "imageUrl": asset->url            }        ,        },      },      roleGroups[]{        ...,        persons[]{          ...,          person->{            ...,                        image->{                "alt": image.alt[$lang],                "credit": image.credit,                "imageUrl": image.asset->url            }        ,          }        }      },      dates[]{        ...,      } | order(date asc)    }
+// Query: *[_type == "event" && slug.current == $slug && language == $lang][0]{      ...,      genre->,        image->          {              "alt": select(                $lang == "en" => image.alt.en,                $lang == "nb" => image.alt.nb,              ),              "credit": image.credit,              "imageUrl": image.asset->url          }        ,      text[]{        ...,        _type == "customImage" => {          "image":           {              "alt": select(                $lang == "en" => image.alt.en,                $lang == "nb" => image.alt.nb,              ),              "credit": image.credit,              "imageUrl": image.asset->url          }                },      },      roleGroups[]{        ...,        persons[]{          ...,          person->{            ...,            image->          {              "alt": select(                $lang == "en" => image.alt.en,                $lang == "nb" => image.alt.nb,              ),              "credit": image.credit,              "imageUrl": image.asset->url          }        ,          }        }      },      dates[]{        ...,      } | order(date asc)    }
 export type EVENT_QUERYResult = {
   _id: string;
   _type: 'event';
@@ -972,11 +968,7 @@ export type EVENT_QUERYResult = {
     language?: string;
   } | null;
   image: {
-    alt: Array<{
-      _type: 'localizedString';
-      nb?: string;
-      en?: string;
-    }> | null;
+    alt: string | null;
     credit: string | null;
     imageUrl: string | null;
   } | null;
@@ -1016,14 +1008,10 @@ export type EVENT_QUERYResult = {
     | {
         title?: string;
         image: {
-          alt: Array<{
-            _type: 'localizedString';
-            nb?: string;
-            en?: string;
-          }> | null;
+          alt: string | null;
           credit: string | null;
           imageUrl: string | null;
-        } | null;
+        };
         _type: 'customImage';
         _key: string;
       }
@@ -1090,11 +1078,7 @@ export type EVENT_QUERYResult = {
         name?: string;
         language?: string;
         image: {
-          alt: Array<{
-            _type: 'localizedString';
-            nb?: string;
-            en?: string;
-          }> | null;
+          alt: string | null;
           credit: string | null;
           imageUrl: string | null;
         } | null;
@@ -1127,7 +1111,7 @@ export type FOOTER_QUERYResult = {
 
 // Source: ./sanity/lib/queries/frontPage.ts
 // Variable: FRONTPAGE_QUERY
-// Query: *[_type == "frontPage" && language == $lang][0]{      ...,      hexagon {        ...,         linkToArticleOrEvent -> {...,},      },                  image->{                "alt": image.alt[$lang],                "credit": image.credit,                "imageUrl": image.asset->url            }        ,    }
+// Query: *[_type == "frontPage" && language == $lang][0]{      ...,      hexagon {        ...,         linkToArticleOrEvent -> {...,},      },      image->          {              "alt": select(                $lang == "en" => image.alt.en,                $lang == "nb" => image.alt.nb,              ),              "credit": image.credit,              "imageUrl": image.asset->url          }        ,    }
 export type FRONTPAGE_QUERYResult = {
   _id: string;
   _type: 'frontPage';
@@ -1136,11 +1120,7 @@ export type FRONTPAGE_QUERYResult = {
   _rev: string;
   title?: string;
   image: {
-    alt: Array<{
-      _type: 'localizedString';
-      nb?: string;
-      en?: string;
-    }> | null;
+    alt: string | null;
     credit: string | null;
     imageUrl: string | null;
   } | null;
@@ -1239,16 +1219,17 @@ export type FRONTPAGE_QUERYResult = {
 } | null;
 
 // Source: ./sanity/lib/queries/image.ts
-// Variable: imageProjectionAsReference
-// Query: image->{                "alt": image.alt[$lang],                "credit": image.credit,                "imageUrl": image.asset->url            }
-export type ImageProjectionAsReferenceResult = never;
 // Variable: imageProjection
-// Query: image {                "alt": alt[$lang],                "credit": credit,                "imageUrl": asset->url            }
-export type ImageProjectionResult = never;
+// Query: {              "alt": select(                $lang == "en" => image.alt.en,                $lang == "nb" => image.alt.nb,              ),              "credit": image.credit,              "imageUrl": image.asset->url          }
+export type ImageProjectionResult = {
+  alt: null;
+  credit: never;
+  imageUrl: never;
+};
 
 // Source: ./sanity/lib/queries/menuPage.ts
 // Variable: MENUPAGE_QUERY
-// Query: *[_type == "menuPage" && language == $lang][0] {    metaTitle,     metaDescription,    title,    links[]->{      title,                  image->{                "alt": image.alt[$lang],                "credit": image.credit,                "imageUrl": image.asset->url            }        ,      slug,      _type,      text[style=="h2"] {        defined(_key) => {_key},        "subtitle": children[0].text,        "slug": ^.slug.current      }[defined(subtitle)],    },    socialMediaText,    bottomLink {      text,      link->{      _type,      slug      },    }  }
+// Query: *[_type == "menuPage" && language == $lang][0] {    metaTitle,     metaDescription,    title,    links[]->{      title,      image->          {              "alt": select(                $lang == "en" => image.alt.en,                $lang == "nb" => image.alt.nb,              ),              "credit": image.credit,              "imageUrl": image.asset->url          }        ,      slug,      _type,      text[style=="h2"] {        defined(_key) => {_key},        "subtitle": children[0].text,        "slug": ^.slug.current      }[defined(subtitle)],    },    socialMediaText,    bottomLink {      text,      link->{      _type,      slug      },    }  }
 export type MENUPAGE_QUERYResult = {
   metaTitle: MetaTitle | null;
   metaDescription: MetaDescription | null;
@@ -1256,11 +1237,7 @@ export type MENUPAGE_QUERYResult = {
   links: Array<{
     title: string | null;
     image: {
-      alt: Array<{
-        _type: 'localizedString';
-        nb?: string;
-        en?: string;
-      }> | null;
+      alt: string | null;
       credit: string | null;
       imageUrl: string | null;
     } | null;
@@ -1290,7 +1267,7 @@ export type MENUPAGE_QUERYResult = {
 
 // Source: ./sanity/lib/queries/programPage.ts
 // Variable: PROGRAMPAGE_QUERY
-// Query: *[_type=="programPage" && language == $lang][0] {    metaTitle,    metaDescription,    title,    socialMediaText,    links[]->{        title,        slug,                    image->{                "alt": image.alt[$lang],                "credit": image.credit,                "imageUrl": image.asset->url            }        ,        dates    } }
+// Query: *[_type=="programPage" && language == $lang][0] {    metaTitle,    metaDescription,    title,    socialMediaText,    links[]->{        title,        slug,        image->          {              "alt": select(                $lang == "en" => image.alt.en,                $lang == "nb" => image.alt.nb,              ),              "credit": image.credit,              "imageUrl": image.asset->url          }        ,        dates    } }
 export type PROGRAMPAGE_QUERYResult = {
   metaTitle: MetaTitle | null;
   metaDescription: MetaDescription | null;
@@ -1300,11 +1277,7 @@ export type PROGRAMPAGE_QUERYResult = {
     title: string | null;
     slug: Slug | null;
     image: {
-      alt: Array<{
-        _type: 'localizedString';
-        nb?: string;
-        en?: string;
-      }> | null;
+      alt: string | null;
       credit: string | null;
       imageUrl: string | null;
     } | null;
@@ -1323,13 +1296,12 @@ export type PROGRAMPAGE_QUERYResult = {
 import '@sanity/client';
 declare module '@sanity/client' {
   interface SanityQueries {
-    '*[_type=="article" && slug.current == $slug && language==$lang][0]{\n        title, \n        slug, \n        ingress,\n        metaTitle, \n        metaDescription, \n        galleryDisplayType,\n        image, \n        text[]{..., \n          _type=="video" => {\n            title, muxVideo{asset->{playbackId}\n            }\n          }\n      },  \n      "tagTexts": text[style == "h2"]\n      {"subtitle": children[0].text, _key},\n        roleGroups[]{\n          _type,\n          _key,\n          name, \n          persons[]{\n          _type,\n          ...,\n          person->{\n            name,\n            \n            image->{\n                "alt": image.alt[$lang],\n                "credit": image.credit,\n                "imageUrl": image.asset->url\n            }\n        , \n            text,\n            }\n          }\n        }, \n        video{\n          title, \n          muxVideo{\n            asset->{\n              playbackId}\n            }\n        },\n        \'event\': event->{slug},\n        "_translations": *[_type == "translation.metadata" && references(^._id)].translations[].value->{\n          slug,\n          language,\n        }\n    }': ARTICLEPAGE_QUERYResult;
-    '\n    *[_type == "event" && slug.current == $slug && language == $lang][0]{\n      ...,\n      genre->,\n        \n            image->{\n                "alt": image.alt[$lang],\n                "credit": image.credit,\n                "imageUrl": image.asset->url\n            }\n        ,\n      text[]{\n        ...,\n        _type == "customImage" => {\n          \n            image {\n                "alt": alt[$lang],\n                "credit": credit,\n                "imageUrl": asset->url\n            }\n        ,\n        },\n      },\n      roleGroups[]{\n        ...,\n        persons[]{\n          ...,\n          person->{\n            ...,\n            \n            image->{\n                "alt": image.alt[$lang],\n                "credit": image.credit,\n                "imageUrl": image.asset->url\n            }\n        ,\n          }\n        }\n      },\n      dates[]{\n        ...,\n      } | order(date asc)\n    }\n  ': EVENT_QUERYResult;
+    '*[_type=="article" && slug.current == $slug && language==$lang][0]{\n        title, \n        slug, \n        ingress,\n        metaTitle, \n        metaDescription, \n        galleryDisplayType,\n        image, \n        text[]{..., \n          _type=="video" => {\n            title, muxVideo{asset->{playbackId}\n            }\n          }\n      },  \n      "tagTexts": text[style == "h2"]\n      {"subtitle": children[0].text, _key},\n        roleGroups[]{\n          _type,\n          _key,\n          name, \n          persons[]{\n          _type,\n          ...,\n          person->{\n            name,\n            image->\n          {\n              "alt": select(\n                $lang == "en" => image.alt.en,\n                $lang == "nb" => image.alt.nb,\n              ),\n              "credit": image.credit,\n              "imageUrl": image.asset->url\n          }\n        , \n            text,\n            }\n          }\n        }, \n        video{\n          title, \n          muxVideo{\n            asset->{\n              playbackId}\n            }\n        },\n        \'event\': event->{slug},\n        "_translations": *[_type == "translation.metadata" && references(^._id)].translations[].value->{\n          slug,\n          language,\n        }\n    }': ARTICLEPAGE_QUERYResult;
+    '\n    *[_type == "event" && slug.current == $slug && language == $lang][0]{\n      ...,\n      genre->,\n        image->\n          {\n              "alt": select(\n                $lang == "en" => image.alt.en,\n                $lang == "nb" => image.alt.nb,\n              ),\n              "credit": image.credit,\n              "imageUrl": image.asset->url\n          }\n        ,\n      text[]{\n        ...,\n        _type == "customImage" => {\n          "image": \n          {\n              "alt": select(\n                $lang == "en" => image.alt.en,\n                $lang == "nb" => image.alt.nb,\n              ),\n              "credit": image.credit,\n              "imageUrl": image.asset->url\n          }\n        \n        },\n      },\n      roleGroups[]{\n        ...,\n        persons[]{\n          ...,\n          person->{\n            ...,\n            image->\n          {\n              "alt": select(\n                $lang == "en" => image.alt.en,\n                $lang == "nb" => image.alt.nb,\n              ),\n              "credit": image.credit,\n              "imageUrl": image.asset->url\n          }\n        ,\n          }\n        }\n      },\n      dates[]{\n        ...,\n      } | order(date asc)\n    }\n  ': EVENT_QUERYResult;
     '*[_type=="footer" && language==$lang][0] {..., "link": link->slug.current}': FOOTER_QUERYResult;
-    '\n    *[_type == "frontPage" && language == $lang][0]{\n      ...,\n      hexagon {\n        ..., \n        linkToArticleOrEvent -> {...,},\n      },\n      \n            image->{\n                "alt": image.alt[$lang],\n                "credit": image.credit,\n                "imageUrl": image.asset->url\n            }\n        ,\n    }\n  ': FRONTPAGE_QUERYResult;
-    '\n            image->{\n                "alt": image.alt[$lang],\n                "credit": image.credit,\n                "imageUrl": image.asset->url\n            }\n        ': ImageProjectionAsReferenceResult;
-    '\n            image {\n                "alt": alt[$lang],\n                "credit": credit,\n                "imageUrl": asset->url\n            }\n        ': ImageProjectionResult;
-    '*[_type == "menuPage" && language == $lang][0] {\n    metaTitle, \n    metaDescription,\n    title,\n    links[]->{\n      title,\n      \n            image->{\n                "alt": image.alt[$lang],\n                "credit": image.credit,\n                "imageUrl": image.asset->url\n            }\n        ,\n      slug,\n      _type,\n      text[style=="h2"] {\n        defined(_key) => {_key},\n        "subtitle": children[0].text,\n        "slug": ^.slug.current\n      }[defined(subtitle)],\n    },\n    socialMediaText,\n    bottomLink {\n      text,\n      link->{\n      _type,\n      slug\n      },\n    }\n  }': MENUPAGE_QUERYResult;
-    '*[_type=="programPage" && language == $lang][0] {\n    metaTitle,\n    metaDescription,\n    title,\n    socialMediaText,\n    links[]->{\n        title,\n        slug,\n        \n            image->{\n                "alt": image.alt[$lang],\n                "credit": image.credit,\n                "imageUrl": image.asset->url\n            }\n        ,\n        dates\n    }\n }': PROGRAMPAGE_QUERYResult;
+    '\n    *[_type == "frontPage" && language == $lang][0]{\n      ...,\n      hexagon {\n        ..., \n        linkToArticleOrEvent -> {...,},\n      },\n      image->\n          {\n              "alt": select(\n                $lang == "en" => image.alt.en,\n                $lang == "nb" => image.alt.nb,\n              ),\n              "credit": image.credit,\n              "imageUrl": image.asset->url\n          }\n        ,\n    }\n  ': FRONTPAGE_QUERYResult;
+    '\n          {\n              "alt": select(\n                $lang == "en" => image.alt.en,\n                $lang == "nb" => image.alt.nb,\n              ),\n              "credit": image.credit,\n              "imageUrl": image.asset->url\n          }\n        ': ImageProjectionResult;
+    '*[_type == "menuPage" && language == $lang][0] {\n    metaTitle, \n    metaDescription,\n    title,\n    links[]->{\n      title,\n      image->\n          {\n              "alt": select(\n                $lang == "en" => image.alt.en,\n                $lang == "nb" => image.alt.nb,\n              ),\n              "credit": image.credit,\n              "imageUrl": image.asset->url\n          }\n        ,\n      slug,\n      _type,\n      text[style=="h2"] {\n        defined(_key) => {_key},\n        "subtitle": children[0].text,\n        "slug": ^.slug.current\n      }[defined(subtitle)],\n    },\n    socialMediaText,\n    bottomLink {\n      text,\n      link->{\n      _type,\n      slug\n      },\n    }\n  }': MENUPAGE_QUERYResult;
+    '*[_type=="programPage" && language == $lang][0] {\n    metaTitle,\n    metaDescription,\n    title,\n    socialMediaText,\n    links[]->{\n        title,\n        slug,\n        image->\n          {\n              "alt": select(\n                $lang == "en" => image.alt.en,\n                $lang == "nb" => image.alt.nb,\n              ),\n              "credit": image.credit,\n              "imageUrl": image.asset->url\n          }\n        ,\n        dates\n    }\n }': PROGRAMPAGE_QUERYResult;
   }
 }

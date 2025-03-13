@@ -15,23 +15,16 @@ export const RedirectType = (type: string) => {
   }
 };
 
-export async function generateSeoData<T>({
-  params,
-  query,
-}: {
-  params: Promise<{ locale?: string; slug?: string }>;
-  query: string;
-}): Promise<Metadata> {
-  const lang = (await params).locale;
-  const slug = (await params).slug ?? '';
-  const data: T = await client.fetch(query, { lang, slug });
-
+export function generateSeoData(
+  metaTitle?: string | null,
+  metaDescription?: string | null,
+): Metadata {
   return {
-    title: (data as any)?.metaTitle,
-    description: (data as any)?.metaDescription,
+    title: metaTitle,
+    description: metaDescription,
     openGraph: {
-      title: (data as any)?.metaTitle as string,
-      description: (data as any)?.metaDescription as string,
+      title: metaTitle ?? '',
+      description: metaDescription ?? '',
     },
   };
 }

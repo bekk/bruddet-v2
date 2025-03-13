@@ -1,4 +1,3 @@
-import { client } from '@/sanity/lib/client';
 import { clsx, type ClassValue } from 'clsx';
 import { Metadata } from 'next';
 import { twMerge } from 'tailwind-merge';

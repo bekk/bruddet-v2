@@ -1,5 +1,4 @@
 import { generateSeoData } from '@/lib/utils';
-import { client } from '@/sanity/lib/client';
 import { PROGRAMPAGE_QUERY } from '@/sanity/lib/queries/programPage';
 import { PROGRAMPAGE_QUERYResult } from '@/sanity/types/types';
 import { Metadata } from 'next';

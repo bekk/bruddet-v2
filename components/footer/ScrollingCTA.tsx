@@ -27,7 +27,12 @@ export default function ScrollingCTA({ text }: ScrollingCTAProps) {
   // Target a consistent total text length (100) to maintain uniform scrolling speed.
   // Increasing this value will speed up scrolling. Decreasing it will slow it down.
   const desiredLength = 100;
-  const multiplier = text.length < desiredLength ? Math.ceil(desiredLength / text.length) : 1;
+  const multiplier =
+    text.length === 0
+      ? 1
+      : text.length < desiredLength
+        ? Math.ceil(desiredLength / text.length)
+        : 1;
 
   // Create an array of text+dot elements to properly map through them
   const createMarqueeItems = (count: number) => {

@@ -41,3 +41,6 @@ yarn-error.log*
 next-env.d.ts
 
 .vscode/
+
+# ignore where I place the backups from sanity using sanity dataset export
+backup/

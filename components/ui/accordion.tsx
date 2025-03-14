@@ -11,7 +11,7 @@ const Accordion = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <AccordionPrimitive.Root
     ref={ref}
-    className={cn('border-t border-b first:border-b-0', className)}
+    className={cn('border-t border-b first:border-b-0 only:border-b', className)}
     {...props}
   />
 ));

@@ -14,7 +14,7 @@
   "event": {
     "buy-ticket": "Kjøp",
     "tickets": "Billetter",
-    "fewTicketsLeft": "Bare noen få billetter igjen",
+    "fewTicketsLeft": "Få billetter igjen",
     "soldOut": "Utsolgt",
     "saleStart": "Billettsalget starter",
     "saleStartUnknown": "Billetter kommer snart for salg",

@@ -14,7 +14,7 @@
   "event": {
     "buy-ticket": "Buy",
     "tickets": "Tickets",
-    "fewTicketsLeft": "Only a few tickets left",
+    "fewTicketsLeft": "Few tickets left",
     "soldOut": "Sold out",
     "saleStart": "TICKETS RELEASED",
     "saleStartUnknown": "Tickets coming soon",

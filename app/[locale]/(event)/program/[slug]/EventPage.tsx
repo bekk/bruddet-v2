@@ -73,7 +73,7 @@ export const EventPage = async ({ data }: EventPageProps) => {
             id="ticket-block"
           />
         </ColumnItem>
-        <ColumnItem className="hidden lg:flex lg:w-1/2">
+        <ColumnItem className="hidden lg:flex lg:w-1/2 ml-auto">
           {galleryDisplayType === 1 ? (
             <StickyRightColumn text={text} />
           ) : (

@@ -9,7 +9,7 @@ const columnsVariants = cva('flex');
 const columnItemVariants = cva('max-w-xl', {
   variants: {
     variant: {
-      leftColumn: 'lg:w-1/2 max-w-xl',
+      leftColumn: 'lg:w-1/2 max-w-xl mx-auto',
       rightColumn: 'hidden lg:flex lg:w-1/2 ml-auto',
     },
   },

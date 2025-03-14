@@ -1,5 +1,5 @@
 import { defineQuery } from 'next-sanity';
-import { imageProjectionAsReference } from './image';
+import { imageProjection } from './image';
 
 export const MENUPAGE_QUERY = defineQuery(
   `*[_type == "menuPage" && language == $lang][0] {
@@ -8,7 +8,7 @@ export const MENUPAGE_QUERY = defineQuery(
     title,
     links[]->{
       title,
-      ${imageProjectionAsReference},
+      image->${imageProjection},
       slug,
       _type,
       text[style=="h2"] {

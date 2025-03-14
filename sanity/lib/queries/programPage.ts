@@ -1,5 +1,5 @@
 import { defineQuery } from 'next-sanity';
-import { imageProjectionAsReference } from './image';
+import { imageProjection } from './image';
 
 export const PROGRAMPAGE_QUERY = defineQuery(
   `*[_type=="programPage" && language == $lang][0] {
@@ -10,7 +10,7 @@ export const PROGRAMPAGE_QUERY = defineQuery(
     links[]->{
         title,
         slug,
-        ${imageProjectionAsReference},
+        image->${imageProjection},
         dates
     }
  }`,

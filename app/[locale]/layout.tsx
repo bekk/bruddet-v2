@@ -34,7 +34,7 @@ export default async function Layout({
   params,
 }: {
   children: React.ReactNode;
-  params: { locale: string };
+  params: Promise<{ locale: string }>;
 }) {
   const { locale } = await Promise.resolve(params);
   // Ensure that the incoming `locale` is valid

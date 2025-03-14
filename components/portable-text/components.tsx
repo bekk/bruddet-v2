@@ -6,47 +6,52 @@ import FaqComponent, { FaqProps } from './FaqComponent';
 import QuoteBombComponent, { QuoteBombProps } from './QuoteBombComponent';
 import ReviewComponent, { ReviewComponentProps } from './ReviewComponent';
 import VideoComponent from './VideoComponent';
+import { PortableTextBlock, PortableTextComponentProps } from 'next-sanity';
 
 const headingSpacing = 'mt-12 mb-6';
-const headingSpacingWrapper = (
-  Tag: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6',
-  children: React.ReactNode[],
-) => {
-  return (
-    <div className={headingSpacing}>
-      <Tag>{children}</Tag>
-    </div>
-  );
-};
-
 const componentSpacing = 'my-12 md:my-20';
-const componentSpacingWrapper = (Tag: React.ElementType, value: any) => {
-  return (
-    <div className={componentSpacing}>
-      <Tag value={value} />
-    </div>
-  );
-};
 
 export const portableTextComponents = {
   types: {
     customImage: CustomImageComponent,
     video: VideoComponent,
-    expandableBlock: ExpandableBlockComponent,
     // googleMaps: GoogleMapsComponent,
-    review: ({ value }: ReviewComponentProps) => componentSpacingWrapper(ReviewComponent, value),
-    quoteBomb: ({ value }: QuoteBombProps) => componentSpacingWrapper(QuoteBombComponent, value),
-    faq: ({ value }: FaqProps) => componentSpacingWrapper(FaqComponent, value),
+    review: ({ value }: ReviewComponentProps) => (
+      <div className={componentSpacing}>
+        <ReviewComponent value={value} />
+      </div>
+    ),
+    faq: ({ value }: FaqProps) => (
+      <div className={componentSpacing}>
+        <FaqComponent value={value} />
+      </div>
+    ),
+    expandableBlock: ExpandableBlockComponent,
+    quoteBomb: ({ value }: QuoteBombProps) => (
+      <div className={componentSpacing}>
+        <QuoteBombComponent value={value} />
+      </div>
+    ),
   },
   block: {
-    normal: ({ children }: { children: React.ReactNode[] }) => (
+    normal: ({ children }: PortableTextComponentProps<PortableTextBlock>) => (
       <p className="mb-6 last:mb-0">{children}</p>
     ),
-    h2: ({ children }: { children: React.ReactNode[] }) => headingSpacingWrapper('h2', children),
-    h3: ({ children }: { children: React.ReactNode[] }) => headingSpacingWrapper('h3', children),
-    h4: ({ children }: { children: React.ReactNode[] }) => headingSpacingWrapper('h4', children),
-    h5: ({ children }: { children: React.ReactNode[] }) => headingSpacingWrapper('h5', children),
-    h6: ({ children }: { children: React.ReactNode[] }) => headingSpacingWrapper('h6', children),
+    h2: ({ children }: PortableTextComponentProps<PortableTextBlock>) => (
+      <h2 className={headingSpacing}>{children}</h2>
+    ),
+    h3: ({ children }: PortableTextComponentProps<PortableTextBlock>) => (
+      <h3 className={headingSpacing}>{children}</h3>
+    ),
+    h4: ({ children }: PortableTextComponentProps<PortableTextBlock>) => (
+      <h4 className={headingSpacing}>{children}</h4>
+    ),
+    h5: ({ children }: PortableTextComponentProps<PortableTextBlock>) => (
+      <h5 className={headingSpacing}>{children}</h5>
+    ),
+    h6: ({ children }: PortableTextComponentProps<PortableTextBlock>) => (
+      <h6 className={headingSpacing}>{children}</h6>
+    ),
   },
 };
 
@@ -56,8 +61,10 @@ export const portableTextComponentsWithH2Tag = {
   },
   block: {
     ...portableTextComponents.block,
-    h2: ({ children }: { children: React.ReactNode[] }) => {
-      const headingId = cleanHeaderIds(String(children[0]));
+    h2: ({ children }: PortableTextComponentProps<PortableTextBlock>) => {
+      const headingId = cleanHeaderIds(
+        String(Array.isArray(children) ? children[0] : (children ?? '')),
+      );
       return (
         <div id={headingId} className={headingSpacing}>
           <Link

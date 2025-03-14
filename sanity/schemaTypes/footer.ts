@@ -29,7 +29,7 @@ export const footer = defineField({
       type: 'reference',
       to: [{ type: 'event' }],
       options: {
-        filter: ({ document }: { document: { language?: string } }) => {
+        filter: (({ document }: { document: { language?: string } }) => {
           if (!document?.language) {
             return {
               filter: '',
@@ -40,7 +40,7 @@ export const footer = defineField({
             filter: 'language == $lang',
             params: { lang: document.language },
           };
-        },
+        }) as unknown as string,
         disableNew: false,
       },
     }),

@@ -1,14 +1,15 @@
 import { generateSeoData } from '@/lib/utils';
-import { client } from '@/sanity/lib/client';
 import { PROGRAMPAGE_QUERY } from '@/sanity/lib/queries/programPage';
 import { PROGRAMPAGE_QUERYResult } from '@/sanity/types/types';
 import { Metadata } from 'next';
 import { ProgramPage } from './ProgramPage';
+import { sanityFetch } from '@/sanity/lib/live';
 
 export default async function Page({ params }: { params: Promise<{ locale: string }> }) {
   const lang = (await params).locale;
-  const data: PROGRAMPAGE_QUERYResult = await client.fetch(PROGRAMPAGE_QUERY, {
-    lang,
+  const { data }: { data: PROGRAMPAGE_QUERYResult } = await sanityFetch({
+    query: PROGRAMPAGE_QUERY,
+    params: { lang },
   });
 
   return <ProgramPage data={data} />;
@@ -19,5 +20,10 @@ export async function generateMetadata({
 }: {
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
-  return generateSeoData({ params, query: PROGRAMPAGE_QUERY });
+  const lang = (await params).locale;
+  const { data }: { data: PROGRAMPAGE_QUERYResult } = await sanityFetch({
+    query: PROGRAMPAGE_QUERY,
+    params: { lang },
+  });
+  return generateSeoData(data?.metaTitle, data?.metaDescription);
 }

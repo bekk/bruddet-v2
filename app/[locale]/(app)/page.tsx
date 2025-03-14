@@ -48,5 +48,10 @@ export async function generateMetadata({
 }: {
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
-  return generateSeoData({ params, query: FRONTPAGE_QUERY });
+  const lang = (await params).locale;
+  const { data }: { data: FRONTPAGE_QUERYResult } = await sanityFetch({
+    query: FRONTPAGE_QUERY,
+    params: { lang },
+  });
+  return generateSeoData(data?.metaTitle, data?.metaDescription);
 }

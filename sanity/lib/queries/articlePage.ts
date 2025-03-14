@@ -1,5 +1,5 @@
 import { defineQuery } from 'next-sanity';
-import { imageProjectionAsReference } from './image';
+import { imageProjection } from './image';
 
 export const ARTICLEPAGE_QUERY = defineQuery(
   `*[_type=="article" && slug.current == $slug && language==$lang][0]{
@@ -27,7 +27,7 @@ export const ARTICLEPAGE_QUERY = defineQuery(
           ...,
           person->{
             name,
-            ${imageProjectionAsReference}, 
+            image->${imageProjection}, 
             text,
             }
           }

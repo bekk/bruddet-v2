@@ -38,11 +38,11 @@ export const ArticlePage = async ({ data, language }: ArticlePageProps) => {
       </div>
       <RolesBlock roleGroups={roleGroups} />
       <Columns>
-        <ColumnItem className="lg:w-1/2">
+        <ColumnItem variant="leftColumn">
           <MainBlock text={text} shouldGenerateH2Links={true} />
           <RolesBlock roleGroups={roleGroups} />
         </ColumnItem>
-        <ColumnItem className="hidden lg:flex lg:w-1/2">
+        <ColumnItem variant="rightColumn">
           {galleryDisplayType === 1 ? (
             <StickyRightColumn text={text} />
           ) : (

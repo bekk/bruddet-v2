@@ -6,7 +6,14 @@ import { cn } from '@/lib/utils';
 
 const columnsVariants = cva('flex');
 
-const columnItemVariants = cva('max-w-xl');
+const columnItemVariants = cva('max-w-xl', {
+  variants: {
+    variant: {
+      leftColumn: 'lg:w-1/2 max-w-xl',
+      rightColumn: 'hidden lg:flex lg:w-1/2 ml-auto',
+    },
+  },
+});
 
 interface ColumnsProps
   extends React.HTMLAttributes<HTMLDivElement>,
@@ -33,8 +40,8 @@ const Columns = React.forwardRef<HTMLDivElement, ColumnsProps>(({ className, ...
 Columns.displayName = 'Columns';
 
 const ColumnItem = React.forwardRef<HTMLDivElement, ColumnItemProps>(
-  ({ className, ...props }, ref) => {
-    return <div ref={ref} className={cn(columnItemVariants({}), className)} {...props} />;
+  ({ className, variant, ...props }, ref) => {
+    return <div ref={ref} className={cn(columnItemVariants({ variant }), className)} {...props} />;
   },
 );
 ColumnItem.displayName = 'ColumnItem';

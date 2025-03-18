@@ -1,6 +1,6 @@
 import { cleanHeaderIds } from '@/utils/cleanHeaderIds';
 import Link from 'next/link';
-import CustomImageComponent from './CustomImageComponent';
+import CustomImageComponent, { CustomImageProps } from './CustomImageComponent';
 import ExpandableBlockComponent from './ExpandableBlockComponent';
 import FaqComponent, { FaqProps } from './FaqComponent';
 import QuoteBombComponent, { QuoteBombProps } from './QuoteBombComponent';
@@ -13,7 +13,11 @@ const componentSpacing = 'my-12 md:my-20';
 
 export const portableTextComponents = {
   types: {
-    customImage: CustomImageComponent,
+    customImage: ({ value }: CustomImageProps) => (
+      <div className={`${componentSpacing} lg:m-0`}>
+        <CustomImageComponent value={value} />
+      </div>
+    ),
     video: VideoComponent,
     // googleMaps: GoogleMapsComponent,
     review: ({ value }: ReviewComponentProps) => (

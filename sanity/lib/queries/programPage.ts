@@ -11,7 +11,9 @@ export const PROGRAMPAGE_QUERY = defineQuery(
         title,
         slug,
         image->${imageProjection},
-        dates
+        dates[]{
+          ...,
+        } | order(date asc)
     }
  }`,
 );

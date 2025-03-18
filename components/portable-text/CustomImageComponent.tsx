@@ -1,16 +1,18 @@
 import { urlFor } from '@/sanity/lib/image';
 import Image from 'next/image';
 
-interface CustomImageProps {
-  image: {
-    alt: string | null;
-    credit: string | null;
-    imageUrl: string | null;
+export type CustomImageProps = {
+  value: {
+    image: {
+      alt: string | null;
+      credit: string | null;
+      imageUrl: string | null;
+    };
   };
-}
+};
 
-export default function CustomImageComponent({ value }: { value: CustomImageProps }) {
-  const { image } = value;
+export default function CustomImageComponent({ value }: CustomImageProps) {
+  const image = value?.image;
   if (!image || !image.imageUrl) {
     return null;
   }
@@ -27,7 +29,7 @@ export default function CustomImageComponent({ value }: { value: CustomImageProp
         height={1000}
         objectFit="contain"
       />
-      {image.credit && <p className="text-sm text-gray-500">{image.credit}</p>}
+      {image.credit && <p className="text-sm text-gray-500 mt-2">{image.credit}</p>}
     </div>
   );
 }

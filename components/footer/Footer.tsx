@@ -14,7 +14,6 @@ export default async function Footer({ isEventPage, lang }: FooterProps) {
     query: FOOTER_QUERY,
     params: { lang },
   });
-  console.log('Footer Data', data);
   if (!data) return null;
   const { scrollingText, hoverText, link, showNewsletter } = data;
   const footerHeight = isEventPage ? 'h-footer-height' : 'h-footer-height-mobile';

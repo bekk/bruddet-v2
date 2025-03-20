@@ -6,7 +6,7 @@ export const FRONTPAGE_QUERY = defineQuery(
       ...,
       hexagon {
         ..., 
-        linkToArticleOrEvent -> {...,},
+        linkToArticleOrEvent->,
       },
     }
   `,

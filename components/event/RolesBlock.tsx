@@ -20,14 +20,16 @@ const PersonCard = ({ details }: PersonCardProps) => {
 
   return (
     <div className="flex flex-row my-4">
-      {person.image?.asset && (
+      {person?.image?.asset && (
         <Image
           className="w-20 md:w-32 h-28 md:h-44 object-cover mr-4"
           src={urlFor(person.image.asset).url()}
-          alt={person.text ?? person.name ?? ''}
+          alt={person?.biography ?? person?.name ?? ''}
           width={1000}
           height={1000}
-          objectFit="contain"
+          style={{
+            objectFit: 'contain',
+          }}
         />
       )}
       <div className="flex flex-col gap-2">

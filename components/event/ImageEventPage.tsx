@@ -20,7 +20,7 @@ export default function ImageEventPage({ url, alt, title }: ImageProps) {
         className="object-cover object-center"
         sizes="100vw"
       />
-      <h1 className="oversized text-background-event flex items-center justify-center z-10 relative">
+      <h1 className="uppercase oversized text-background-event flex items-center justify-center z-10 relative">
         {title}
       </h1>
     </div>

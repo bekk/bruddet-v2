@@ -4,7 +4,7 @@ export const faq = {
   name: 'faq',
   title: 'FAQ',
   description: 'Her kan du legge inn FAQ-spørsmål og svar',
-  type: 'document',
+  type: 'object',
   fields: [
     defineField({
       name: 'title',

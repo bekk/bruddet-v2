@@ -10,6 +10,7 @@ export const footer = defineField({
       name: 'language',
       type: 'string',
       readOnly: true,
+      hidden: false,
     }),
     defineField({
       name: 'scrollingText',

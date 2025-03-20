@@ -29,14 +29,27 @@ export const person = defineType({
     defineField({
       name: 'image',
       title: 'Bilde',
-      type: 'reference',
-      to: [{ type: 'customImage' }],
+      type: 'customImage',
     }),
     defineField({
-      name: 'text',
+      name: 'biography',
       title: 'Biografi',
       description: 'Hold det kort',
-      type: 'string',
+      type: 'object',
+      fields: [
+        {
+          name: 'nb',
+          title: 'Biografi (Norsk)',
+          type: 'text',
+          rows: 3,
+        },
+        {
+          name: 'en',
+          title: 'Biografi (Engelsk)',
+          type: 'text',
+          rows: 3,
+        },
+      ],
     }),
   ],
 });

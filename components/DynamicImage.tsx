@@ -1,8 +1,8 @@
 import { urlFor } from '@/sanity/lib/image';
-import { ImageType } from '@/sanity/lib/queries/image';
+import { CustomImage } from '@/sanity/types/types';
 import Image from 'next/image';
 
-export const DynamicImage = ({ image }: { image: ImageType }) => {
+export const DynamicImage = ({ image }: { image: CustomImage }) => {
   if (!image?.asset) return null;
 
   return (

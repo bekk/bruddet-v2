@@ -4,7 +4,7 @@ import { DocumentVideoIcon } from '@sanity/icons';
 export const video = defineType({
   name: 'video',
   title: 'Video',
-  type: 'document',
+  type: 'object',
   description: 'Legg til en video',
   icon: DocumentVideoIcon,
   fields: [

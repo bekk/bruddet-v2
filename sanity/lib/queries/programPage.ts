@@ -1,5 +1,4 @@
 import { defineQuery } from 'next-sanity';
-import { imageProjection } from './image';
 
 export const PROGRAMPAGE_QUERY = defineQuery(
   `*[_type=="programPage" && language == $lang][0] {
@@ -9,8 +8,8 @@ export const PROGRAMPAGE_QUERY = defineQuery(
     socialMediaText,
     links[]->{
         title,
+        image,
         slug,
-        image->${imageProjection},
         dates[]{
           ...,
         } | order(date asc)

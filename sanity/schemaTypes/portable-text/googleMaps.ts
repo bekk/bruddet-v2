@@ -1,7 +1,7 @@
 export const googleMaps = {
   name: 'googleMaps',
   title: 'Google Maps',
-  type: 'document',
+  type: 'object',
   fields: [
     {
       name: 'address',

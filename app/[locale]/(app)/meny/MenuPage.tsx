@@ -2,8 +2,7 @@
 import { DynamicImage } from '@/components/DynamicImage';
 import { SocialMedia } from '@/components/SocialMedia';
 import { RedirectType } from '@/lib/utils';
-import { ImageType } from '@/sanity/lib/queries/image';
-import { MENUPAGE_QUERYResult } from '@/sanity/types/types';
+import { CustomImage, MENUPAGE_QUERYResult } from '@/sanity/types/types';
 import { cleanHeaderIds } from '@/utils/cleanHeaderIds';
 import { useLocale, useTranslations } from 'next-intl';
 import Link from 'next/link';
@@ -14,7 +13,7 @@ type MenuPageProps = {
 };
 
 export const MenuPage = ({ data }: MenuPageProps) => {
-  const [image, setImage] = useState<ImageType>(null);
+  const [image, setImage] = useState<CustomImage | null>(null);
   const locale = useLocale();
   const t = useTranslations('menu');
 

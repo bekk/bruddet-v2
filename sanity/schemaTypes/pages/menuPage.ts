@@ -9,6 +9,8 @@ export const menuPage = defineType({
     defineField({
       name: 'language',
       type: 'string',
+      readOnly: true,
+      hidden: false,
     }),
     defineField({
       name: 'title',

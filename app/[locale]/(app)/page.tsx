@@ -13,7 +13,6 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
     query: FRONTPAGE_QUERY,
     params: { lang },
   });
-
   const minHeight = "calc(100vh-theme('spacing.12'))";
 
   const hexagon = data?.hexagon;
@@ -46,7 +45,7 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
       </div>
 
       {data?.title && (
-        <h1 className="oversized text-primary-foreground z-10 relative">{data?.title}</h1>
+        <h1 className="text-primary-foreground z-10 relative oversized uppercase">{data?.title}</h1>
       )}
     </div>
   );

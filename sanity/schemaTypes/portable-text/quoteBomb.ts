@@ -15,7 +15,7 @@ const PLACEMENTS = [
 export const quoteBomb = {
   name: 'quoteBomb',
   title: 'Sitatbombe',
-  type: 'document',
+  type: 'object',
   icon: CommentIcon,
   fields: [
     defineField({

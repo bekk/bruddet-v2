@@ -4,7 +4,7 @@ import { BlockElementIcon } from '@sanity/icons';
 export const expandableBlock = defineType({
   name: 'expandableBlock',
   title: 'Ekspanderbar blokk',
-  type: 'document',
+  type: 'object',
   preview: {
     select: {
       title: 'title',

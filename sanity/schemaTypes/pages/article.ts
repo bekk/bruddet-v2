@@ -93,9 +93,8 @@ export const article = defineType({
     defineField({
       name: 'image',
       title: 'Bilde',
-      type: 'reference',
+      type: 'customImage',
       group: 'visual',
-      to: [{ type: 'customImage' }],
     }),
     defineField({
       name: 'video',

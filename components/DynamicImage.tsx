@@ -1,12 +1,13 @@
+import { urlFor } from '@/sanity/lib/image';
 import { ImageType } from '@/sanity/lib/queries/image';
 import Image from 'next/image';
 
 export const DynamicImage = ({ image }: { image: ImageType }) => {
-  if (!image) return null;
+  if (!image?.asset) return null;
 
   return (
     <Image
-      src={image.imageUrl || ''}
+      src={urlFor(image.asset).url()}
       alt={image.alt || ''}
       width={350}
       height={350}

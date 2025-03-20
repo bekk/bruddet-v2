@@ -38,6 +38,9 @@ export const customImage = defineType({
       name: 'image',
       title: 'Bilde',
       type: 'image',
+      options: {
+        hotspot: true,
+      },
       validation: (rule) => [rule.required().error('Bilde er påkrevd')],
       fields: [
         defineField({

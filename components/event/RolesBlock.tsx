@@ -1,3 +1,4 @@
+import { urlFor } from '@/sanity/lib/image';
 import { ARTICLEPAGE_QUERYResult, EVENT_QUERYResult } from '@/sanity/types/types';
 import Image from 'next/image';
 type RoleGroups =
@@ -19,10 +20,10 @@ const PersonCard = ({ details }: PersonCardProps) => {
 
   return (
     <div className="flex flex-row my-4">
-      {person.image?.imageUrl && (
+      {person.image?.asset && (
         <Image
           className="w-20 md:w-32 h-28 md:h-44 object-cover mr-4"
-          src={person.image.imageUrl}
+          src={urlFor(person.image.asset).url()}
           alt={person.text ?? person.name ?? ''}
           width={1000}
           height={1000}

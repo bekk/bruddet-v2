@@ -9,6 +9,7 @@ import { DynamicImage } from '@/components/DynamicImage';
 import { useLocale, useTranslations } from 'next-intl';
 import EventDate from '@/components/event/EventDate';
 import { getFirstAndLastDate } from '@/utils/formatDates';
+import { urlFor } from '@/sanity/lib/image';
 
 type ProgramPageProps = {
   data: PROGRAMPAGE_QUERYResult;
@@ -44,10 +45,10 @@ export const ProgramPage = ({ data }: ProgramPageProps) => {
               className="block lg:text-center hover:underline"
             >
               <div className="lg:hidden flex justify-center aspect-square w-full">
-                {link.image && (
+                {link?.image?.asset && (
                   <Image
                     key={index}
-                    src={link.image?.imageUrl || ''}
+                    src={urlFor(link.image?.asset).url()}
                     alt={link.image?.alt || ''}
                     width={350}
                     height={350}

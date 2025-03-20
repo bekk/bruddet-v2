@@ -9,7 +9,7 @@ export const ARTICLEPAGE_QUERY = defineQuery(
         metaTitle, 
         metaDescription, 
         galleryDisplayType,
-        image, 
+        image->${imageProjection}, 
         text[]{..., 
           _type=="video" => {
             title, muxVideo{asset->{playbackId}

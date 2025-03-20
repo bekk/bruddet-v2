@@ -1,56 +1,25 @@
+import { ImageIcon } from '@sanity/icons';
 import { defineField, defineType } from 'sanity';
-import { languages } from '../documentInternationalizationConfig';
-
-export const localizedString = defineType({
-  name: 'localizedString',
-  title: 'Localized String',
-  type: 'object',
-  fieldsets: [
-    {
-      title: 'Translations',
-      name: 'translations',
-      options: { collapsible: true, collapsed: false },
-    },
-  ],
-  fields: languages.map((lang) =>
-    defineField({
-      name: lang.id,
-      title: lang.title,
-      type: 'string',
-      fieldset: lang.isDefault ? undefined : 'translations',
-    }),
-  ),
-});
 
 export const customImage = defineType({
-  type: 'document',
+  type: 'image',
   name: 'customImage',
   title: 'Bilde',
+  icon: ImageIcon,
+  options: {
+    hotspot: true,
+  },
 
   fields: [
     defineField({
-      name: 'title',
-      title: 'Tittel',
+      title: 'Alternativ tekst',
+      name: 'alt',
       type: 'string',
-      validation: (rule) => [rule.required().error('Tittel er påkrevd')],
     }),
     defineField({
-      name: 'image',
-      title: 'Bilde',
-      type: 'image',
-      validation: (rule) => [rule.required().error('Bilde er påkrevd')],
-      fields: [
-        defineField({
-          title: 'Alternativ tekst',
-          name: 'alt',
-          type: 'localizedString',
-        }),
-        defineField({
-          title: 'Bildekreditering',
-          name: 'credit',
-          type: 'string',
-        }),
-      ],
+      title: 'Bildekreditering',
+      name: 'credit',
+      type: 'string',
     }),
   ],
 });

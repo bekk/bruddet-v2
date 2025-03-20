@@ -23,8 +23,7 @@ export const frontPage = defineType({
     defineField({
       name: 'image',
       title: 'Bilde',
-      type: 'reference',
-      to: [{ type: 'customImage' }],
+      type: 'customImage',
     }),
     defineField({
       name: 'hexagon',

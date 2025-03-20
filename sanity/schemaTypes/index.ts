@@ -1,5 +1,5 @@
 import { type SchemaTypeDefinition } from 'sanity';
-import { customImage, localizedString } from './customImage';
+import { customImage } from './customImage';
 import { genre } from './genre';
 import { hexagonButton } from './hexagonButton';
 import { metaDescription } from './metaDescription';
@@ -41,7 +41,6 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     expandableContent,
     person,
     customImage,
-    localizedString,
     hexagonButton,
     footer,
     quoteBomb,

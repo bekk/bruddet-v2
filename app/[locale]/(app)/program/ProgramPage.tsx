@@ -1,21 +1,21 @@
 'use client';
-import { PROGRAMPAGE_QUERYResult } from '@/sanity/types/types';
+import { CustomImage, PROGRAMPAGE_QUERYResult } from '@/sanity/types/types';
 import { SocialMedia } from '@/components/SocialMedia';
 import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { ImageType } from '@/sanity/lib/queries/image';
 import { DynamicImage } from '@/components/DynamicImage';
 import { useLocale, useTranslations } from 'next-intl';
 import EventDate from '@/components/event/EventDate';
 import { getFirstAndLastDate } from '@/utils/formatDates';
+import { urlFor } from '@/sanity/lib/image';
 
 type ProgramPageProps = {
   data: PROGRAMPAGE_QUERYResult;
 };
 
 export const ProgramPage = ({ data }: ProgramPageProps) => {
-  const [image, setImage] = useState<ImageType>(null);
+  const [image, setImage] = useState<CustomImage | null>(null);
   const t = useTranslations('program');
   const locale = useLocale();
 
@@ -44,10 +44,10 @@ export const ProgramPage = ({ data }: ProgramPageProps) => {
               className="block lg:text-center hover:underline"
             >
               <div className="lg:hidden flex justify-center aspect-square w-full">
-                {link.image && (
+                {link?.image?.asset && (
                   <Image
                     key={index}
-                    src={link.image?.imageUrl || ''}
+                    src={urlFor(link.image?.asset).url()}
                     alt={link.image?.alt || ''}
                     width={350}
                     height={350}

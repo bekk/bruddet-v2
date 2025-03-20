@@ -84,9 +84,8 @@ export const event = defineType({
     defineField({
       name: 'image',
       title: 'Bilde',
-      type: 'reference',
+      type: 'customImage',
       group: 'visual',
-      to: [{ type: 'customImage' }],
     }),
     defineField({
       name: 'ingress',

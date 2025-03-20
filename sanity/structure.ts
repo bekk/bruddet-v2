@@ -6,7 +6,6 @@ import {
   UserIcon,
   InfoOutlineIcon,
   EqualIcon,
-  ImageIcon,
   MenuIcon,
   TagIcon,
 } from '@sanity/icons';
@@ -58,13 +57,6 @@ const MULTI = [
     schemaType: 'event',
   },
   {
-    id: 'person',
-    title: 'Person',
-    _type: 'document',
-    icon: UserIcon,
-    schemaType: 'person',
-  },
-  {
     id: 'genre',
     title: 'Sjanger',
     _type: 'document',
@@ -75,11 +67,11 @@ const MULTI = [
 
 const NOT_LANGUAGE_SPECIFIC = [
   {
-    id: 'customImage',
-    title: 'Bilde',
+    id: 'person',
+    title: 'Person',
     _type: 'document',
-    schemaType: 'customImage',
-    icon: ImageIcon,
+    icon: UserIcon,
+    schemaType: 'person',
   },
 ];
 

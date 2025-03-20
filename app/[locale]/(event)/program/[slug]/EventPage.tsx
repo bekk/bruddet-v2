@@ -28,9 +28,9 @@ export const EventPage = async ({ data }: EventPageProps) => {
   return (
     <>
       <div id="eventIngress" className="event-header flex flex-col">
-        {image?.imageUrl && (
+        {image?.asset && (
           <ImageEventPage
-            url={urlFor(image.imageUrl).url() || ''}
+            url={urlFor(image.asset).url()}
             alt={(image.alt || '') as string}
             title={title || ''}
           />

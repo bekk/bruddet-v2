@@ -8,6 +8,7 @@ import { visionTool } from '@sanity/vision';
 import { defineConfig, SanityClient, SanityDocumentLike } from 'sanity';
 import { presentationTool } from 'sanity/presentation';
 import { structureTool } from 'sanity/structure';
+import { media } from 'sanity-plugin-media';
 
 // Go to https://www.sanity.io/docs/api-versioning to learn how API versioning works
 import { muxInput } from 'sanity-plugin-mux-input';
@@ -80,5 +81,6 @@ export default defineConfig({
         },
       },
     }),
+    media(),
   ],
 });

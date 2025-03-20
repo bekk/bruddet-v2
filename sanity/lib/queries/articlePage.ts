@@ -1,44 +1,31 @@
 import { defineQuery } from 'next-sanity';
-import { imageProjection } from './image';
 
 export const ARTICLEPAGE_QUERY = defineQuery(
   `*[_type=="article" && slug.current == $slug && language==$lang][0]{
-        title, 
-        slug, 
-        ingress,
-        metaTitle, 
-        metaDescription, 
-        galleryDisplayType,
-        image, 
-        text[]{..., 
-          _type=="video" => {
-            title, muxVideo{asset->{playbackId}
-            }
-          }
-      },  
+      title, 
+      slug, 
+      ingress,
+      metaTitle, 
+      metaDescription, 
+      galleryDisplayType,
+      image,
+      text[],  
       "tagTexts": text[style == "h2"]
       {"subtitle": children[0].text, _key},
         roleGroups[]{
-          _type,
-          _key,
-          name, 
-          persons[]{
-          _type,
           ...,
-          person->{
-            name,
-            image->${imageProjection}, 
-            text,
+          persons[]{
+            ...,
+            person-> {
+              ...,
+              "biography": select(
+                $lang == "nb" => biography.nb, 
+                $lang == "en" => biography.en,
+              )
             }
           }
-        }, 
-        video{
-          title, 
-          muxVideo{
-            asset->{
-              playbackId}
-            }
         },
+        video,
         'event': event->{slug},
         "_translations": *[_type == "translation.metadata" && references(^._id)].translations[].value->{
           slug,

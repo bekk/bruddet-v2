@@ -4,7 +4,7 @@ import { EditIcon } from '@sanity/icons';
 export const review = defineType({
   name: 'review',
   title: 'Anmeldelse',
-  type: 'document',
+  type: 'object',
   icon: EditIcon,
   fields: [
     defineField({

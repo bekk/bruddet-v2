@@ -27,9 +27,6 @@ const PersonCard = ({ details }: PersonCardProps) => {
           alt={person?.biography ?? person?.name ?? ''}
           width={1000}
           height={1000}
-          style={{
-            objectFit: 'contain',
-          }}
         />
       )}
       <div className="flex flex-col gap-2">

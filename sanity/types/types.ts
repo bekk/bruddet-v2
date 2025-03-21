@@ -989,7 +989,7 @@ export type FOOTER_QUERYResult = {
 
 // Source: ./sanity/lib/queries/frontPage.ts
 // Variable: FRONTPAGE_QUERY
-// Query: *[_type == "frontPage" && language == $lang][0]{      ...,      hexagon {        ...,         linkToArticleOrEvent -> {...,},      },    }
+// Query: *[_type == "frontPage" && language == $lang][0]{      ...,      hexagon {        ...,         linkToArticleOrEvent->,      },    }
 export type FRONTPAGE_QUERYResult = {
   _id: string;
   _type: 'frontPage';
@@ -1202,7 +1202,7 @@ declare module '@sanity/client' {
     '*[_type=="article" && slug.current == $slug && language==$lang][0]{\n      title, \n      slug, \n      ingress,\n      metaTitle, \n      metaDescription, \n      galleryDisplayType,\n      image,\n      text[],  \n      "tagTexts": text[style == "h2"]\n      {"subtitle": children[0].text, _key},\n        roleGroups[]{\n          ...,\n          persons[]{\n            ...,\n            person-> {\n              ...,\n              "biography": select(\n                $lang == "nb" => biography.nb, \n                $lang == "en" => biography.en,\n              )\n            }\n          }\n        },\n        video,\n        \'event\': event->{slug},\n        "_translations": *[_type == "translation.metadata" && references(^._id)].translations[].value->{\n          slug,\n          language,\n        }\n    }': ARTICLEPAGE_QUERYResult;
     '\n    *[_type == "event" && slug.current == $slug && language == $lang][0]{\n      ...,\n      genre->,\n      image,\n      roleGroups[]{\n        ...,\n        persons[]{\n          ...,\n          person-> {\n            ...,\n            "biography": select(\n              $lang == "nb" => biography.nb, \n              $lang == "en" => biography.en,\n            )\n          }\n        }\n      },\n      dates[]{\n        ...,\n      } | order(date asc)\n    }\n  ': EVENT_QUERYResult;
     '*[_type=="footer" && language==$lang][0] {..., "link": link->slug.current}': FOOTER_QUERYResult;
-    '\n    *[_type == "frontPage" && language == $lang][0]{\n      ...,\n      hexagon {\n        ..., \n        linkToArticleOrEvent -> {...,},\n      },\n    }\n  ': FRONTPAGE_QUERYResult;
+    '\n    *[_type == "frontPage" && language == $lang][0]{\n      ...,\n      hexagon {\n        ..., \n        linkToArticleOrEvent->,\n      },\n    }\n  ': FRONTPAGE_QUERYResult;
     '*[_type == "menuPage" && language == $lang][0] {\n    metaTitle, \n    metaDescription,\n    title,\n    links[]->{\n      title,\n      image,\n      slug,\n      _type,\n      text[style=="h2"] {\n        defined(_key) => {_key},\n        "subtitle": children[0].text,\n        "slug": ^.slug.current\n      }[defined(subtitle)],\n    },\n    socialMediaText,\n    bottomLink {\n      text,\n      link->{\n      _type,\n      slug\n      },\n    }\n  }': MENUPAGE_QUERYResult;
     '*[_type=="programPage" && language == $lang][0] {\n    metaTitle,\n    metaDescription,\n    title,\n    socialMediaText,\n    links[]->{\n        title,\n        image,\n        slug,\n        dates[]{\n          ...,\n        } | order(date asc)\n    }\n }': PROGRAMPAGE_QUERYResult;
   }

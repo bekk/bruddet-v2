@@ -526,12 +526,6 @@ export type Article = {
     _type: 'customImage';
   };
   video?: Video;
-  event?: {
-    _ref: string;
-    _type: 'reference';
-    _weak?: boolean;
-    [internalGroqTypeReferenceTo]?: 'event';
-  };
   roleGroups?: Array<
     {
       _key: string;
@@ -756,7 +750,7 @@ export type AllSanitySchemaTypes =
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ./sanity/lib/queries/articlePage.ts
 // Variable: ARTICLEPAGE_QUERY
-// Query: *[_type=="article" && slug.current == $slug && language==$lang][0]{      title,       slug,       ingress,      metaTitle,       metaDescription,       galleryDisplayType,      image,      text[],        "tagTexts": text[style == "h2"]      {"subtitle": children[0].text, _key},        roleGroups[]{          ...,          persons[]{            ...,            person-> {              ...,              "biography": select(                $lang == "nb" => biography.nb,                 $lang == "en" => biography.en,              )            }          }        },        video,        'event': event->{slug},        "_translations": *[_type == "translation.metadata" && references(^._id)].translations[].value->{          slug,          language,        }    }
+// Query: *[_type=="article" && slug.current == $slug && language==$lang][0]{      title,       slug,       ingress,      metaTitle,       metaDescription,       galleryDisplayType,      image,      text[],        "tagTexts": text[style == "h2"]      {"subtitle": children[0].text, _key},        roleGroups[]{          ...,          persons[]{            ...,            person-> {              ...,              "biography": select(                $lang == "nb" => biography.nb,                 $lang == "en" => biography.en,              )            }          }        },        video,        "_translations": *[_type == "translation.metadata" && references(^._id)].translations[].value->{          slug,          language,        }    }
 export type ARTICLEPAGE_QUERYResult = {
   title: string | null;
   slug: Slug | null;
@@ -867,9 +861,6 @@ export type ARTICLEPAGE_QUERYResult = {
     }> | null;
   }> | null;
   video: Video | null;
-  event: {
-    slug: Slug | null;
-  } | null;
   _translations: Array<
     | {
         slug: null;
@@ -1041,12 +1032,6 @@ export type FRONTPAGE_QUERYResult = {
             _type: 'customImage';
           };
           video?: Video;
-          event?: {
-            _ref: string;
-            _type: 'reference';
-            _weak?: boolean;
-            [internalGroqTypeReferenceTo]?: 'event';
-          };
           roleGroups?: Array<
             {
               _key: string;
@@ -1199,7 +1184,7 @@ export type PROGRAMPAGE_QUERYResult = {
 import '@sanity/client';
 declare module '@sanity/client' {
   interface SanityQueries {
-    '*[_type=="article" && slug.current == $slug && language==$lang][0]{\n      title, \n      slug, \n      ingress,\n      metaTitle, \n      metaDescription, \n      galleryDisplayType,\n      image,\n      text[],  \n      "tagTexts": text[style == "h2"]\n      {"subtitle": children[0].text, _key},\n        roleGroups[]{\n          ...,\n          persons[]{\n            ...,\n            person-> {\n              ...,\n              "biography": select(\n                $lang == "nb" => biography.nb, \n                $lang == "en" => biography.en,\n              )\n            }\n          }\n        },\n        video,\n        \'event\': event->{slug},\n        "_translations": *[_type == "translation.metadata" && references(^._id)].translations[].value->{\n          slug,\n          language,\n        }\n    }': ARTICLEPAGE_QUERYResult;
+    '*[_type=="article" && slug.current == $slug && language==$lang][0]{\n      title, \n      slug, \n      ingress,\n      metaTitle, \n      metaDescription, \n      galleryDisplayType,\n      image,\n      text[],  \n      "tagTexts": text[style == "h2"]\n      {"subtitle": children[0].text, _key},\n        roleGroups[]{\n          ...,\n          persons[]{\n            ...,\n            person-> {\n              ...,\n              "biography": select(\n                $lang == "nb" => biography.nb, \n                $lang == "en" => biography.en,\n              )\n            }\n          }\n        },\n        video,\n        "_translations": *[_type == "translation.metadata" && references(^._id)].translations[].value->{\n          slug,\n          language,\n        }\n    }': ARTICLEPAGE_QUERYResult;
     '\n    *[_type == "event" && slug.current == $slug && language == $lang][0]{\n      ...,\n      genre->,\n      image,\n      roleGroups[]{\n        ...,\n        persons[]{\n          ...,\n          person-> {\n            ...,\n            "biography": select(\n              $lang == "nb" => biography.nb, \n              $lang == "en" => biography.en,\n            )\n          }\n        }\n      },\n      dates[]{\n        ...,\n      } | order(date asc)\n    }\n  ': EVENT_QUERYResult;
     '*[_type=="footer" && language==$lang][0] {..., "link": link->slug.current}': FOOTER_QUERYResult;
     '\n    *[_type == "frontPage" && language == $lang][0]{\n      ...,\n      hexagon {\n        ..., \n        linkToArticleOrEvent->,\n      },\n    }\n  ': FRONTPAGE_QUERYResult;

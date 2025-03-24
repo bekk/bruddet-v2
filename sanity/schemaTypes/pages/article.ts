@@ -104,24 +104,6 @@ export const article = defineType({
       group: 'visual',
     }),
     defineField({
-      name: 'event',
-      type: 'reference',
-      description: 'Referer til valgt forestilling',
-      to: [{ type: 'event' }],
-      options: {
-        filter: ({ document }) => {
-          return {
-            filter: 'language == $lang',
-            params: { lang: document.language },
-          };
-        },
-        documentInternationalization: {
-          exclude: true,
-        },
-      },
-      group: 'content',
-    }),
-    defineField({
       name: 'roleGroups',
       title: 'Roller',
       description: 'Lag egne rollegrupper',

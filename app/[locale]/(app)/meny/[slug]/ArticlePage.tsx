@@ -5,18 +5,15 @@ import { MainBlock } from '@/components/MainBlock';
 import { NormalRightColumn } from '@/components/NormalRightColumn';
 import { StickyRightColumn } from '@/components/StickyRightColumn';
 import { ARTICLEPAGE_QUERYResult } from '@/sanity/types/types';
-import { getTranslations } from 'next-intl/server';
-import Link from 'next/link';
 
 type ArticlePageProps = { data: ARTICLEPAGE_QUERYResult; language: string };
 
-export const ArticlePage = async ({ data, language }: ArticlePageProps) => {
-  const t = await getTranslations('article');
+export const ArticlePage = async ({ data }: ArticlePageProps) => {
   if (!data) {
     return;
   }
 
-  const { title, ingress, text, tagTexts, event, roleGroups, galleryDisplayType } = data;
+  const { title, ingress, text, tagTexts, roleGroups, galleryDisplayType } = data;
 
   return (
     <>
@@ -25,16 +22,7 @@ export const ArticlePage = async ({ data, language }: ArticlePageProps) => {
         <p className="text-xl lg:text-3xl text-left lg:text-center font-normal break-words">
           {ingress}
         </p>
-
         <TagButtons tagTexts={tagTexts} />
-        {event && (
-          <Link
-            className="block md:text-center underline hover:no-underline"
-            href={`/${language}/program/${event.slug?.current}`}
-          >
-            {t('read-more')}
-          </Link>
-        )}
       </div>
       <RolesBlock roleGroups={roleGroups} />
       <Columns>

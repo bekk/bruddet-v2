@@ -26,7 +26,6 @@ export const ARTICLEPAGE_QUERY = defineQuery(
           }
         },
         video,
-        'event': event->{slug},
         "_translations": *[_type == "translation.metadata" && references(^._id)].translations[].value->{
           slug,
           language,

@@ -5,12 +5,10 @@ import { MainBlock } from '@/components/MainBlock';
 import { NormalRightColumn } from '@/components/NormalRightColumn';
 import { StickyRightColumn } from '@/components/StickyRightColumn';
 import { ARTICLEPAGE_QUERYResult } from '@/sanity/types/types';
-import { getTranslations } from 'next-intl/server';
 
 type ArticlePageProps = { data: ARTICLEPAGE_QUERYResult; language: string };
 
 export const ArticlePage = async ({ data }: ArticlePageProps) => {
-  const t = await getTranslations('article');
   if (!data) {
     return;
   }

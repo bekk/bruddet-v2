@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body {
-  font-family: "PT Serif", serif;
+  font-family: var(--font-lexik), serif;
 }
 
 p {

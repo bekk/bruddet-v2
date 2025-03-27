@@ -2,10 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  font-family: "PT Serif", serif;
-}
-
 p {
   @apply md:text-xl;
 
@@ -13,7 +9,6 @@ p {
     @apply underline hover:no-underline;
   }
 }
-
 
 @layer base {
   :root {

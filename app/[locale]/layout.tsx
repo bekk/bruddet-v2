@@ -1,5 +1,6 @@
 import { DisableDraftMode } from '@/components/DisableDraftMode';
 import Header from '@/components/header/Header';
+import { JumpToContent } from '@/components/JumpToContent';
 import { Newsletter } from '@/components/newsletter/Newsletter';
 import { NewsLetterProvider } from '@/hooks/useDialog';
 import { routing } from '@/i18n/routing';
@@ -8,20 +9,23 @@ import type { Metadata } from 'next';
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
 import { VisualEditing } from 'next-sanity';
-import { Geist, Geist_Mono } from 'next/font/google';
+import localFont from 'next/font/local';
 import { draftMode } from 'next/headers';
 import { notFound } from 'next/navigation';
 import '../globals.css';
-import { JumpToContent } from '@/components/JumpToContent';
 
-const geistSans = Geist({
-  variable: '--font-geist-sans',
-  subsets: ['latin'],
-});
-
-const geistMono = Geist_Mono({
-  variable: '--font-geist-mono',
-  subsets: ['latin'],
+const lexik = localFont({
+  src: [
+    {
+      path: '../../public/fonts/Lexik-Regular.otf',
+      style: 'normal',
+    },
+    {
+      path: '../../public/fonts/Lexik-Bold.otf',
+      style: 'bold',
+    },
+  ],
+  variable: '--font-lexik',
 });
 
 export const metadata: Metadata = {
@@ -49,7 +53,7 @@ export default async function Layout({
 
   return (
     <html lang={locale}>
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+      <body className={`${lexik.variable} font-lexic antialiased`}>
         <NextIntlClientProvider messages={messages}>
           <JumpToContent />
           <Header />

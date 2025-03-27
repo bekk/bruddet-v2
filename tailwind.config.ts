@@ -20,7 +20,7 @@ export default {
   ],
   theme: {
     fontFamily: {
-      'pt-serif': ['PT Serif', 'sans-serif'],
+      lexic: ['var(--font-lexik)'],
     },
     extend: {
       colors: {

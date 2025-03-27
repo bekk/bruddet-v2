@@ -9,12 +9,10 @@ import { Metadata } from 'next';
 
 export default async function Page({ params }: { params: Promise<{ locale: string }> }) {
   const lang = (await params).locale;
-  console.log('Frontpage locale', lang);
   const { data }: { data: FRONTPAGE_QUERYResult } = await sanityFetch({
     query: FRONTPAGE_QUERY,
     params: { lang },
   });
-  console.log('Frontpage Data', data);
   const minHeight = "calc(100vh-theme('spacing.12'))";
 
   const hexagon = data?.hexagon;

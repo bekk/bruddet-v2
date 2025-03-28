@@ -11,7 +11,7 @@ interface HexagonButtonProps {
 }
 
 export default function HexagonButton({ text, slug, shouldShowNewsletter }: HexagonButtonProps) {
-  const lines = stegaClean(text?.split('_'));
+  const lines = stegaClean(text?.split('_')) ?? [];
   const [isHovering, setIsHovering] = useState(false);
   const { setNewsletterOpen } = useNewsLetterContext();
 

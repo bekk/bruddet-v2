@@ -11,7 +11,7 @@ export interface QuoteBombProps {
 export default function QuoteBombComponent({ value }: QuoteBombProps) {
   const { quote, creditsSource, creditsMedia } = value;
   const cleanQuote = stegaClean(quote);
-  const lengthOfString = cleanQuote.length;
+  const lengthOfString = cleanQuote?.length ?? 0;
 
   const getFontSize = () => {
     if (lengthOfString < 30) {
